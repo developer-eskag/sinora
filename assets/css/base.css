@@ -1,0 +1,254 @@
+/* ==========================================================
+   RESET
+========================================================== */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    min-width: 320px;
+    overflow-x: hidden;
+    font-family: var(--body);
+    font-size: var(--fs-body);
+    font-weight: var(--fw-regular);
+    line-height: var(--lh-body);
+    color: var(--text);
+    background: var(--cream);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* ==========================================================
+   SELECTION
+========================================================== */
+
+::selection {
+    background: var(--amber);
+    color: var(--cream);
+}
+
+
+/* ==========================================================
+   MEDIA
+========================================================== */
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+img {
+    height: auto;
+}
+
+svg {
+    overflow: visible;
+}
+
+
+/* ==========================================================
+   TYPOGRAPHY
+========================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--display);
+    font-weight: var(--fw-bold);
+    line-height: var(--lh-heading);
+    color: var(--text);
+}
+
+h1 {
+    font-size: var(--fs-h1);
+    line-height: var(--lh-display);
+}
+
+h2 {
+    font-size: var(--fs-h2);
+}
+
+h3 {
+    font-size: var(--fs-h3);
+}
+
+h4 {
+    font-size: var(--fs-h4);
+}
+
+p {
+    color: var(--muted);
+}
+
+small {
+    font-size: var(--fs-sm);
+}
+
+
+/* ==========================================================
+   LINKS
+========================================================== */
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--speed) var(--ease);
+}
+
+
+/* ==========================================================
+   LISTS
+========================================================== */
+
+ul,
+ol {
+    list-style: none;
+}
+
+
+/* ==========================================================
+   FORM ELEMENTS
+========================================================== */
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* ==========================================================
+   LAYOUT
+========================================================== */
+
+.container {
+    width: min(100% - (var(--gutter) * 2), var(--container));
+    margin-inline: auto;
+}
+
+.section {
+    padding-block: var(--section-space);
+}
+
+
+/* ==========================================================
+   COMMON COMPONENTS
+========================================================== */
+
+.section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: 1rem;
+    font-size: var(--fs-eyebrow);
+    font-weight: var(--fw-semibold);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--amber);
+}
+
+.section-title {
+    margin-bottom: 1rem;
+}
+
+.section-description {
+    max-width: 680px;
+}
+
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+    padding: .95rem 1.75rem;
+    border-radius: var(--r-pill);
+    font-size: .95rem;
+    font-weight: var(--fw-semibold);
+    transition:
+        background var(--speed) var(--ease),
+        color var(--speed) var(--ease),
+        border-color var(--speed) var(--ease),
+        transform var(--speed-fast) var(--ease);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: var(--amber);
+    color: var(--cream);
+}
+
+.btn-primary:hover {
+    background: var(--amber-deep);
+}
+
+.btn-secondary {
+    border: 1px solid var(--line);
+    color: var(--text);
+    background: transparent;
+}
+
+.btn-secondary:hover {
+    background: rgba(0,0,0,.03);
+}
+
+
+/* ==========================================================
+   UTILITIES
+========================================================== */
+
+.text-center {
+    text-align: center;
+}
+
+.text-light {
+    color: var(--text-light);
+}
+
+.bg-dark {
+    background: var(--ink);
+    color: var(--cream-on-dark);
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}

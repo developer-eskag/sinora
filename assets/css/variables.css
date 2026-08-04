@@ -1,0 +1,140 @@
+:root {
+
+  /* ==========================================================
+     COLORS
+  ========================================================== */
+  /* Core Brand */
+  --ink: #15120E;
+  --ink-soft: #221D17;
+
+  /* Backgrounds */
+  --cream: #FBF6EF;
+  --cream-2: #F3EADD;
+  --peach: #FBE1C9;
+
+  /* Accent */
+  --amber: #F26A21;
+  --amber-deep: #C6510E;
+  --amber-soft: #FBEADB;
+
+  /* UI */
+  --line: #E7DCCD;
+  --line-dark: rgba(255,255,255,.13);
+
+  /* Text */
+  --text: var(--ink);
+  --text-light: #FBF6EF;
+  --muted: #6C645B;
+  --muted-on-dark: #B7AB9C;
+  --faint: #A99F93;
+
+  /* Technology Accent (Use Sparingly) */
+  --aqua: #6E97A0;
+
+  /* Status */
+  --success: #3A8D5D;
+  --warning: #E5A100;
+  --error: #C44747;
+
+  /* ==========================================================
+     TYPOGRAPHY
+  ========================================================== */
+  --display: "Space Grotesk", system-ui, sans-serif;
+  --body: "Inter", system-ui, sans-serif;
+  --mono: "Space Mono", monospace;
+
+  /* Font Weight */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Font Size */
+  --fs-eyebrow: .72rem;
+  --fs-h1: clamp(2.3rem,4.7vw,3.35rem);
+  --fs-h2: clamp(1.6rem,2.9vw,2.2rem);
+  --fs-h3: 1.15rem;
+  --fs-h4: 1rem;
+  --fs-body: 1rem;
+  --fs-sm: .875rem;
+  --fs-xs: .78rem;
+
+  /* Line Height */
+  --lh-display: 1.05;
+  --lh-heading: 1.15;
+  --lh-body: 1.75;
+
+  /* ==========================================================
+     LAYOUT
+  ========================================================== */
+  --container: 1180px;
+  --gutter: 22px;
+  --section-space: clamp(56px,7vw,92px);
+  --space-xs: .5rem;
+  --space-sm: .75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* ==========================================================
+     BORDER RADIUS
+  ========================================================== */
+  --r-sm: 8px;
+  --r: 12px;
+  --r-lg: 18px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  /* ==========================================================
+     SHADOWS
+  ========================================================== */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.05);
+  --shadow-md: 0 8px 24px rgba(0,0,0,.08);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,.12);
+  --shadow-glow: 0 0 40px rgba(242,106,33,.18);
+
+  /* ==========================================================
+     TRANSITIONS
+  ========================================================== */
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --speed-fast: .25s;
+  --speed: .4s;
+  --speed-slow: .7s;
+
+  /* ==========================================================
+     Z-INDEX
+  ========================================================== */
+  --z-header: 100;
+  --z-overlay: 500;
+  --z-modal: 900;
+  --z-loader: 9999;
+
+  /* ==========================================================
+   GRADIENTS
+========================================================== */
+--gradient-brand: linear-gradient(
+    135deg,
+    var(--amber),
+    var(--amber-deep)
+);
+
+--gradient-soft: linear-gradient(
+    180deg,
+    var(--cream),
+    var(--cream-2)
+);
+
+--gradient-glow: radial-gradient(
+    circle,
+    rgba(242,106,33,.15),
+    transparent 70%
+);
+
+--gradient-technology: linear-gradient(
+    135deg,
+    rgba(242,106,33,.08),
+    rgba(110,151,160,.08)
+);
+
+}
