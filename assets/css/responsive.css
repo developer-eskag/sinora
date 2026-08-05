@@ -59,6 +59,15 @@
         display:none;
     }
 
+    .journey-track{
+        display:none;
+    }
+
+    .journey-mobile{
+        display:grid;
+        gap:40px;
+    }
+
 }
 
 @media(max-width:768px){

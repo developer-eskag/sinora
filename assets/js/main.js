@@ -241,6 +241,138 @@ const productSlider = new Swiper(".product-slider",{
     }
 });
 
+
+ /* =========================================
+     LIPOSOMAL PROCESS STICKY SCROLL
+  ========================================= */
+
+  const processSteps = [
+    {
+      count: "01 / 06",
+      title: "Ingredient Selection",
+      body: "Clinically selected active ingredients chosen for maximum efficacy and stability.",
+      points: ["Pharmaceutical Grade", "High Potency", "Stable Formula"],
+      image: "assets/images/journey-1.png"
+    },
+    {
+      count: "02 / 06",
+      title: "Liposomal Encapsulation",
+      body: "Every active ingredient is enclosed inside a phospholipid membrane, protecting it from oxidation.",
+      points: ["Protective Shell", "Better Stability", "Longer Activity"],
+      image: "assets/images/journey-2.png"
+    },
+    {
+      count: "03 / 06",
+      title: "Skin Contact",
+      body: "The formulation spreads evenly across the skin while maintaining structural integrity.",
+      points: ["Uniform Coverage", "Gentle Application", "Barrier Friendly"],
+      image: "assets/images/journey-3.png"
+    },
+    {
+      count: "04 / 06",
+      title: "Deep Penetration",
+      body: "Liposomes travel beyond the outer skin barrier, allowing active ingredients to reach deeper layers.",
+      points: ["Better Absorption", "Efficient Delivery", "Enhanced Penetration"],
+      image: "assets/images/journey-4.png"
+    },
+    {
+      count: "05 / 06",
+      title: "Targeted Release",
+      body: "The phospholipid membrane gradually releases ingredients exactly where they are needed.",
+      points: ["Controlled Delivery", "Maximum Efficiency", "Sustained Action"],
+      image: "assets/images/journey-5.png"
+    },
+    {
+      count: "06 / 06",
+      title: "Visible Results",
+      body: "Enhanced absorption helps improve hydration, radiance, firmness and long-lasting skin health.",
+      points: ["Radiance", "Hydration", "Healthy Skin"],
+      image: "assets/images/journey-6.png"
+    }
+  ];
+
+  const processSection = document.querySelector(".liposomal-process");
+  const processTrack = document.querySelector("[data-process-track]");
+  const processImages = document.querySelector("[data-process-images]");
+  const processCopy = document.querySelector("[data-process-copy]");
+  const processCount = document.querySelector("[data-process-count]");
+  const processBar = document.querySelector("[data-process-bar]");
+  const processMobile = document.querySelector("[data-process-mobile]");
+
+  if(processSection && processTrack && processImages && processCopy){
+    let activeProcessIndex = 0;
+    processSection.style.setProperty("--process-step-count", processSteps.length);
+
+    processImages.innerHTML = processSteps.map((step, index) => `
+      <img class="process-image ${index === 0 ? "active" : ""}" src="${step.image}" alt="">
+    `).join("");
+
+    processMobile.innerHTML = processSteps.map(step => `
+      <article class="process-mobile-card">
+        <img src="${step.image}" alt="">
+        <div class="process-mobile-body">
+          <div class="process-mobile-count">${step.count}</div>
+          <h3>${step.title}</h3>
+          <p>${step.body}</p>
+          <ul class="process-points">
+            ${step.points.map(point => `<li>${point}</li>`).join("")}
+          </ul>
+        </div>
+      </article>
+    `).join("");
+
+    function renderProcessStep(index){
+      const step = processSteps[index];
+
+      processCopy.classList.remove("changing");
+      void processCopy.offsetWidth;
+      processCopy.classList.add("changing");
+
+      processCopy.innerHTML = `
+        <h3>${step.title}</h3>
+        <p>${step.body}</p>
+        <ul class="process-points">
+          ${step.points.map(point => `<li>${point}</li>`).join("")}
+        </ul>
+      `;
+
+      processCount.textContent = step.count;
+      processBar.style.transform = `scaleX(${(index + 1) / processSteps.length})`;
+
+      processImages.querySelectorAll(".process-image").forEach((image, imageIndex) => {
+        image.classList.toggle("active", imageIndex === index);
+      });
+    }
+
+    function clampProcess(value, min, max){
+      return Math.min(Math.max(value, min), max);
+    }
+
+    function updateProcessStep(){
+      if(window.innerWidth <= 991) return;
+
+      const rect = processTrack.getBoundingClientRect();
+      const scrollableDistance = processTrack.offsetHeight - window.innerHeight;
+      const progress = clampProcess(-rect.top / scrollableDistance, 0, 0.9999);
+      const nextIndex = clampProcess(
+        Math.floor(progress * processSteps.length),
+        0,
+        processSteps.length - 1
+      );
+
+      if(nextIndex !== activeProcessIndex){
+        activeProcessIndex = nextIndex;
+        renderProcessStep(activeProcessIndex);
+      }
+    }
+
+    renderProcessStep(0);
+    updateProcessStep();
+    window.addEventListener("scroll", updateProcessStep, { passive:true });
+    window.addEventListener("resize", updateProcessStep);
+  }
+
+
 /* =========================================
    Lucide Icons
 ========================================= */
