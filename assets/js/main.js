@@ -411,7 +411,6 @@ if (comparison) {
     function updateSlider(value) {
         position = Math.max(0, Math.min(100, value));
         
-        // BEFORE image: Show from left edge to slider position (0% to position%)
         // Clip the right side to reveal gradually
         const beforeClipRight = (100 - position);
         beforeImage.style.clipPath = `inset(0 ${beforeClipRight}% 0 0)`;
@@ -424,47 +423,69 @@ if (comparison) {
     }
 
     function updateBadgeClipping(sliderPosition) {
-        const badgeWidth = 8;  // Rough width percentage of badge (120px in ~1100px = ~11%)
-        const badgeSpacing = 3; // Spacing from edge (30px in ~1100px = ~3%)
-        
-        // BEFORE badge (left side)
-        // Badge is at left: 3%, width: 8% (spans 3% to 11%)
-        // Show badge only when slider is to the RIGHT of badge or over it gradually revealing
-        const beforeBadgeLeft = badgeSpacing;
-        const beforeBadgeRight = badgeSpacing + badgeWidth;
-        
-        if (sliderPosition < beforeBadgeLeft) {
-            // Slider is LEFT of badge (0-3%) - FULLY HIDDEN
-            beforeLabel.style.clipPath = `inset(0 100% 0 0)`;
-        } else if (sliderPosition > beforeBadgeRight) {
-            // Slider is RIGHT of badge (11%+) - FULLY VISIBLE
-            beforeLabel.style.clipPath = `inset(0 0 0 0)`;
-        } else {
-            // Slider is OVER badge (3-11%) - gradually reveal from left to right
-            const clipAmount = ((beforeBadgeRight - sliderPosition) / badgeWidth) * 100;
-            beforeLabel.style.clipPath = `inset(0 ${clipAmount}% 0 0)`;
-        }
-        
-        // AFTER badge (right side)
-        // Badge is at right: 3%, width: 8% (spans (100-11)% to (100-3)%)
-        const afterBadgeRight = badgeSpacing;
-        const afterBadgeLeft = badgeSpacing + badgeWidth;
-        
-        // If slider is before badge, don't clip (badge fully visible)
-        // If slider is within badge range, clip the left side
-        // If slider is past badge, don't clip
-        if (sliderPosition < (100 - afterBadgeLeft)) {
-            // Slider before badge - fully visible
-            afterLabel.style.clipPath = `inset(0 0 0 0)`;
-        } else if (sliderPosition > (100 - afterBadgeRight)) {
-            // Slider past badge - fully hidden
-            afterLabel.style.clipPath = `inset(0 0 0 100%)`;
-        } else {
-            // Slider overlapping badge - progressively hide from left
-            const clipAmount = ((100 - sliderPosition - afterBadgeRight) / afterBadgeLeft) * 100;
-            afterLabel.style.clipPath = `inset(0 0 0 ${100 - clipAmount}%)`;
-        }
+
+    const comparisonRect = comparison.getBoundingClientRect();
+
+    // Divider center position in pixels
+    const dividerRect = divider.getBoundingClientRect();
+    const dividerX = dividerRect.left + (dividerRect.width / 2);
+
+
+    /* ----------------------------------
+       BEFORE BADGE
+       Badge lives on the LEFT
+    ---------------------------------- */
+
+    const beforeRect = beforeLabel.getBoundingClientRect();
+
+    if (dividerX <= beforeRect.left) {
+
+        // Divider is completely before the badge
+        beforeLabel.style.clipPath = "inset(0 100% 0 0)";
+
+    } else if (dividerX >= beforeRect.right) {
+
+        // Divider has completely passed the badge
+        beforeLabel.style.clipPath = "inset(0 0 0 0)";
+
+    } else {
+
+        // Divider is passing through the badge
+        const visibleWidth = dividerX - beforeRect.left;
+
+        const clipRight = beforeRect.width - visibleWidth;
+
+        beforeLabel.style.clipPath =
+            `inset(0 ${Math.max(0, clipRight)}px 0 0)`;
     }
+
+
+    /* ----------------------------------
+       AFTER BADGE
+       Badge lives on the RIGHT
+    ---------------------------------- */
+
+    const afterRect = afterLabel.getBoundingClientRect();
+
+    if (dividerX <= afterRect.left) {
+
+        // Divider hasn't reached badge
+        afterLabel.style.clipPath = "inset(0 0 0 0)";
+
+    } else if (dividerX >= afterRect.right) {
+
+        // Divider has completely passed badge
+        afterLabel.style.clipPath = "inset(0 0 0 100%)";
+
+    } else {
+
+        // Divider is passing through badge
+        const hiddenWidth = dividerX - afterRect.left;
+
+        afterLabel.style.clipPath =
+            `inset(0 0 0 ${Math.max(0, hiddenWidth)}px)`;
+    }
+}
 
     function pointerPosition(e) {
         const rect = comparison.getBoundingClientRect();

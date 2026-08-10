@@ -306,19 +306,7 @@ if (
     /*----------------------------------
         Init
     ----------------------------------*/
-
-    if (window.ScrollTrigger) {
-        ScrollTrigger.create({
-            trigger: ".comparison",
-            start: "top 70%",
-            once: true,
-            onEnter() {
-                setMode("liposomal");
-            }
-        });
-    } else {
-        setMode("liposomal");
-    }
+    setMode("liposomal");
 }
 
 /* =========================================
