@@ -274,11 +274,15 @@ body {
   }
 
   .scan-point {
-    gap: 64px;
+    gap: 146px;
   }
 
   .scan-marker::after {
     width: 64px;
+  }
+
+  .point-3{
+    right: 1%;
   }
 
   .comparison-grid {
@@ -550,7 +554,7 @@ body {
   }
 
   .scan-point {
-    gap: 34px;
+    gap: 60px;
   }
 
   .scan-point label {
@@ -567,27 +571,27 @@ body {
   }
 
   .scan-marker::after {
-    width: 34px;
+    width: 60px;
   }
 
   .point-1 {
-    left: 0;
+    left: 15%;
   }
 
   .point-2 {
-    left: 2%;
+    left: 20%;
   }
 
   .point-3 {
-    right: 0;
+    right: 18%;
   }
 
   .point-4 {
-    right: 0;
+    right: 16%;
   }
 
   .point-5 {
-    left: 0;
+    left: 15%;
   }
 
   .skin-features {
@@ -879,37 +883,33 @@ body {
     padding: 6px 8px;
   }
 
-  .scan-marker::after {
-    display: none;
-  }
-
   .scan-point {
-    gap: 8px;
+    gap: 60px;
   }
 
   .point-1 {
-    top: 18%;
-    left: 4%;
+    top: 85px;
+    left: 76px;
   }
 
   .point-2 {
-    top: 60%;
-    left: 0;
+    top: 57%;
+    left: 19%;
   }
 
   .point-3 {
-    top: 32%;
-    right: 0;
+    top: 36%;
+    right: 17%;
   }
 
   .point-4 {
     top: 49%;
-    right: 0;
+    right: 16%;
   }
 
   .point-5 {
-    top: 43%;
-    left: 0;
+    top: 150px;
+    left: 70px;
   }
 
   .comparison-toggle,
@@ -957,6 +957,35 @@ body {
   }
 }
 
+@media (max-width: 480px) {
+
+   .point-1 {
+    top: 25%;
+    left: 8%;
+  }
+
+  .point-2 {
+    top: 57%;
+    left: 13%;
+  }
+
+  .point-3 {
+    top: 36%;
+    right: 11%;
+  }
+
+  .point-4 {
+    top: 49%;
+    right: 9%;
+  }
+
+  .point-5 {
+    top: 44%;
+    left: 7%;
+  }
+
+}
+
 @media (max-width: 380px) {
   .navbar,
   .header.scrolled .navbar {
@@ -988,6 +1017,26 @@ body {
 
   .hero-actions .btn {
     flex-basis: 100%;
+  }
+
+  .point-1 {
+    left: -4%;
+  }
+
+  .point-2 {
+    left: 3%;
+  }
+
+  .point-3 {
+    right: 0%;
+  }
+
+  .point-4 {
+    right: -3%;
+  }
+
+  .point-5 {
+    left: -6%;
   }
 
   .process-mobile-body,
