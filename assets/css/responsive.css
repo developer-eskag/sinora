@@ -1,984 +1,978 @@
-/* =========================================
-   RESPONSIVE DESIGN - COMPLETE
-   Mobile First Approach
-========================================= */
-
-/* =========================================
-   SMALL DEVICES (Mobile - up to 640px)
-========================================= */
-@media (max-width: 640px) {
-    /* ROOT */
-    :root {
-        --fs-h1: clamp(32px, 8vw, 48px);
-        --fs-h2: clamp(28px, 6vw, 40px);
-        --fs-h3: clamp(20px, 5vw, 28px);
-        --section-space: clamp(40px, 10vw, 60px);
-    }
-
-    .container {
-        padding: 0 16px;
-    }
-
-    /* =========================================
-       HEADER
-    ========================================= */
-    .navbar {
-        height: 64px;
-        padding: 0 12px;
-    }
-
-    .logo img {
-        width: 120px;
-    }
-
-    .nav-menu {
-        display: none;
-    }
-
-    .menu-toggle {
-        display: flex;
-    }
-
-    .nav-menu.active {
-        display: flex;
-        position: fixed;
-        top: 76px;
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        gap: 1rem;
-        padding: 2rem 1.5rem;
-        background: rgba(251,246,239,.98);
-        backdrop-filter: blur(18px);
-        z-index: 95;
-        border-bottom: 1px solid var(--line);
-    }
-
-    .nav-menu.active a {
-        padding: 12px 0;
-        font-size: 16px;
-    }
-
-    .nav-right {
-        gap: 8px;
-    }
-
-    .icon-btn {
-        width: 38px;
-        height: 38px;
-    }
-
-    .icon-btn svg {
-        width: 18px;
-        height: 18px;
-    }
-
-    /* =========================================
-       HERO
-    ========================================= */
-    .hero {
-        min-height: 90svh;
-    }
-
-    .hero-slider {
-        height: 90svh;
-    }
-
-    .hero-content {
-        max-width: 100%;
-        padding-top: 2rem;
-    }
-
-    .hero-tag {
-        font-size: 11px;
-        margin-bottom: 1rem;
-    }
-
-    .hero-content h1 {
-        font-size: clamp(28px, 8vw, 42px);
-        margin-bottom: 1rem;
-    }
-
-    .hero-content p {
-        font-size: 15px;
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
-    }
-
-    .hero-actions {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .hero-actions .btn {
-        width: 100%;
-    }
-
-    .hero-navigation {
-        bottom: 4rem;
-        gap: 0.5rem;
-    }
-
-    .hero-nav {
-        width: 48px;
-        height: 48px;
-    }
-
-    .hero-dots {
-        right: 1rem;
-        gap: 0.75rem;
-    }
-
-    .hero-dot {
-        width: 8px;
-        height: 8px;
-    }
-
-    .hero-dot.active {
-        height: 24px;
-    }
-
-    .hero-scroll {
-        bottom: 1rem;
-        font-size: 10px;
-        gap: 0.5rem;
-    }
-
-    /* =========================================
-       BRAND PHILOSOPHY
-    ========================================= */
-    .brand-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        min-height: auto;
-    }
-
-    .brand-philosophy::before {
-        font-size: 5rem;
-        left: -20px;
-        top: 20px;
-        opacity: 0.02;
-    }
-
-    .brand-intro h2 {
-        margin: 16px 0 16px;
-    }
-
-    .brand-intro p {
-        font-size: 15px;
-        margin-bottom: 1.5rem;
-    }
-
-    .brand-values {
-        gap: 0.75rem;
-    }
-
-    .brand-points {
-        border-left: none;
-        border-top: 1px solid var(--line);
-        padding-left: 0;
-        padding-top: 1.5rem;
-        margin-top: 1.5rem;
-    }
-
-    .brand-point {
-        padding: 12px 0;
-        gap: 12px;
-    }
-
-    .point-number {
-        width: 30px;
-    }
-
-    .brand-point h3 {
-        font-size: 16px;
-        margin-bottom: 0.25rem;
-    }
-
-    .brand-point p {
-        font-size: 13px;
-    }
-
-    /* =========================================
-       FEATURED PRODUCTS
-    ========================================= */
-    .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-        margin-bottom: 2rem;
-    }
-
-    .section-heading {
-        max-width: 100%;
-    }
-
-    .section-heading h2 {
-        margin: 12px 0;
-    }
-
-    .product-slider-footer {
-        margin-top: 1.5rem;
-    }
-
-    .product-slider .swiper-slide:not(.swiper-slide-active) {
-        opacity: 0.7;
-        transform: scale(0.92);
-    }
-
-    /* =========================================
-       SCIENCE
-    ========================================= */
-    .science-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .science-visual {
-        min-height: 320px;
-    }
-
-    .science-image {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    /* =========================================
-       LIPOSOMAL PROCESS
-    ========================================= */
-    .process-scroll-track {
-        height: calc(var(--process-step-count, 6) * 100vh);
-        padding-top: 0;
-    }
-
-    .process-sticky {
-        height: auto;
-        position: relative;
-    }
-
-    .process-heading {
-        margin: 0 auto 30px;
-    }
-
-    .process-heading h2 {
-        margin: 12px 0;
-        font-size: clamp(24px, 6vw, 32px);
-    }
-
-    .process-heading p {
-        font-size: 14px;
-    }
-
-    .process-layout {
-        grid-template-columns: 1fr;
-        gap: 24px;
-        margin-bottom: 40px;
-    }
-
-    .process-image-stage {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .process-copy {
-        min-height: auto;
-        padding: 24px 0;
-    }
-
-    .process-copy h3 {
-        font-size: clamp(20px, 5vw, 28px);
-        margin-bottom: 14px;
-    }
-
-    .process-copy p {
-        font-size: 15px;
-        line-height: 1.6;
-    }
-
-    .process-points {
-        gap: 8px;
-    }
-
-    .process-points li {
-        min-height: 36px;
-        padding: 0 12px;
-        font-size: 12px;
-    }
-
-    .process-mobile-card h3 {
-        font-size: 24px;
-    }
-
-    /* =========================================
-       AI SKIN ANALYSIS
-    ========================================= */
-    .skin-ai-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .skin-ai-visual {
-        min-height: 380px;
-    }
-
-    .skin-face {
-        max-width: 280px;
-    }
-
-    .scan-glow {
-        width: 380px;
-        height: 380px;
-    }
-
-    .skin-ai-content h2 {
-        margin: 12px 0 16px;
-        font-size: clamp(24px, 6vw, 32px);
-    }
-
-    .skin-ai-content p {
-        font-size: 14px;
-        margin-bottom: 20px;
-    }
-
-    .skin-features {
-        gap: 12px;
-        margin: 0 0 24px;
-    }
-
-    .skin-features li {
-        font-size: 14px;
-    }
-
-    .scan-point {
-        gap: 60px;
-    }
-
-    .scan-point label {
-        font-size: 14px;
-    }
-
-    /* =========================================
-       COMPARISON
-    ========================================= */
-    .comparison-header {
-        margin: 0 auto 32px;
-    }
-
-    .comparison-header h2 {
-        margin: 12px 0;
-        font-size: clamp(24px, 6vw, 36px);
-    }
-
-    .comparison-toggle {
-        margin: 0 auto 40px;
-    }
-
-    .comparison-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .comparison-visual {
-        padding: 12px;
-    }
-
-    .comparison-info {
-        gap: 12px;
-    }
-
-    .comparison-card {
-        padding: 16px;
-        flex-direction: row;
-    }
-
-    .comparison-value {
-        font-size: clamp(1.4rem, 4vw, 2rem);
-    }
-
-    .comparison-table {
-        margin-top: 24px;
-    }
-
-    .comparison-row {
-        grid-template-columns: 1.2fr 0.9fr 0.9fr;
-        min-height: 45px;
-        padding: 0 16px;
-        font-size: 12px;
-    }
-
-    .comparison-row div:first-child {
-        font-size: 12px;
-    }
-
-    /* =========================================
-       CLINICAL RESULTS
-    ========================================= */
-    .results-heading {
-        margin: 0 auto 32px;
-    }
-
-    .results-heading h2 {
-        margin: 12px 0;
-        font-size: clamp(24px, 6vw, 32px);
-    }
-
-    .results-tabs {
-        margin: 0 auto 32px;
-        gap: 4px;
-        padding: 4px;
-    }
-
-    .results-tab {
-        height: 42px;
-        padding: 0 16px;
-        font-size: 12px;
-    }
-
-    .comparison-slider {
-        aspect-ratio: 4/5;
-        border-radius: 16px;
-    }
-
-    .comparison-slider-label {
-        font-size: 11px;
-        padding: 8px 12px;
-        top: 16px;
-    }
-
-    .comparison-slider-label.before {
-        left: 12px;
-    }
-
-    .comparison-slider-label.after {
-        right: 12px;
-    }
-
-    .comparison-handle {
-        width: 36px;
-        height: 36px;
-    }
-
-    /* =========================================
-       PARALLAX DIVIDER
-    ========================================= */
-    .parallax-divider {
-        min-height: 100%;
-        background-attachment: scroll;
-    }
-
-    .divider-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 60px 0;
-    }
-
-    .divider-content {
-        max-width: 100%;
-    }
-
-    .divider-content h2 {
-        font-size: clamp(32px, 8vw, 48px);
-        margin: 16px 0;
-    }
-
-    .divider-content p {
-        font-size: 15px;
-        line-height: 1.6;
-        margin-bottom: 24px;
-    }
-
-    .divider-form {
-        padding: 24px;
-    }
-
-    .form-heading h3 {
-        font-size: 24px;
-    }
-
-    .form-heading p {
-        font-size: 13px;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .form-field input,
-    .form-field textarea {
-        padding: 11px 12px;
-        font-size: 13px;
-    }
-
-    /* =========================================
-       BLOG SECTION
-    ========================================= */
-    .blog-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-        margin-bottom: 40px;
-    }
-
-    .blog-heading h2 {
-        margin: 12px 0;
-        font-size: clamp(24px, 6vw, 36px);
-    }
-
-    .blog-card {
-        border-radius: 16px;
-    }
-
-    .blog-content {
-        padding: 16px;
-    }
-
-    .blog-meta {
-        font-size: 11px;
-        gap: 12px;
-        margin-bottom: 6px;
-    }
-
-    .blog-content h3 {
-        font-size: 16px;
-        line-height: 1.2;
-        margin-bottom: 6px;
-    }
-
-    .blog-content p {
-        font-size: 13px;
-        line-height: 1.5;
-        margin-bottom: 10px;
-    }
-
-    .blog-link {
-        font-size: 12px;
-        margin-top: 8px;
-    }
-
-    /* =========================================
-       FOOTER
-    ========================================= */
-    .footer {
-        padding: 60px 0 25px;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .footer-brand p {
-        margin: 16px 0 24px;
-    }
-
-    .footer-links h4,
-    .footer-newsletter h4 {
-        margin-bottom: 16px;
-        font-size: 12px;
-    }
-
-    .footer-links ul {
-        gap: 12px;
-    }
-
-    .footer-links a {
-        font-size: 14px;
-    }
-
-    .footer-newsletter input {
-        height: 48px;
-        font-size: 13px;
-    }
-
-    .footer-divider {
-        margin: 40px 0 20px;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        font-size: 12px;
-    }
+/* ==========================================================
+   RESPONSIVE STYLES
+   This file is loaded after style.css and only contains
+   viewport-specific layout corrections.
+========================================================== */
+
+@media (max-width: 1200px) {
+  :root {
+    --container: 1040px;
+    --gutter: 20px;
+  }
+
+  .nav-menu {
+    gap: 1.7rem;
+  }
+
+  .brand-grid,
+  .science-grid,
+  .skin-ai-grid,
+  .comparison-grid,
+  .divider-grid {
+    gap: clamp(36px, 5vw, 64px);
+  }
+
+  .process-layout {
+    grid-template-columns: minmax(360px, .95fr) minmax(360px, 1fr);
+    gap: 44px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1.35fr repeat(3, .8fr);
+    gap: 44px 34px;
+  }
+
+  .footer-newsletter {
+    grid-column: 1 / -1;
+    max-width: 520px;
+  }
 }
 
-/* =========================================
-   MEDIUM DEVICES (Tablet - 641px to 1024px)
-========================================= */
-@media (min-width: 641px) and (max-width: 1024px) {
-    :root {
-        --fs-h1: clamp(42px, 7vw, 56px);
-        --fs-h2: clamp(32px, 5vw, 44px);
-        --fs-h3: clamp(24px, 4vw, 32px);
-        --section-space: clamp(60px, 8vw, 100px);
-    }
+@media (max-width: 1024px) {
+  :root {
+    --container: 920px;
+    --section-space: clamp(52px, 8vw, 76px);
+    --fs-h1: clamp(2.25rem, 8vw, 4.2rem);
+    --fs-h2: clamp(1.85rem, 5vw, 2.8rem);
+  }
 
-    .container {
-        padding: 0 24px;
-    }
+  .header {
+    top: 12px;
+  }
 
-    /* =========================================
-       HEADER
-    ========================================= */
-    .navbar {
-        height: 70px;
-        padding: 0 16px;
-    }
+  .header.scrolled {
+    top: 8px;
+  }
 
-    .logo img {
-        width: 130px;
-    }
+  .navbar,
+  .header.scrolled .navbar {
+    height: 68px;
+    padding: 0 .8rem 0 1.1rem;
+  }
 
-    .nav-menu {
-        gap: 1.5rem;
-    }
+  .logo img {
+    width: 124px;
+  }
 
-    .nav-menu a {
-        font-size: 14px;
-    }
+  .menu-toggle {
+    display: flex;
+    position: relative;
+    z-index: 120;
+  }
 
-    /* =========================================
-       HERO
-    ========================================= */
-    .hero-content {
-        max-width: 100%;
-        padding-top: 3rem;
-    }
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 110;
+    width: min(86vw, 380px);
+    height: 100dvh;
+    padding: 108px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(255, 252, 248, .96);
+    border-left: 1px solid var(--line);
+    box-shadow: -24px 0 70px rgba(21, 18, 14, .12);
+    transform: translateX(105%);
+    visibility: hidden;
+    transition: transform .4s var(--ease), visibility .4s var(--ease);
+    overflow-y: auto;
+  }
 
-    .hero-content h1 {
-        font-size: clamp(36px, 6vw, 48px);
-        margin-bottom: 1.25rem;
-    }
+  .nav-menu.active {
+    transform: translateX(0);
+    visibility: visible;
+  }
 
-    .hero-content p {
-        font-size: 16px;
-        max-width: 520px;
-        margin-bottom: 2rem;
-    }
+  .nav-menu li {
+    border-bottom: 1px solid var(--line);
+  }
 
-    .hero-actions {
-        flex-direction: row;
-        gap: 12px;
-    }
+  .nav-menu a {
+    display: flex;
+    align-items: center;
+    min-height: 56px;
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
 
-    .hero-navigation {
-        bottom: 5rem;
-    }
+  .nav-menu a::after {
+    bottom: 0;
+  }
 
-    .hero-dots {
-        right: 2rem;
-    }
+  .menu-overlay {
+    z-index: 95;
+  }
 
-    /* =========================================
-       BRAND PHILOSOPHY
-    ========================================= */
-    .brand-grid {
-        grid-template-columns: 1fr 0.9fr;
-        gap: 3rem;
-    }
+  .hero,
+  .hero-slider {
+    min-height: 760px;
+    height: 100svh;
+  }
 
-    .brand-intro p {
-        font-size: 16px;
-        margin-bottom: 1.5rem;
-    }
+  .hero-bg img {
+    object-position: 58% center;
+  }
 
-    .brand-points {
-        border-left: 1px solid var(--line);
-        padding-left: 1.5rem;
-    }
+  .hero-bg::after {
+    background:
+      linear-gradient(90deg, rgba(21,18,14,.42) 0%, rgba(21,18,14,.30) 48%, rgba(21,18,14,.10) 100%),
+      linear-gradient(0deg, rgba(21,18,14,.30), transparent 42%);
+  }
 
-    .brand-point h3 {
-        font-size: 16px;
-        margin-bottom: 0.4rem;
-    }
+  .hero-content {
+    max-width: 600px;
+    padding-top: 6rem;
+  }
 
-    /* =========================================
-       FEATURED PRODUCTS
-    ========================================= */
-    .section-header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
-        gap: 2rem;
-        margin-bottom: 2.5rem;
-    }
+  .hero-content h1 {
+    letter-spacing: 0;
+  }
 
-    .product-slider .swiper-slide:not(.swiper-slide-active) {
-        opacity: 0.75;
-        transform: scale(0.94);
-    }
+  .hero-dots {
+    right: 1.25rem;
+  }
 
-    /* =========================================
-       SCIENCE
-    ========================================= */
-    .science-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-    }
+  .brand-grid,
+  .science-grid,
+  .skin-ai-grid,
+  .comparison-grid,
+  .divider-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .science-image {
-        width: 100%;
-        max-width: 400px;
-    }
+  .brand-grid {
+    gap: 42px;
+  }
 
-    /* =========================================
-       LIPOSOMAL PROCESS
-    ========================================= */
-    .process-layout {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-    }
+  .brand-points {
+    border-left: 0;
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
 
-    .process-image-stage {
-        width: 100%;
-        max-width: 100%;
-    }
+  .brand-point {
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .42);
+  }
 
-    .process-copy h3 {
-        font-size: clamp(22px, 4vw, 28px);
-    }
+  .brand-point:last-child {
+    border: 1px solid var(--line);
+  }
 
-    /* =========================================
-       AI SKIN ANALYSIS
-    ========================================= */
-    .skin-ai-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-    }
+  .section-header,
+  .blog-header {
+    align-items: flex-start;
+  }
 
-    .skin-ai-visual {
-        min-height: 480px;
-    }
+  .science-content,
+  .skin-ai-content,
+  .divider-content {
+    max-width: 720px;
+  }
 
-    .skin-face {
-        max-width: 380px;
-    }
+  .science-visual {
+    order: -1;
+  }
 
-    /* =========================================
-       COMPARISON
-    ========================================= */
-    .comparison-grid {
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 50px;
-    }
+  .science-image {
+    width: min(76vw, 420px);
+  }
 
-    .comparison-info {
-        gap: 12px;
-    }
+  .process-scroll-track {
+    height: auto;
+    padding-block: var(--section-space) 0;
+  }
 
-    /* =========================================
-       CLINICAL RESULTS
-    ========================================= */
-    .comparison-slider {
-        aspect-ratio: 16/9;
-        max-width: 900px;
-    }
+  .process-sticky {
+    position: relative;
+    height: auto;
+    display: block;
+    padding: 0;
+  }
 
-    /* =========================================
-       PARALLAX DIVIDER
-    ========================================= */
-    .divider-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        padding: 80px 0;
-    }
+  .process-heading {
+    margin-bottom: 34px;
+  }
 
-    .divider-content h2 {
-        font-size: clamp(40px, 5vw, 56px);
-    }
+  .process-layout {
+    display: none;
+  }
 
-    .divider-form {
-        padding: 32px;
-    }
+  .process-mobile-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    padding: 0 0 var(--section-space);
+  }
 
-    .form-row {
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-    }
+  .process-mobile-card {
+    margin-bottom: 0;
+  }
 
-    /* =========================================
-       BLOG SECTION
-    ========================================= */
-    .blog-header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
-        gap: 2rem;
-        margin-bottom: 3rem;
-    }
+  .skin-ai-grid {
+    gap: 36px;
+  }
 
-    /* =========================================
-       FOOTER
-    ========================================= */
-    .footer-grid {
-        grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr 1fr;
-        gap: 50px;
-    }
+  .skin-ai-visual {
+    min-height: 460px;
+    max-width: 620px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .scan-point {
+    gap: 64px;
+  }
+
+  .scan-marker::after {
+    width: 64px;
+  }
+
+  .comparison-grid {
+    gap: 34px;
+  }
+
+  .comparison-info {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .comparison-note {
+    grid-column: 1 / -1;
+  }
+
+  .parallax-divider {
+    min-height: 0;
+    background-attachment: scroll;
+  }
+
+  .divider-grid {
+    padding: 78px 0;
+  }
+
+  .divider-content h2 {
+    font-size: clamp(2.3rem, 7vw, 4rem);
+  }
+
+  .footer {
+    padding-top: 80px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1.2fr 1fr 1fr;
+  }
+
+  .footer-brand,
+  .footer-newsletter {
+    grid-column: 1 / -1;
+  }
 }
 
-/* =========================================
-   LARGE DEVICES (Desktop - 1025px and up)
-========================================= */
-@media (min-width: 1025px) {
-    /* Header navigation visible */
-    .menu-toggle {
-        display: none;
-    }
+@media (max-width: 768px) {
+  :root {
+    --gutter: 16px;
+    --section-space: 58px;
+    --fs-body: .96rem;
+  }
 
-    .nav-menu {
-        display: flex !important;
-    }
+  html {
+    scroll-padding-top: 86px;
+  }
 
-    /* Process section full features */
-    .process-scroll-track {
-        height: calc(var(--process-step-count, 6) * 85vh);
-    }
+  .header {
+    top: 8px;
+  }
 
-    .process-sticky {
-        position: sticky;
-        height: 100vh;
-    }
+  .navbar,
+  .header.scrolled .navbar {
+    height: 60px;
+    border-radius: 22px;
+    padding-inline: 14px 8px;
+  }
 
-    .process-layout {
-        grid-template-columns: minmax(420px,.95fr) minmax(420px,1fr);
-    }
+  .logo img {
+    width: 112px;
+  }
 
-    /* Comparison full features */
-    .comparison-grid {
-        grid-template-columns: 1.2fr .8fr;
-    }
+  .nav-right {
+    gap: .15rem;
+  }
 
-    /* Parallax effects enabled */
-    .parallax-divider {
-        background-attachment: fixed;
-    }
+  .icon-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav-right .icon-btn[aria-label="Wishlist"],
+  .nav-right .icon-btn[aria-label="Account"] {
+    display: none;
+  }
+
+  .menu-toggle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .hero,
+  .hero-slider {
+    min-height: 680px;
+    height: 100svh;
+  }
+
+  .hero .container {
+    align-items: flex-end;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    padding: 0 0 9.5rem;
+  }
+
+  .hero-tag {
+    margin-bottom: 1rem;
+    font-size: .68rem;
+    letter-spacing: .14em;
+  }
+
+  .hero-content h1 {
+    margin-bottom: 1rem;
+    font-size: clamp(2.35rem, 12vw, 4.2rem);
+    line-height: 1;
+  }
+
+  .hero-content p {
+    max-width: 34rem;
+    margin-bottom: 0;
+    font-size: .98rem;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .hero-actions .btn {
+    min-width: 136px;
+    padding-inline: 1.25rem;
+  }
+
+  .hero-navigation {
+    left: var(--gutter);
+    bottom: 4.8rem;
+    transform: none;
+  }
+
+  .hero-nav {
+    width: 46px;
+    height: 46px;
+  }
+
+  .hero-dots {
+    right: var(--gutter);
+    top: auto;
+    bottom: 5.2rem;
+    transform: none;
+    flex-direction: row;
+  }
+
+  .hero-dot.active {
+    width: 34px;
+    height: 10px;
+  }
+
+  .hero-scroll {
+    bottom: 1.1rem;
+  }
+
+  .brand-philosophy::before {
+    left: -20px;
+    top: 24px;
+    font-size: 4.8rem;
+  }
+
+  .brand-intro p {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .brand-points,
+  .process-mobile-list,
+  .comparison-info {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-point {
+    padding: 18px;
+  }
+
+  .brand-values {
+    gap: .6rem 1rem;
+  }
+
+  .brand-values span:not(:last-child)::after {
+    display: none;
+  }
+
+  .section-header,
+  .blog-header {
+    flex-direction: column;
+    gap: 22px;
+    margin-bottom: 34px;
+  }
+
+  .section-header > .btn,
+  .blog-header > .btn {
+    align-self: flex-start;
+  }
+
+  .product-slider {
+    padding-inline: 2px;
+  }
+
+  .product-card {
+    border-radius: 18px;
+  }
+
+  .product-content {
+    padding: 1rem .9rem 1.1rem;
+  }
+
+  .product-rating {
+    flex-direction: column;
+    gap: .15rem;
+  }
+
+  .product-slider-footer {
+    margin-top: 1.8rem;
+  }
+
+  .science-grid {
+    gap: 28px;
+  }
+
+  .science-image {
+    width: min(84vw, 360px);
+  }
+
+  .science-points,
+  .process-points {
+    gap: 10px;
+  }
+
+  .science-pill,
+  .process-points li {
+    min-height: 40px;
+    padding: 0 14px;
+    font-size: .8rem;
+  }
+
+  .process-mobile-list {
+    gap: 18px;
+  }
+
+  .process-mobile-card {
+    border-radius: 18px;
+  }
+
+  .process-mobile-body {
+    padding: 22px;
+  }
+
+  .process-mobile-card h3 {
+    font-size: clamp(1.55rem, 8vw, 2rem);
+  }
+
+  .skin-ai-visual {
+    min-height: 380px;
+  }
+
+  .skin-face {
+    max-width: 390px;
+  }
+
+  .scan-glow {
+    width: 410px;
+    height: 410px;
+  }
+
+  .scan-point {
+    gap: 34px;
+  }
+
+  .scan-point label {
+    font-size: 13px;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: rgba(255, 252, 248, .82);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .scan-marker {
+    width: 13px;
+    height: 13px;
+  }
+
+  .scan-marker::after {
+    width: 34px;
+  }
+
+  .point-1 {
+    left: 0;
+  }
+
+  .point-2 {
+    left: 2%;
+  }
+
+  .point-3 {
+    right: 0;
+  }
+
+  .point-4 {
+    right: 0;
+  }
+
+  .point-5 {
+    left: 0;
+  }
+
+  .skin-features {
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+
+  .comparison-header {
+    margin-bottom: 32px;
+  }
+
+  .comparison-toggle,
+  .results-tabs {
+    width: 100%;
+    margin-bottom: 34px;
+    overflow-x: auto;
+  }
+
+  .comparison-btn,
+  .results-tab {
+    flex: 1 0 max-content;
+    min-width: 0;
+    height: 44px;
+    padding-inline: 18px;
+    font-size: .88rem;
+    white-space: nowrap;
+  }
+
+  .comparison-btn {
+    margin-left: 0;
+  }
+
+  .comparison-pill {
+    height: 44px;
+  }
+
+  .comparison-visual {
+    padding: 0 8px;
+  }
+
+  .comparison-card {
+    padding: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .comparison-label {
+    padding: 8px 12px;
+    font-size: 11px;
+    letter-spacing: .1em;
+  }
+
+  .comparison-table {
+    overflow-x: auto;
+    border-radius: 16px;
+  }
+
+  .comparison-row {
+    min-width: 640px;
+    padding: 0 18px;
+    grid-template-columns: 1.15fr 1fr 1fr;
+    font-size: .9rem;
+  }
+
+  .comparison-slider {
+    aspect-ratio: 4 / 3;
+    border-radius: 20px;
+  }
+
+  .comparison-slider-label {
+    top: 16px;
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+
+  .comparison-slider-label.before {
+    left: 14px;
+  }
+
+  .comparison-slider-label.after {
+    right: 14px;
+  }
+
+  .comparison-handle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .divider-grid {
+    gap: 36px;
+    padding: 62px 0;
+  }
+
+  .divider-content p {
+    font-size: 1rem;
+  }
+
+  .divider-form {
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-slider {
+    padding-bottom: 42px;
+  }
+
+  .blog-card {
+    border-radius: 20px;
+  }
+
+  .blog-content {
+    padding: 18px;
+  }
+
+  .blog-meta {
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    font-size: 11px;
+  }
+
+  .blog-content h3 {
+    font-size: 18px;
+  }
+
+  .footer {
+    padding: 62px 0 28px;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px 24px;
+  }
+
+  .footer-brand,
+  .footer-newsletter {
+    grid-column: 1 / -1;
+  }
+
+  .footer-brand p {
+    margin: 20px 0 26px;
+  }
+
+  .footer-links h4,
+  .footer-newsletter h4 {
+    margin-bottom: 16px;
+  }
+
+  .footer-links ul {
+    gap: 12px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.6;
+  }
 }
 
-/* =========================================
-   ULTRA-WIDE SCREENS (1440px and up)
-========================================= */
-/* @media (min-width: 1440px) {
-    :root {
-        --fs-h1: 72px;
-        --fs-h2: 52px;
-        --section-space: 120px;
-    }
+@media (max-width: 560px) {
+  :root {
+    --gutter: 14px;
+    --section-space: 50px;
+  }
 
-    .container {
-        padding: 0 40px;
-    }
+  .btn {
+    min-height: 44px;
+    padding: .8rem 1.15rem;
+    font-size: .9rem;
+  }
 
-    .brand-grid {
-        gap: 6rem;
-    }
+  .btn-outline {
+    height: 44px;
+    padding-inline: 1.15rem;
+  }
 
-    .science-grid {
-        gap: 5rem;
-    }
+  .nav-menu {
+    width: min(92vw, 340px);
+    padding: 94px 22px 28px;
+  }
 
-    .divider-grid {
-        gap: 90px;
-    }
-} */
+  .nav-right .icon-btn[aria-label="Search"] {
+    display: none;
+  }
 
-/* =========================================
-   LANDSCAPE MOBILE (Up to 800px height)
-========================================= */
-@media (max-height: 800px) and (max-width: 1024px) {
-    .hero {
-        min-height: 70svh;
-    }
+  .hero,
+  .hero-slider {
+    min-height: 620px;
+  }
 
-    .hero-slider {
-        height: 70svh;
-    }
+  .hero-bg img {
+    object-position: 64% center;
+  }
 
-    .hero-navigation {
-        bottom: 2rem;
-    }
+  .hero-content {
+    padding-bottom: 8.7rem;
+  }
 
-    .hero-scroll {
-        display: none;
-    }
+  .hero-content br {
+    display: none;
+  }
 
-    .parallax-divider {
-        min-height: 60vh;
-    }
+  .hero-actions {
+    align-items: stretch;
+  }
 
-    .divider-grid {
-        padding: 40px 0;
-    }
+  .hero-actions .btn {
+    flex: 1 1 130px;
+  }
+
+  .hero-navigation {
+    bottom: 4.25rem;
+  }
+
+  .hero-nav {
+    width: 42px;
+    height: 42px;
+  }
+
+  .hero-dots {
+    bottom: 4.6rem;
+    gap: .65rem;
+  }
+
+  .section-eyebrow,
+  .parallax-section-eyebrow {
+    letter-spacing: .18em;
+    font-size: .68rem;
+  }
+
+  .section-eyebrow::before {
+    width: 18px;
+  }
+
+  .parallax-section-eyebrow::before {
+    width: 26px;
+  }
+
+  .brand-point {
+    gap: .8rem;
+  }
+
+  .point-number {
+    width: 34px;
+  }
+
+  .product-slider-footer {
+    justify-content: center;
+  }
+
+  .product-navigation {
+    display: none;
+  }
+
+  .science-points,
+  .process-points {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .science-pill,
+  .process-points li {
+    justify-content: flex-start;
+  }
+
+  .skin-ai-visual {
+    min-height: 330px;
+  }
+
+  .skin-face {
+    max-width: 320px;
+  }
+
+  .scan-glow {
+    width: 330px;
+    height: 330px;
+  }
+
+  .scan-line {
+    width: 92%;
+  }
+
+  .scan-point label {
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+
+  .scan-marker::after {
+    display: none;
+  }
+
+  .scan-point {
+    gap: 8px;
+  }
+
+  .point-1 {
+    top: 18%;
+    left: 4%;
+  }
+
+  .point-2 {
+    top: 60%;
+    left: 0;
+  }
+
+  .point-3 {
+    top: 32%;
+    right: 0;
+  }
+
+  .point-4 {
+    top: 49%;
+    right: 0;
+  }
+
+  .point-5 {
+    top: 43%;
+    left: 0;
+  }
+
+  .comparison-toggle,
+  .results-tabs {
+    padding: 5px;
+    gap: 5px;
+  }
+
+  .comparison-btn,
+  .results-tab {
+    height: 40px;
+    padding-inline: 12px;
+    font-size: .78rem;
+  }
+
+  .comparison-pill {
+    top: 5px;
+    height: 40px;
+  }
+
+  .comparison-slider {
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+  }
+
+  .divider-content h2 {
+    font-size: clamp(2rem, 11vw, 3.2rem);
+  }
+
+  .divider-form {
+    padding: 20px;
+  }
+
+  .form-heading h3 {
+    font-size: 26px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-newsletter input {
+    height: 54px;
+    border-radius: 14px;
+  }
 }
 
-/* =========================================
-   PRINT STYLES
-========================================= */
-/* @media print {
-    header, footer, .hero-scroll, .hero-navigation, .hero-dots {
-        display: none;
-    }
+@media (max-width: 380px) {
+  .navbar,
+  .header.scrolled .navbar {
+    padding-left: 12px;
+  }
 
-    body {
-        background: white;
-    }
+  .logo img {
+    width: 98px;
+  }
 
-    .container {
-        max-width: 100%;
-    }
+  .icon-btn,
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
+  }
 
-    .section {
-        page-break-inside: avoid;
-    }
-} */
+  .cart-count {
+    top: 1px;
+    right: -1px;
+  }
 
-/* =========================================
-   ACCESSIBILITY - HIGH CONTRAST MODE
-========================================= */
-@media (prefers-contrast: more) {
-    .navbar {
-        background: rgba(251,246,239,.95);
-        border-color: var(--ink);
-    }
+  .hero-content h1 {
+    font-size: 2.25rem;
+  }
 
-    .btn {
-        border-width: 2px;
-    }
+  .hero-content p {
+    font-size: .92rem;
+  }
 
-    .comparison-slider-label {
-        background: rgba(255,255,255,.95);
-        border: 1px solid var(--ink);
-    }
+  .hero-actions .btn {
+    flex-basis: 100%;
+  }
+
+  .process-mobile-body,
+  .brand-point,
+  .comparison-card,
+  .blog-content {
+    padding: 16px;
+  }
+
+  .footer-social {
+    flex-wrap: wrap;
+  }
 }
 
-/* =========================================
-   ACCESSIBILITY - REDUCED MOTION
-========================================= */
-/* @media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-
-    .hero-bg img {
-        animation: none;
-    }
-
-    .scan-line {
-        animation: none;
-    }
-
-    .scroll-indicator span {
-        animation: none;
-    }
-
-    .comparison-handle {
-        animation: none;
-    }
-
-    .science-image {
-        animation: none;
-    }
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }
- */
