@@ -588,6 +588,7 @@
     letter-spacing:.18em;
     text-transform:uppercase;
     color:var(--amber);
+    font-weight: 600;
 }
 
 .brand-values span:not(:last-child)::after{
