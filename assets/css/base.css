@@ -249,6 +249,7 @@ BUTTON OUTLINE
     font-size:var(--fs-sm);
     font-weight:600;
     transition:all .35s var(--ease);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 .btn-outline:hover{
