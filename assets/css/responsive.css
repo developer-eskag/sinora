@@ -4,6 +4,13 @@
    viewport-specific layout corrections.
 ========================================================== */
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 @media (max-width: 1200px) {
   :root {
     --container: 1040px;
@@ -85,15 +92,21 @@
     background: rgba(255, 252, 248, .96);
     border-left: 1px solid var(--line);
     box-shadow: -24px 0 70px rgba(21, 18, 14, .12);
-    transform: translateX(105%);
+    max-width: calc(100vw - 18px);
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
     visibility: hidden;
-    transition: transform .4s var(--ease), visibility .4s var(--ease);
+    pointer-events: none;
+    transition: opacity .25s var(--ease), visibility .25s var(--ease);
     overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .nav-menu.active {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .nav-menu li {
@@ -198,6 +211,29 @@
   .process-scroll-track {
     height: auto;
     padding-block: var(--section-space) 0;
+  }
+
+  .liposomal-process,
+  .featured-products,
+  .skin-ai,
+  .comparison,
+  .results,
+  .parallax-divider,
+  .blog-section,
+  .footer {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .process-glow-left,
+  .process-glow-right,
+  .divider-glow,
+  .footer::before {
+    max-width: 100vw;
+  }
+
+  .process-glow-right {
+    right: -220px;
   }
 
   .process-sticky {
