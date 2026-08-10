@@ -1723,6 +1723,7 @@ Toggle
    color:var(--muted);
    font-weight:500;
    transition:.35s;
+   margin-left: 15px;
 }
 
 .comparison-btn.active{

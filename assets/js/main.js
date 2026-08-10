@@ -473,39 +473,34 @@ if (comparison) {
     }
 
     /* ----------------------------------
-       Drag Event Listeners
+       Hover + Touch Interaction
     ---------------------------------- */
 
-    comparison.addEventListener("mousedown", () => {
-        dragging = true;
-        comparison.classList.add("dragging");
+    // Desktop: divider follows mouse only inside comparison
+    comparison.addEventListener("mousemove", (e) => {
+        updateSlider(pointerPosition(e));
     });
 
+
+    // Mobile: touch drag
     comparison.addEventListener("touchstart", () => {
         dragging = true;
         comparison.classList.add("dragging");
+    }, {
+        passive: true
     });
 
-    window.addEventListener("mouseup", () => {
-        dragging = false;
-        comparison.classList.remove("dragging");
+    window.addEventListener("touchmove", (e) => {
+        if (!dragging) return;
+
+        updateSlider(pointerPosition(e));
+    }, {
+        passive: true
     });
 
     window.addEventListener("touchend", () => {
         dragging = false;
         comparison.classList.remove("dragging");
-    });
-
-    window.addEventListener("mousemove", (e) => {
-        if (!dragging) return;
-        updateSlider(pointerPosition(e));
-    });
-
-    window.addEventListener("touchmove", (e) => {
-        if (!dragging) return;
-        updateSlider(pointerPosition(e));
-    }, {
-        passive: true
     });
 
     /* ----------------------------------
