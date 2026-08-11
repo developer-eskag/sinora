@@ -8,7 +8,7 @@ html,
 body {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 @media (max-width: 1200px) {
@@ -42,6 +42,31 @@ body {
   .footer-newsletter {
     grid-column: 1 / -1;
     max-width: 520px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .liposomal-process {
+    overflow: visible;
+  }
+
+  .process-scroll-track {
+    height: calc(var(--process-step-count, 6) * 85vh);
+  }
+
+  .process-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+  }
+
+  .process-layout {
+    display: grid;
+  }
+
+  .process-mobile-list {
+    display: none;
   }
 }
 
@@ -213,7 +238,6 @@ body {
     padding-block: var(--section-space) 0;
   }
 
-  .liposomal-process,
   .featured-products,
   .skin-ai,
   .comparison,
@@ -225,15 +249,17 @@ body {
     overflow-x: hidden;
   }
 
-  .process-glow-left,
-  .process-glow-right,
+  .liposomal-process {
+    overflow: visible;
+  }
+
+  .process-glow {
+    display: none;
+  }
+
   .divider-glow,
   .footer::before {
     max-width: 100vw;
-  }
-
-  .process-glow-right {
-    right: -220px;
   }
 
   .process-sticky {
@@ -752,6 +778,56 @@ body {
     align-items: flex-start;
     gap: 12px;
     line-height: 1.6;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .liposomal-process {
+    overflow: visible;
+  }
+
+  .process-scroll-track {
+    height: calc(var(--process-step-count, 6) * 85vh);
+    padding-top: var(--section-space);
+  }
+
+  .process-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .process-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 0;
+  }
+
+  .process-image-stage {
+    width: min(420px, 72vw);
+  }
+
+  .process-copy {
+    max-width: 680px;
+    margin-inline: auto;
+    padding: 0;
+    text-align: center;
+  }
+
+  .process-progress-line {
+    margin-inline: auto;
+  }
+
+  .process-points {
+    justify-content: center;
+  }
+
+  .process-mobile-list {
+    display: none;
   }
 }
 

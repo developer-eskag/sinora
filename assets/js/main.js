@@ -339,7 +339,7 @@ if(processSection && processTrack && processImages && processCopy){
 
   function updateProcessStep(){
     // Disable on mobile
-    if(window.innerWidth <= 1024) return;
+    if(window.innerWidth <= 768) return;
 
     // Get positions
     const trackRect = processTrack.getBoundingClientRect();
