@@ -311,19 +311,6 @@ body {
     right: 1%;
   }
 
-  .comparison-grid {
-    gap: 34px;
-  }
-
-  .comparison-info {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .comparison-note {
-    grid-column: 1 / -1;
-  }
-
   .parallax-divider {
     min-height: 0;
     background-attachment: scroll;
@@ -625,87 +612,6 @@ body {
     margin-bottom: 30px;
   }
 
-  .comparison-header {
-    margin-bottom: 32px;
-  }
-
-  .comparison-toggle,
-  .results-tabs {
-    width: 100%;
-    margin-bottom: 34px;
-    overflow-x: auto;
-  }
-
-  .comparison-btn,
-  .results-tab {
-    flex: 1 0 max-content;
-    min-width: 0;
-    height: 44px;
-    padding-inline: 18px;
-    font-size: .88rem;
-    white-space: nowrap;
-  }
-
-  .comparison-btn {
-    margin-left: 0;
-  }
-
-  .comparison-pill {
-    height: 44px;
-  }
-
-  .comparison-visual {
-    padding: 0 8px;
-  }
-
-  .comparison-card {
-    padding: 18px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .comparison-label {
-    padding: 8px 12px;
-    font-size: 11px;
-    letter-spacing: .1em;
-  }
-
-  .comparison-table {
-    overflow-x: auto;
-    border-radius: 16px;
-  }
-
-  .comparison-row {
-    min-width: 640px;
-    padding: 0 18px;
-    grid-template-columns: 1.15fr 1fr 1fr;
-    font-size: .9rem;
-  }
-
-  .comparison-slider {
-    aspect-ratio: 4 / 3;
-    border-radius: 20px;
-  }
-
-  .comparison-slider-label {
-    top: 16px;
-    padding: 8px 12px;
-    font-size: 11px;
-  }
-
-  .comparison-slider-label.before {
-    left: 14px;
-  }
-
-  .comparison-slider-label.after {
-    right: 14px;
-  }
-
-  .comparison-handle {
-    width: 36px;
-    height: 36px;
-  }
-
   .divider-grid {
     gap: 36px;
     padding: 62px 0;
@@ -986,29 +892,6 @@ body {
   .point-5 {
     top: 150px;
     left: 70px;
-  }
-
-  .comparison-toggle,
-  .results-tabs {
-    padding: 5px;
-    gap: 5px;
-  }
-
-  .comparison-btn,
-  .results-tab {
-    height: 40px;
-    padding-inline: 12px;
-    font-size: .78rem;
-  }
-
-  .comparison-pill {
-    top: 5px;
-    height: 40px;
-  }
-
-  .comparison-slider {
-    aspect-ratio: 1 / 1;
-    border-radius: 16px;
   }
 
   .divider-content h2 {

@@ -1,313 +1,374 @@
 /* =========================================
    LIPOSOMAL COMPARISON
 ========================================= */
-const btnConv = document.getElementById("btnConv");
-const btnLipo = document.getElementById("btnLipo");
-const pill = document.querySelector(".comparison-pill");
-const depth = document.getElementById("kpiDepth");
-const intact = document.getElementById("kpiIntact");
-const note = document.getElementById("vizNote");
-const title = document.getElementById("compareTitle");
-const svg = document.getElementById("skinSvg");
+/*====================================================
+    LIPOSOMAL COMPARISON
+====================================================*/
 
-if (
-    btnConv &&
-    btnLipo &&
-    svg &&
-    depth &&
-    intact
-) {
-    const comparisonData = {
-        conventional: {
-            depth: 18,
-            intact: 31,
-            title: "Conventional Delivery",
-            note: "Most active ingredients remain on the skin surface where they are exposed to oxidation, evaporation and cleansing before reaching deeper layers."
-        },
-        liposomal: {
-            depth: 92,
-            intact: 89,
-            title: "Liposomal Delivery",
-            note: "Encapsulated active ingredients remain protected while travelling deeper into the skin, allowing controlled release and improved absorption."
-        }
+document.addEventListener("DOMContentLoaded", function () {
+
+    const section =
+        document.querySelector("#comparison");
+
+    if (!section) return;
+
+
+    /*----------------------------------
+        Elements
+    ----------------------------------*/
+
+    const toggle =
+        section.querySelector(".comparison-toggle");
+
+    const btnConv =
+        section.querySelector("#btnConv");
+
+    const btnLipo =
+        section.querySelector("#btnLipo");
+
+    const image =
+        section.querySelector("#comparisonImage");
+
+    const kpiDepth =
+        section.querySelector("#kpiDepth");
+
+    const kpiIntact =
+        section.querySelector("#kpiIntact");
+
+    const compareTitle =
+        section.querySelector("#compareTitle");
+
+    const vizNote =
+        section.querySelector("#vizNote");
+
+    const benefitTitle1 =
+        section.querySelector("#benefitTitle1");
+
+    const benefitText1 =
+        section.querySelector("#benefitText1");
+
+    const benefitTitle2 =
+        section.querySelector("#benefitTitle2");
+
+    const benefitText2 =
+        section.querySelector("#benefitText2");
+
+    const benefitTitle3 =
+        section.querySelector("#benefitTitle3");
+
+    const benefitText3 =
+        section.querySelector("#benefitText3");
+
+
+    /*----------------------------------
+        Images
+    ----------------------------------*/
+
+    const images = {
+
+        conventional:
+            "assets/images/comparison-conventional.png",
+
+        liposomal:
+            "assets/images/comparison-sinora-liposomal.png"
+
     };
 
     /*----------------------------------
-        Animate Number
+        Preload Comparison Images
     ----------------------------------*/
-    function animateNumber(element, target) {
-        if (!window.gsap) {
-            element.textContent = target + "%";
-            return;
-        }
-        const obj = {
-            value: parseInt(element.textContent) || 0
-        };
-        gsap.to(obj, {
-            value: target,
-            duration: .8,
-            ease: "power2.out",
-            onUpdate() {
-                element.textContent = Math.round(obj.value) + "%";
-            }
-        });
-    }
+
+    Object.values(images).forEach(function (src) {
+
+        const preload =
+            new Image();
+
+        preload.src = src;
+
+    });
+
 
     /*----------------------------------
-        Toggle
+        Content
     ----------------------------------*/
-    function updateToggle(mode) {
+
+    const states = {
+
+        conventional: {
+
+            depth: "18%",
+
+            stability: "31%",
+
+            title:
+                "Conventional Delivery",
+
+            description:
+                "Most active ingredients remain around the skin's surface, where exposure and rapid release can limit how effectively they are delivered.",
+
+            benefit1: {
+                title: "Stays on the Surface",
+                text:
+                    "Most active ingredients remain around the skin's outer surface."
+            },
+
+            benefit2: {
+                title: "Limited Absorption",
+                text:
+                    "Less of the active ingredient may reach deeper layers of the skin."
+            },
+
+            benefit3: {
+                title: "Less Efficient",
+                text:
+                    "Ingredients can be exposed before reaching their intended destination."
+            }
+
+        },
+
+
+        liposomal: {
+
+            depth: "92%",
+
+            stability: "89%",
+
+            title:
+                "Liposomal Delivery",
+
+            description:
+                "Encapsulated active ingredients remain protected while travelling deeper into the skin, allowing controlled release and improved absorption.",
+
+            benefit1: {
+                title: "Protected",
+                text:
+                    "Active ingredients are surrounded by a protective liposomal structure."
+            },
+
+            benefit2: {
+                title: "Deeper Delivery",
+                text:
+                    "Liposomes help carry active ingredients beyond the skin's outer barrier."
+            },
+
+            benefit3: {
+                title: "Controlled Release",
+                text:
+                    "The delivery system supports controlled release of active ingredients."
+            }
+
+        }
+
+    };
+
+
+    /*----------------------------------
+        Image Cross Dissolve
+    ----------------------------------*/
+
+    const imageA =
+        section.querySelector("#comparisonImageA");
+
+    const imageB =
+        section.querySelector("#comparisonImageB");
+
+    let activeImage = imageA;
+
+
+    function changeImage(src, alt) {
+
+        const nextImage =
+            activeImage === imageA
+                ? imageB
+                : imageA;
+
+
+        /* Load the new image first */
+
+        const preload =
+            new Image();
+
+
+        preload.onload = function () {
+
+            nextImage.src =
+                src;
+
+            nextImage.alt =
+                alt;
+
+
+            /* Make new image visible */
+
+            nextImage.classList.add(
+                "is-visible"
+            );
+
+
+            /* Fade old image out */
+
+            activeImage.classList.remove(
+                "is-visible"
+            );
+
+
+            /* New image becomes active */
+
+            activeImage =
+                nextImage;
+
+        };
+
+
+        preload.src = src;
+
+    }
+
+
+    /*----------------------------------
+        Update Comparison
+    ----------------------------------*/
+
+    function updateComparison(mode) {
+
+        const data =
+            states[mode];
+
+        if (!data) return;
+
+
+        /* Toggle */
+
+        toggle.classList.remove(
+            "is-conventional",
+            "is-liposomal"
+        );
+
+        toggle.classList.add(
+            mode === "conventional"
+                ? "is-conventional"
+                : "is-liposomal"
+        );
+
+
+        /* Buttons */
+
         btnConv.classList.toggle(
             "active",
             mode === "conventional"
         );
+
         btnLipo.classList.toggle(
             "active",
             mode === "liposomal"
         );
-        if (pill) {
-            pill.style.left =
-                mode === "liposomal" ? "calc(50% - 2px)" : "6px";
+
+
+        /* Accessibility */
+
+        btnConv.setAttribute(
+            "aria-selected",
+            mode === "conventional"
+                ? "true"
+                : "false"
+        );
+
+        btnLipo.setAttribute(
+            "aria-selected",
+            mode === "liposomal"
+                ? "true"
+                : "false"
+        );
+
+
+        /* KPI */
+
+        kpiDepth.textContent =
+            data.depth;
+
+        kpiIntact.textContent =
+            data.stability;
+
+
+        /* Description */
+
+        compareTitle.textContent =
+            data.title;
+
+        vizNote.textContent =
+            data.description;
+
+
+        /* Benefits */
+
+        benefitTitle1.textContent =
+            data.benefit1.title;
+
+        benefitText1.textContent =
+            data.benefit1.text;
+
+
+        benefitTitle2.textContent =
+            data.benefit2.title;
+
+        benefitText2.textContent =
+            data.benefit2.text;
+
+
+        benefitTitle3.textContent =
+            data.benefit3.title;
+
+        benefitText3.textContent =
+            data.benefit3.text;
+
+
+        /* Image */
+
+        changeImage(
+            images[mode],
+            data.title + " skin delivery illustration"
+        );
+
+    }
+
+
+    /*----------------------------------
+        Click Events
+    ----------------------------------*/
+
+    btnConv.addEventListener(
+        "click",
+        function () {
+
+            updateComparison(
+                "conventional"
+            );
+
         }
-    }
+    );
 
-    /*----------------------------------
-        KPI
-    ----------------------------------*/
-    function updateContent(mode) {
-        const data = comparisonData[mode];
-        animateNumber(depth, data.depth);
-        animateNumber(intact, data.intact);
-        if (title)
-            title.textContent = data.title;
 
-        if (note)
-            note.textContent = data.note;
-    }
+    btnLipo.addEventListener(
+        "click",
+        function () {
 
-    /*==================================================
-        SVG
-    ==================================================*/
-    const NS = "http://www.w3.org/2000/svg";
-    const W = 460;
-    const H = 360;
-    const surface = 70;
-    const layers = [
-        {
-            y: surface,
-            name: "Stratum Corneum",
-            color: "#F7EBDD"
-        },
-        {
-            y: 145,
-            name: "Epidermis",
-            color: "#F2E2CF"
-        },
-        {
-            y: 235,
-            name: "Dermis",
-            color: "#ECD6BF"
+            updateComparison(
+                "liposomal"
+            );
+
         }
-    ];
+    );
 
-    layers.forEach((layer, index) => {
-        const next = layers[index + 1] ? layers[index + 1].y : H;
-        const rect = document.createElementNS(NS, "rect");
-        rect.setAttribute("x", 0);
-        rect.setAttribute("y", layer.y);
-        rect.setAttribute("width", W);
-        rect.setAttribute("height", next - layer.y);
-        rect.setAttribute("fill", layer.color);
-        svg.appendChild(rect);
-        const line = document.createElementNS(NS, "line");
-        line.setAttribute("x1", 0);
-        line.setAttribute("x2", W);
-        line.setAttribute("y1", layer.y);
-        line.setAttribute("y2", layer.y);
-        line.setAttribute("stroke", "#D7C9B7");
-        svg.appendChild(line);
-
-        const text = document.createElementNS(NS, "text");
-
-        text.setAttribute("x", 445);
-        text.setAttribute("y", layer.y + 18);
-        text.setAttribute("text-anchor", "end");
-        text.setAttribute("font-size", "10");
-        text.setAttribute("fill", "#8B8174");
-        text.textContent = layer.name.toUpperCase();
-        svg.appendChild(text);
-    });
 
     /*----------------------------------
-        Surface Line
+        Initial State
     ----------------------------------*/
 
-    const top = document.createElementNS(NS, "line");
-    top.setAttribute("x1", 0);
-    top.setAttribute("x2", W);
-    top.setAttribute("y1", surface);
-    top.setAttribute("y2", surface);
-    top.setAttribute("stroke", "#C3B6A8");
-    top.setAttribute("stroke-width", "2");
-    svg.appendChild(top);
+    updateComparison(
+        "liposomal"
+    );
 
-    /*==================================================
-        PARTICLES
-    ==================================================*/
-
-    const particles = [];
-
-    for (let i = 0; i < 8; i++) {
-        const group = document.createElementNS(NS, "g");
-        const glow = document.createElementNS(NS, "circle");
-        glow.setAttribute("r", 16);
-        glow.setAttribute("fill", "#F26A21");
-        glow.setAttribute("opacity", "0");
-        const shell = document.createElementNS(NS, "circle");
-        shell.setAttribute("r", 8);
-        shell.setAttribute("fill", "#fff");
-        shell.setAttribute("stroke", "#F26A21");
-        shell.setAttribute("stroke-width", "2");
-        const core = document.createElementNS(NS, "circle");
-        core.setAttribute("r", 3);
-        core.setAttribute("fill", "#F26A21");
-        const x = 60 + i * 42;
-
-        [glow, shell, core].forEach(el => {
-            el.setAttribute("cx", x);
-            el.setAttribute("cy", 35);
-        });
-
-        group.appendChild(glow);
-        group.appendChild(shell);
-        group.appendChild(core);
-        svg.appendChild(group);
-        particles.push({
-            shell,
-            core,
-            glow
-        });
-    }
-
-    /*==================================================
-        PARTICLE ANIMATION
-    ==================================================*/
-
-    function updateParticles(mode) {
-        const deepY = 255;
-        const shallowY = 88;
-        particles.forEach((particle, index) => {
-            const x = 60 + index * 42;
-            if (mode === "liposomal") {
-                gsap.to(
-                    [particle.shell, particle.core],
-                    {
-                        attr: {
-                            cx: x,
-                            cy: deepY
-                        },
-                        opacity: 1,
-                        duration: 1,
-                        delay: index * .08,
-                        ease: "power2.inOut"
-                    }
-                );
-                gsap.to(particle.shell, {
-                    attr: {
-                        r: 8
-                    },
-
-                    duration: 1
-                });
-                gsap.to(
-                    [particle.shell, particle.core],
-                    {
-                        scale: 1.15,
-                        repeat: 1,
-                        yoyo: true,
-                        transformOrigin: "center center",
-                        duration: .35,
-                        delay: 1 + index * .08
-                    }
-                );
-                gsap.fromTo(
-                    particle.glow,
-                    {
-                        attr: {
-                            cx: x,
-                            cy: deepY
-                        },
-                        opacity: 0
-                    },
-                    {
-                        attr: {
-                            cx: x,
-                            cy: deepY
-                        },
-                        opacity: .18,
-                        repeat: 1,
-                        yoyo: true,
-                        duration: .35,
-                        delay: 1 + index * .08
-                    }
-                );
-            } else {
-                gsap.to(
-                    [particle.shell, particle.core],
-                    {
-                        attr: {
-                            cx: x + gsap.utils.random(-20, 20),
-                            cy: shallowY + gsap.utils.random(-8, 8)
-                        },
-                        opacity: .35,
-                        duration: .9,
-                        delay: index * .05,
-                        ease: "power2.out"
-                    }
-                );
-                gsap.to(
-                    particle.shell,
-                    {
-                        attr: {
-                            r: 6
-                        },
-                        duration: .9
-                    }
-                );
-                gsap.to(
-                    particle.glow,
-                    {
-                        opacity: 0,
-                        duration: .2
-                    }
-                );
-            }
-        });
-    }
-
-    /*----------------------------------
-        Main
-    ----------------------------------*/
-
-    function setMode(mode) {
-        updateToggle(mode);
-        updateContent(mode);
-        updateParticles(mode);
-    }
-
-    btnConv.addEventListener("click", () => {
-        setMode("conventional");
-    });
-
-    btnLipo.addEventListener("click", () => {
-        setMode("liposomal");
-    });
-
-    /*----------------------------------
-        Init
-    ----------------------------------*/
-    setMode("liposomal");
-}
+});
 
 /* =========================================
    AI SKIN ANALYSIS

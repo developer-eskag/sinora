@@ -748,6 +748,9 @@
     <!-- =========================================
 				LIPOSOMAL COMPARISON
 		========================================= -->
+		<!-- =========================================
+				LIPOSOMAL COMPARISON
+		========================================= -->
 		<section class="comparison section" id="comparison">
 			<div class="container">
 				<!-- Heading -->
@@ -767,116 +770,144 @@
 					</p>
 				</div>
 				<!-- Toggle -->
-				<div class="comparison-toggle">
-					<button class="comparison-btn" id="btnConv">
-						Conventional
+				<div
+					class="comparison-toggle is-liposomal"
+					role="tablist"
+					aria-label="Compare delivery methods"
+					>
+					<button
+					class="comparison-btn"
+					id="btnConv"
+					type="button"
+					role="tab"
+					aria-selected="false"
+					>
+					Conventional
 					</button>
-					<button class="comparison-btn active" id="btnLipo">
-						SiNORA Liposomal
+					<button
+					class="comparison-btn active"
+					id="btnLipo"
+					type="button"
+					role="tab"
+					aria-selected="true"
+					>
+					SiNORA Liposomal
 					</button>
-					<span class="comparison-pill"></span>
+					<span
+						class="comparison-pill"
+						aria-hidden="true">
+					</span>
 				</div>
-				<!-- Main Layout -->
+				<!-- =========================================
+				MAIN COMPARISON
+				========================================= -->
 				<div class="comparison-grid">
-					<!-- LEFT -->
+					<!-- LEFT — GRAPHIC -->
 					<div class="comparison-visual">
-						<svg id="skinSvg"
-						viewBox="0 50 460 330"></svg>
+						<div class="comparison-image-wrap">
+						    <img
+						        id="comparisonImageA"
+						        class="comparison-image is-visible"
+						        src="assets/images/comparison-sinora-liposomal.png"
+						        alt="SiNORA liposomal delivery illustration"
+						    >
+						    <img
+						        id="comparisonImageB"
+						        class="comparison-image"
+						        src="assets/images/comparison-conventional.png"
+						        alt=""
+						        aria-hidden="true"
+						    >
+						</div>
 					</div>
-					<!-- RIGHT -->
+					<!-- RIGHT — STATS + EXPLANATION -->
 					<div class="comparison-info">
+						<!-- KPI 1 -->
 						<div class="comparison-card">
-							<span class="comparison-value"
+							<span
+								class="comparison-value"
 								id="kpiDepth">
 								92%
 							</span>
-							<span class="comparison-label">
+							<span
+								class="comparison-label">
 								Delivery Efficiency
 							</span>
 						</div>
+						<!-- KPI 2 -->
 						<div class="comparison-card">
-							<span class="comparison-value"
+							<span
+								class="comparison-value"
 								id="kpiIntact">
 								89%
 							</span>
-							<span class="comparison-label">
+							<span
+								class="comparison-label">
 								Active Stability
 							</span>
 						</div>
+						<!-- Explanation -->
 						<div class="comparison-card comparison-note">
 							<h4 id="compareTitle">
 							Liposomal Delivery
 							</h4>
 							<p id="vizNote">
+								Encapsulated active ingredients remain protected while
+								travelling deeper into the skin, allowing controlled
+								release and improved absorption.
 							</p>
 						</div>
 					</div>
 				</div>
-				<!-- Comparison Table -->
-				<div class="comparison-table">
-					<div class="comparison-row comparison-head">
-						<div>Feature</div>
-						<div>Conventional</div>
-						<div>SiNORA</div>
-					</div>
-					<div class="comparison-row">
-						<div>Penetration</div>
-						<div>
-							<span class="compare-bad">
-					            ✕
-					        </span>
-							Surface Only
+				<!-- =========================================
+				SIMPLE BENEFITS
+				========================================= -->
+				<div class="comparison-benefits">
+					<div class="comparison-benefits-grid">
+						<!-- Benefit 01 -->
+						<div class="comparison-benefit">
+							<div class="benefit-icon">
+								01
+							</div>
+							<div class="benefit-content">
+								<h4 id="benefitTitle1">
+								Protected
+								</h4>
+								<p id="benefitText1">
+									Active ingredients are surrounded by a
+									protective liposomal structure.
+								</p>
+							</div>
 						</div>
-						<div>
-							<span class="compare-good">
-					            ✓
-					        </span>
-							Deep Delivery
+						<!-- Benefit 02 -->
+						<div class="comparison-benefit">
+							<div class="benefit-icon">
+								02
+							</div>
+							<div class="benefit-content">
+								<h4 id="benefitTitle2">
+								Delivered
+								</h4>
+								<p id="benefitText2">
+									Liposomes help carry active ingredients
+									beyond the skin's outer barrier.
+								</p>
+							</div>
 						</div>
-					</div>
-					<div class="comparison-row">
-						<div>Ingredient Stability</div>
-						<div>
-							<span class="compare-bad">
-					            ✕
-					        </span>
-							Lower
-						</div>
-						<div>
-							<span class="compare-good">
-					            ✓
-					        </span>
-							Protected
-						</div>
-					</div>
-					<div class="comparison-row">
-						<div>Release</div>
-						<div>
-							<span class="compare-bad">
-					            ✕
-					        </span>
-							Immediate
-						</div>
-						<div>
-							<span class="compare-good">
-					            ✓
-					        </span>
-							Controlled
-						</div>
-					</div>
-					<div class="comparison-row">
-						<div>Absorption</div>
-						<div>
-							<span class="compare-bad">
-					            ✕
-					        </span>
-							Limited
-						</div>
-						<div>
-							<span class="compare-good">
-					            ✓
-					        </span>
-							Enhanced
+						<!-- Benefit 03 -->
+						<div class="comparison-benefit">
+							<div class="benefit-icon">
+								03
+							</div>
+							<div class="benefit-content">
+								<h4 id="benefitTitle3">
+								Released
+								</h4>
+								<p id="benefitText3">
+									The delivery system supports controlled
+									release of the active ingredients.
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
