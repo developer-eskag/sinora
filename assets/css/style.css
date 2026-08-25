@@ -556,12 +556,12 @@
     font-weight:600;
 }
 
-.section-eyebrow::before{
+/* .section-eyebrow::before{
     content:"";
     width:26px;
     height:1px;
     background:var(--amber);
-}
+} */
 
 .brand-intro h2{
     margin:20px 0 24px;
