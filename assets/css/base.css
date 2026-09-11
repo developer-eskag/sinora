@@ -213,22 +213,21 @@ button {
 }
 
 .btn-primary {
-    background: var(--amber);
+    background: var(--ink);
     color: var(--cream);
 }
 
 .btn-primary:hover {
-    background: var(--amber-deep);
+    background: var(--amber);
 }
 
 .btn-secondary {
-    border: 1px solid var(--line);
-    color: var(--text);
-    background: transparent;
+    color: var(--cream);
+    background: var(--amber);
 }
 
 .btn-secondary:hover {
-    background: rgba(0,0,0,.03);
+    background: var(--amber-deep);
 }
 
 /*=========================================

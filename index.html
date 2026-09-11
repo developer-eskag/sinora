@@ -23,6 +23,45 @@
 <body>
 
 	<!-- ========================================
+					TOP BAR
+	========================================= -->
+	<div class="sinora-topbar" id="sinora-topbar" role="region" aria-label="Promotions">
+		<div class="container">
+			<!-- Prev -->
+			<div class="sinora-topbar-mian">
+				<button class="tb-arrow" id="tb-prev" aria-label="Previous offer">
+					<svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M6 1L1.5 5.5L6 10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+				<!-- Slides -->
+				<div class="tb-carousel" aria-live="polite">
+					<div class="tb-slide active" role="status">
+						<span class="tb-text">Free gift on orders above <span class="tb-highlight">₹549</span></span>
+					</div>
+					<div class="tb-slide" role="status">
+						<span class="tb-text">Flat <span class="tb-highlight">₹700 off</span> on orders above ₹2,999</span>
+						<span class="tb-dot"></span>
+						<a class="tb-link" href="#">Shop Now</a>
+					</div>
+					<div class="tb-slide" role="status">
+						<span class="tb-text">Liposomal delivery — <span class="tb-highlight">science-backed</span> skincare</span>
+						<span class="tb-dot"></span>
+						<a class="tb-link" href="#">Learn more</a>
+					</div>
+				</div>
+				<!-- Right: dots + next -->
+				
+				<button class="tb-arrow" id="tb-next" aria-label="Next offer">
+					<svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 1L5.5 5.5L1 10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- ========================================
 					HEADER
 	========================================= -->
 	<header class="header">
@@ -89,7 +128,7 @@
 			<!-- Slide 1 -->
 			<article class="hero-slide active">
 				<div class="hero-bg">
-					<img src="assets/images/glow-boost-banner.png" alt="Glow Boost">
+					<img src="assets/images/banner-1.jpg" alt="Glow Boost">
 					<div class="hero-shine"></div>
 				</div>
 				<div class="container">
@@ -119,7 +158,7 @@
 			<!-- Slide 2 -->
 			<article class="hero-slide">
 				<div class="hero-bg">
-					<img src="assets/images/spot-clarity-banner.png" alt="Spot Clarity">
+					<img src="assets/images/Banner-2.jpg" alt="Spot Clarity">
 					<div class="hero-shine"></div>
 				</div>
 				<div class="container">
@@ -134,38 +173,6 @@
 						</h1>
 						<p>
 							Advanced liposomal actives help reduce pigmentation while supporting a clearer, more even skin tone.
-						</p>
-						<div class="hero-actions">
-					    <a href="#" class="btn btn-primary">
-					        Shop Now
-					    </a>
-
-					    <a href="#parallax-divider" class="btn btn-outline hero-contact-btn">
-					        Contact Us
-					    </a>
-					</div>
-					</div>
-				</div>
-			</article>
-
-			<!-- Slide 3 -->
-			<article class="hero-slide">
-				<div class="hero-bg">
-					<img src="assets/images/root-revival-banner.png" alt="Root Revival">
-					<div class="hero-shine"></div>
-				</div>
-				<div class="container">
-					<div class="hero-content">
-						<span class="hero-tag">
-							Liposomal Hair Therapy
-						</span>
-						<h1>
-							Strength Begins
-							<br>
-							At The Root
-						</h1>
-						<p>
-							Scientifically engineered liposomal formulation designed to nourish the scalp and support healthier, stronger hair.
 						</p>
 						<div class="hero-actions">
 					    <a href="#" class="btn btn-primary">
@@ -305,7 +312,7 @@
 						delivery technology for brighter, healthier looking skin.
 					</p>
 				</div>
-				<a href="#" class="btn btn-outline">
+				<a href="#" class="btn btn-primary">
 					View All
 				</a>
 			</div>
@@ -630,124 +637,236 @@
 		</div>
 	</section>
 
-		<!--=========================================
-         LIPOSOMAL PROCESS STICKY SCROLL
-    ==========================================-->
-		<section class="liposomal-process" aria-label="Liposomal delivery process">
-			<div class="process-glow process-glow-left"></div>
-			<div class="process-glow process-glow-right"></div>
-			
-			<!-- ENTIRE SCROLL TRACK - including heading -->
-			<div class="process-scroll-track" data-process-track>
-				<div class="process-sticky">
-					<div class="container">
-						
-						<!-- HEADING NOW INSIDE THE STICKY AREA -->
-						<div class="section-heading process-heading">
-							<span class="section-eyebrow">LIPOSOMAL TECHNOLOGY</span>
-							<h2>
-							How Advanced Delivery
-							Transforms Your Skin
-							</h2>
-							<p>
-								Follow each stage of SiNORA's liposomal process, from ingredient
-								selection to visible skin results.
-							</p>
-						</div>
-						<!-- PROCESS LAYOUT -->
-						<div class="process-layout">
-							<div class="process-media" aria-hidden="true">
-								<div class="process-image-stage" data-process-images></div>
-							</div>
-							<div class="process-content">
-								<div class="process-progress">
-									<span data-process-count>01 / 06</span>
-									<div class="process-progress-line">
-										<span data-process-bar></span>
-									</div>
-								</div>
-							<article class="process-copy" data-process-copy aria-live="polite"></article>
-						</div>
+	<!-- =========================================
+			PROMO BANNER SLIDER
+	========================================= -->
+	<section class="promo-banner-section">
+		<div class="swiper promo-slider">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<a href="#" class="promo-slide">
+						<img src="assets/images/banner-new.png" alt="Glow Boost Offer">
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="#" class="promo-slide">
+						<img src="assets/images/banner-try.png" alt="Spot Clarity Offer">
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="#" class="promo-slide">
+						<img src="assets/images/banner-cgt.png" alt="Root Revival Offer">
+					</a>
+				</div>
+			</div>
+			<!-- Dots -->
+			<div class="promo-pagination"></div>
+			<!-- Arrows -->
+			<button class="promo-prev" aria-label="Previous banner">
+			<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M15 18L9 12L15 6"/>
+			</svg>
+			</button>
+			<button class="promo-next" aria-label="Next banner">
+			<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M9 18L15 12L9 6"/>
+			</svg>
+			</button>
+		</div>
+	</section>
+
+	<!-- =========================================
+		AI SKIN ANALYSIS
+	========================================= -->
+	<section class="skin-ai section" id="skin-ai">
+		<div class="container">
+			<div class="skin-ai-grid">
+				<!-- LEFT -->
+				<div class="skin-ai-visual">
+					<div class="scan-glow"></div>
+					<div class="scan-line"></div>
+					<img src="assets/images/ai-model.png" alt="AI Skin Analysis" class="skin-face">
+					<!-- Detection Points -->
+					<div class="scan-point point-1">
+						<label>Pigmentation</label>
+						<div class="scan-marker"></div>
 					</div>
+					<div class="scan-point point-2">
+						<label>Hydration</label>
+						<div class="scan-marker"></div>
+					</div>
+					<div class="scan-point point-3">
+						<div class="scan-marker"></div>
+						<label>Texture</label>
+					</div>
+					<div class="scan-point point-4">
+						<div class="scan-marker"></div>
+						<label>Luminosity</label>
+					</div>
+					<div class="scan-point point-5">
+						<label>Inflammation</label>
+						<div class="scan-marker"></div>
+					</div>
+				</div>
+				<!-- RIGHT -->
+				<div class="skin-ai-content">
+					<span class="section-eyebrow">
+						Personalized Skin Analysis
+					</span>
+					<h2>
+					Discover What Your
+					Skin Really Needs.
+					</h2>
+					<p>
+						Upload a selfie and let our AI analyze visible
+						skin concerns, identify your skin condition and
+						recommend the ideal SiNORA routine in under
+						one minute.
+					</p>
+					<ul class="skin-features">
+						<li>
+							Detect visible skin concerns
+						</li>
+						<li>
+							Personalized skincare routine
+						</li>
+						<li>
+							Science-backed product suggestions
+						</li>
+					</ul>
+					<a href="#" class="btn btn-primary">
+						Start Free Analysis
+					</a>
 				</div>
 			</div>
 		</div>
-		<!-- MOBILE LIST OUTSIDE STICKY AREA -->
-		<div class="container">
-			<div class="process-mobile-list" data-process-mobile></div>
-		</div>
-		</section>
+	</section>
+	<!-- =========================================
+		SHOP BY CATEGORY
+	========================================= -->
+	<section class="shop-category section" id="categories">
+	  <div class="container">
 
-    <!-- =========================================
-	     AI SKIN ANALYSIS
-		========================================= -->
-		<section class="skin-ai section" id="skin-ai">
-		  <div class="container">
-		    <div class="skin-ai-grid">
-		      <!-- LEFT -->
-		      <div class="skin-ai-visual">
-		        <div class="scan-glow"></div>
-				    <div class="scan-line"></div>
-		        <img src="assets/images/skin-model.png" alt="AI Skin Analysis" class="skin-face">
-		        <!-- Detection Points -->
-		        <div class="scan-point point-1">
-		          <label>Pigmentation</label>
-		           <div class="scan-marker"></div>
-		        </div>
-		        <div class="scan-point point-2">
-		          <label>Hydration</label>
-		          <div class="scan-marker"></div>
-		        </div>
-		        <div class="scan-point point-3">
-		           <div class="scan-marker"></div>
-		          <label>Texture</label>
-		        </div>
-		        <div class="scan-point point-4">
-		           <div class="scan-marker"></div>
-		          <label>Luminosity</label>
-		        </div>
-		        <div class="scan-point point-5">
-		          <label>Inflammation</label>
-		          <div class="scan-marker"></div>
-		        </div>
-		      </div>
-		      <!-- RIGHT -->
-		      <div class="skin-ai-content">
-		        <span class="section-eyebrow">
-		          Personalized Skin Analysis
-		        </span>
-		        <h2>
-		        Discover What Your
-		        Skin Really Needs.
-		        </h2>
-		        <p>
-		          Upload a selfie and let our AI analyze visible
-		          skin concerns, identify your skin condition and
-		          recommend the ideal SiNORA routine in under
-		          one minute.
-		        </p>
-		        <ul class="skin-features">
-		          <li>
-		            Detect visible skin concerns
-		          </li>
-		          <li>
-		            Personalized skincare routine
-		          </li>
-		          <li>
-		            Science-backed product suggestions
-		          </li>
-		        </ul>
-		        <a href="#" class="btn btn-primary">
-		          Start Free Analysis
-		        </a>
-		      </div>
-		    </div>
-		  </div>
-		</section>
+	    <!-- Header -->
+	    <div class="shop-category-header">
+	      <div>
+	        <span class="section-eyebrow">Explore</span>
+	        <h2>Shop by Category</h2>
+	      </div>
+	      <div class="category-nav">
+	        <button class="cat-prev" aria-label="Previous category">
+	          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+	            <path d="M15 18L9 12L15 6"/>
+	          </svg>
+	        </button>
+	        <button class="cat-next" aria-label="Next category">
+	          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+	            <path d="M9 18L15 12L9 6"/>
+	          </svg>
+	        </button>
+	      </div>
+	    </div>
 
-    <!-- =========================================
-				LIPOSOMAL COMPARISON
-		========================================= -->
+	    <!-- Slider -->
+	    <div class="swiper category-slider">
+	      <div class="swiper-wrapper">
+
+	        <!-- ACTIVE: Skin Care -->
+	        <div class="swiper-slide">
+	          <a href="/skin-care" class="category-card">
+	            <div class="category-img-wrap">
+	              <img src="assets/images/skin-care.jpg" alt="Skin Care" loading="lazy">
+	              <div class="category-overlay"></div>
+	            </div>
+	            <div class="category-body">
+	              <span class="category-tag">Liposomal</span>
+	              <h3>Skin Care</h3>
+	              <span class="category-cta">
+	                Shop Now
+	                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+	              </span>
+	            </div>
+	          </a>
+	        </div>
+
+	        <!-- ACTIVE: Hair Care -->
+	        <div class="swiper-slide">
+	          <a href="/hair-care" class="category-card">
+	            <div class="category-img-wrap">
+	              <img src="assets/images/hair-care.jpg" alt="Hair Care" loading="lazy">
+	              <div class="category-overlay"></div>
+	            </div>
+	            <div class="category-body">
+	              <span class="category-tag">Liposomal</span>
+	              <h3>Hair Care</h3>
+	              <span class="category-cta">
+	                Shop Now
+	                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+	              </span>
+	            </div>
+	          </a>
+	        </div>
+
+	        <!-- ACTIVE: Serums -->
+	        <div class="swiper-slide">
+	          <a href="/serums" class="category-card">
+	            <div class="category-img-wrap">
+	              <img src="assets/images/serum.png" alt="Serums" loading="lazy">
+	              <div class="category-overlay"></div>
+	            </div>
+	            <div class="category-body">
+	              <span class="category-tag">Advanced</span>
+	              <h3>Serums</h3>
+	              <span class="category-cta">
+	                Shop Now
+	                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+	              </span>
+	            </div>
+	          </a>
+	        </div>
+
+	        <!-- DISABLED: Kits & Sets (no link yet) -->
+	        <div class="swiper-slide">
+	          <a href="#" class="category-card" data-disabled="true" aria-disabled="true" tabindex="-1">
+	            <div class="category-img-wrap">
+	              <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=600&q=80" alt="Kits & Sets" loading="lazy">
+	              <div class="category-overlay"></div>
+	            </div>
+	            <div class="category-body">
+	              <span class="category-tag">Curated</span>
+	              <h3>Kits &amp; Sets</h3>
+	              <span class="category-cta">
+	                Shop Now
+	                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+	              </span>
+	            </div>
+	          </a>
+	        </div>
+
+	        <!-- DISABLED: Body Care (no link yet) -->
+	        <div class="swiper-slide">
+	          <a href="#" class="category-card" data-disabled="true" aria-disabled="true" tabindex="-1">
+	            <div class="category-img-wrap">
+	              <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&q=80" alt="Body Care" loading="lazy">
+	              <div class="category-overlay"></div>
+	            </div>
+	            <div class="category-body">
+	              <span class="category-tag">Wellness</span>
+	              <h3>Body Care</h3>
+	              <span class="category-cta">
+	                Shop Now
+	                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+	              </span>
+	            </div>
+	          </a>
+	        </div>
+
+	      </div><!-- /swiper-wrapper -->
+	    </div><!-- /swiper -->
+
+	  </div>
+	</section>
+
 		<!-- =========================================
 				LIPOSOMAL COMPARISON
 		========================================= -->
@@ -755,13 +874,11 @@
 			<div class="container">
 				<!-- Heading -->
 				<div class="comparison-header">
-					<span class="section-eyebrow">
-						Liposomal Advantage
-					</span>
+					<span class="section-eyebrow">Liposomal Advantage</span>
 					<h2>
-					Same Active Ingredient.
-					<br>
-					Completely Different Delivery.
+						Same Active Ingredient.
+						<br>
+						Completely Different Delivery.
 					</h2>
 					<p>
 						The effectiveness of skincare isn't only determined by the ingredients
@@ -770,33 +887,15 @@
 					</p>
 				</div>
 				<!-- Toggle -->
-				<div
-					class="comparison-toggle is-liposomal"
-					role="tablist"
-					aria-label="Compare delivery methods"
-					>
-					<button
-					class="comparison-btn"
-					id="btnConv"
-					type="button"
-					role="tab"
-					aria-selected="false"
-					>
-					Conventional
+				<div class="comparison-toggle is-conventional" role="tablist" aria-label="Compare delivery methods">
+					<button class="comparison-btn active" id="btnConv" type="button" role="tab" aria-selected="true">
+						Conventional
 					</button>
-					<button
-					class="comparison-btn active"
-					id="btnLipo"
-					type="button"
-					role="tab"
-					aria-selected="true"
-					>
-					SiNORA Liposomal
+					<span class="comparison-pill" aria-hidden="true"></span>
+					<button class="comparison-btn" id="btnLipo" type="button" role="tab" aria-selected="false">
+						SiNORA Liposomal
 					</button>
-					<span
-						class="comparison-pill"
-						aria-hidden="true">
-					</span>
+					
 				</div>
 				<!-- =========================================
 				MAIN COMPARISON
@@ -804,53 +903,199 @@
 				<div class="comparison-grid">
 					<!-- LEFT — GRAPHIC -->
 					<div class="comparison-visual">
-						<div class="comparison-image-wrap">
-						    <img
-						        id="comparisonImageA"
-						        class="comparison-image is-visible"
-						        src="assets/images/comparison-sinora-liposomal.png"
-						        alt="SiNORA liposomal delivery illustration"
-						    >
-						    <img
-						        id="comparisonImageB"
-						        class="comparison-image"
-						        src="assets/images/comparison-conventional.png"
-						        alt=""
-						        aria-hidden="true"
-						    >
-						</div>
+					  <div class="skin-diagram">
+						<svg width="100%" viewBox="0 0 690 420" role="img" xmlns="http://www.w3.org/2000/svg" style="" xmlns:c2pa="http://c2pa.org/manifest">
+							<title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:anthropic-sans, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Skin cross-section showing liposomal particle delivery through skin layers</title>
+							<desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:anthropic-sans, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Anatomical illustration of skin layers: stratum corneum, epidermis, and dermis, with animated delivery particles</desc>
+
+							<defs>
+							  <linearGradient id="scGrad" x1="0" y1="0" x2="0" y2="1">
+							    <stop offset="0%" stop-color="#F2E4D0"/>
+							    <stop offset="100%" stop-color="#E8D4BA"/>
+							  </linearGradient>
+							  <linearGradient id="epGrad" x1="0" y1="0" x2="0" y2="1">
+							    <stop offset="0%" stop-color="#F2C4B0"/>
+							    <stop offset="100%" stop-color="#E8A898"/>
+							  </linearGradient>
+							  <linearGradient id="deGrad" x1="0" y1="0" x2="0" y2="1">
+							    <stop offset="0%" stop-color="#FFC6BE"/>
+							    <stop offset="100%" stop-color="#E8A898"/>
+							  </linearGradient>
+							  <linearGradient id="hypGrad" x1="0" y1="0" x2="0" y2="1">
+							    <stop offset="0%" stop-color="#ffc669"/>
+							    <stop offset="100%" stop-color="#e6a83e"/>
+							  </linearGradient>
+							  <clipPath id="scClip"><rect x="0" y="90" width="100%" height="75"/></clipPath>
+							  <clipPath id="epClip"><rect x="0" y="165" width="100%" height="100"/></clipPath>
+							  <clipPath id="deClip"><rect x="0" y="265" width="100%" height="110"/></clipPath>
+							</defs>
+
+							<rect x="0" y="375" width="100%" height="45" fill="url(#hypGrad)"/>
+							<ellipse cx="60" cy="395" rx="28" ry="14" fill="#ffdeae" opacity="0.6"/>
+							<ellipse cx="130" cy="390" rx="22" ry="12" fill="#ffdeae" opacity="0.5"/>
+							<ellipse cx="200" cy="398" rx="26" ry="13" fill="#ffdeae" opacity="0.6"/>
+							<ellipse cx="290" cy="392" rx="30" ry="14" fill="#ffdeae" opacity="0.55"/>
+							<ellipse cx="380" cy="397" rx="24" ry="12" fill="#ffdeae" opacity="0.6"/>
+							<ellipse cx="460" cy="390" rx="28" ry="14" fill="#ffdeae" opacity="0.5"/>
+							<ellipse cx="550" cy="395" rx="26" ry="13" fill="#ffdeae" opacity="0.6"/>
+							<ellipse cx="630" cy="391" rx="22" ry="12" fill="#ffdeae" opacity="0.55"/>
+
+							<rect x="0" y="265" width="100%" height="110" fill="url(#deGrad)"/>
+							<path d="M10,285 Q50,280 90,285 Q130,290 170,285 Q210,280 250,285 Q290,290 330,285 Q370,280 410,285 Q450,290 490,285 Q530,280 570,285 Q610,290 650,285 Q670,283 680,285" fill="#ffdce6" stroke="##ffdce6" stroke-width="0.8" opacity="0.5"/>
+							<path d="M10,300 Q40,295 80,300 Q120,305 160,300 Q200,295 240,300 Q280,305 320,300 Q360,295 400,300 Q440,305 480,300 Q520,295 560,300 Q600,305 640,300 Q665,298 680,300" fill="#ffdce6" stroke="##ffdce6" stroke-width="0.8" opacity="0.45"/>
+							<path d="M10,318 Q55,313 95,318 Q135,323 175,318 Q215,313 255,318 Q295,323 335,318 Q375,313 415,318 Q455,323 495,318 Q535,313 575,318 Q615,323 655,318" fill="#ffdce6" stroke="#ffdce6" stroke-width="0.8" opacity="0.4" mask="url(#imagine-text-gaps-97rb50)"/>
+							<path d="M10,336 Q45,331 85,336 Q125,341 165,336 Q205,331 245,336 Q285,341 325,336 Q365,331 405,336 Q445,341 485,336 Q525,331 565,336 Q605,341 645,336 Q668,334 680,336" fill="#ffdce6" stroke="##ffdce6" stroke-width="0.8" opacity="0.35"/>
+							<path d="M10,354 Q50,349 90,354 Q130,359 170,354 Q210,349 250,354 Q290,359 330,354 Q370,349 410,354 Q450,359 490,354 Q530,349 570,354 Q610,359 650,354" fill="#ffdce6" stroke="#ffdce6" stroke-width="0.8" opacity="0.3"/>
+							<path d="M80,290 Q85,310 80,340 Q78,355 80,370" fill="none" stroke="#db364c" stroke-width="3.5" opacity="0.35" stroke-linecap="round"/>
+							<path d="M82,290 Q95,310 82,340 Q80,355 82,370" fill="none" stroke="#E74C3C" stroke-width="1.5" opacity="0.25" stroke-linecap="round"/>
+							<path d="M380,285 Q385,308 380,338 Q378,352 380,372" fill="none" stroke="#db364c" stroke-width="3.5" opacity="0.3" stroke-linecap="round"/>
+							<path d="M560,288 Q563,312 560,345 Q558,358 560,372" fill="none" stroke="#db364c" stroke-width="3" opacity="0.28" stroke-linecap="round"/>
+
+							<rect x="0" y="165" width="100%" height="100" fill="url(#epGrad)"/>
+							<path d="M30,185 L55,178 L80,185 L80,210 L55,217 L30,210 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.6" opacity="0.4" mask="url(#imagine-text-gaps-97rb50)"/>
+							<path d="M80,178 L105,172 L130,178 L130,203 L105,210 L80,203 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.6" opacity="0.4"/>
+							<path d="M130,185 L155,178 L180,185 L180,210 L155,217 L130,210 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.6" opacity="0.4"/>
+							<path d="M180,178 L205,172 L230,178 L230,203 L205,210 L180,203 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.6" opacity="0.35"/>
+							<path d="M230,185 L255,178 L280,185 L280,210 L255,217 L230,210 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.6" opacity="0.4"/>
+							<path d="M280,178 L305,172 L330,178 L330,203 L305,210 L280,203 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.6" opacity="0.35"/>
+							<path d="M330,185 L355,178 L380,185 L380,210 L355,217 L330,210 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.6" opacity="0.4"/>
+							<path d="M380,178 L405,172 L430,178 L430,203 L405,210 L380,203 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.6" opacity="0.35"/>
+							<path d="M430,185 L455,178 L480,185 L480,210 L455,217 L430,210 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.6" opacity="0.4"/>
+							<path d="M480,178 L505,172 L530,178 L530,203 L505,210 L480,203 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.6" opacity="0.35"/>
+							<path d="M530,185 L555,178 L580,185 L580,210 L555,217 L530,210 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.6" opacity="0.4"/>
+							<path d="M580,178 L605,172 L630,178 L630,203 L605,210 L580,203 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.6" opacity="0.35"/>
+							<path d="M30,217 L55,210 L80,217 L80,242 L55,249 L30,242 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.5" opacity="0.3" mask="url(#imagine-text-gaps-97rb50)"/>
+							<path d="M130,210 L155,204 L180,210 L180,235 L155,241 L130,235 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.5" opacity="0.3"/>
+							<path d="M230,217 L255,210 L280,217 L280,242 L255,249 L230,242 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.5" opacity="0.3"/>
+							<path d="M380,210 L405,204 L430,210 L430,235 L405,241 L380,235 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.5" opacity="0.3"/>
+							<path d="M480,217 L505,210 L530,217 L530,242 L505,249 L480,242 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.5" opacity="0.3"/>
+							<path d="M580,210 L605,204 L630,210 L630,235 L605,241 L580,235 Z" fill="#ffede6" stroke="#ffede6" stroke-width="0.5" opacity="0.3"/>
+
+							<rect x="0" y="90" width="100%" height="75" fill="#ffd6b6"/>
+
+							<rect x="15" y="95" width="60" height="10" rx="1" fill="#b87f55" opacity="0.5"/>
+							<rect x="82" y="95" width="58" height="10" rx="1" fill="#b87f55" opacity="0.45"/>
+							<rect x="147" y="95" width="62" height="10" rx="1" fill="#b87f55" opacity="0.5"/>
+							<rect x="216" y="95" width="56" height="10" rx="1" fill="#b87f55" opacity="0.45"/>
+							<rect x="279" y="95" width="64" height="10" rx="1" fill="#b87f55" opacity="0.5"/>
+							<rect x="350" y="95" width="58" height="10" rx="1" fill="#b87f55" opacity="0.45"/>
+							<rect x="415" y="95" width="62" height="10" rx="1" fill="#b87f55" opacity="0.5"/>
+							<rect x="484" y="95" width="56" height="10" rx="1" fill="#b87f55" opacity="0.45"/>
+							<rect x="547" y="95" width="60" height="10" rx="1" fill="#b87f55" opacity="0.5"/>
+							<rect x="614" y="95" width="52" height="10" rx="1" fill="#b87f55" opacity="0.45"/>
+
+							<rect x="10" y="110" width="55" height="9" rx="1" fill="#b87f50" opacity="0.4"/>
+							<rect x="72" y="110" width="60" height="9" rx="1" fill="#b87f50" opacity="0.4"/>
+							<rect x="139" y="110" width="58" height="9" rx="1" fill="#b87f50" opacity="0.35"/>
+							<rect x="204" y="110" width="62" height="9" rx="1" fill="#b87f50" opacity="0.4"/>
+							<rect x="273" y="110" width="56" height="9" rx="1" fill="#b87f50" opacity="0.35"/>
+							<rect x="336" y="110" width="60" height="9" rx="1" fill="#b87f50" opacity="0.4"/>
+							<rect x="403" y="110" width="58" height="9" rx="1" fill="#b87f50" opacity="0.35"/>
+							<rect x="468" y="110" width="62" height="9" rx="1" fill="#b87f50" opacity="0.4"/>
+							<rect x="537" y="110" width="56" height="9" rx="1" fill="#b87f50" opacity="0.35"/>
+							<rect x="600" y="110" width="64" height="9" rx="1" fill="#b87f50" opacity="0.4"/>
+
+							<rect x="20" y="124" width="58" height="9" rx="1" fill="#b87f38" opacity="0.3"/>
+							<rect x="85" y="124" width="62" height="9" rx="1" fill="#b87f38" opacity="0.3"/>
+							<rect x="154" y="124" width="56" height="9" rx="1" fill="#b87f38" opacity="0.25"/>
+							<rect x="217" y="124" width="60" height="9" rx="1" fill="#b87f38" opacity="0.3"/>
+							<rect x="284" y="124" width="62" height="9" rx="1" fill="#b87f38" opacity="0.25"/>
+							<rect x="353" y="124" width="56" height="9" rx="1" fill="#b87f38" opacity="0.3"/>
+							<rect x="416" y="124" width="60" height="9" rx="1" fill="#b87f38" opacity="0.25"/>
+							<rect x="483" y="124" width="62" height="9" rx="1" fill="#b87f38" opacity="0.3"/>
+							<rect x="552" y="124" width="56" height="9" rx="1" fill="#b87f38" opacity="0.25"/>
+							<rect x="615" y="124" width="52" height="9" rx="1" fill="#b87f38" opacity="0.3"/>
+
+							<rect x="10" y="138" width="60" height="9" rx="1" fill="#b87f25" opacity="0.25"/>
+							<rect x="77" y="138" width="58" height="9" rx="1" fill="#b87f25" opacity="0.2"/>
+							<rect x="142" y="138" width="64" height="9" rx="1" fill="#b87f25" opacity="0.25"/>
+							<rect x="213" y="138" width="56" height="9" rx="1" fill="#b87f25" opacity="0.2"/>
+							<rect x="276" y="138" width="62" height="9" rx="1" fill="#b87f25" opacity="0.25"/>
+							<rect x="345" y="138" width="58" height="9" rx="1" fill="#b87f25" opacity="0.2"/>
+							<rect x="410" y="138" width="64" height="9" rx="1" fill="#b87f25" opacity="0.25"/>
+							<rect x="481" y="138" width="56" height="9" rx="1" fill="#b87f25" opacity="0.2"/>
+							<rect x="544" y="138" width="62" height="9" rx="1" fill="#b87f25" opacity="0.25"/>
+							<rect x="613" y="138" width="52" height="9" rx="1" fill="#b87f25" opacity="0.2"/>
+
+							<rect x="15" y="152" width="58" height="8" rx="1" fill="#b87f10" opacity="0.18"/>
+							<rect x="80" y="152" width="62" height="8" rx="1" fill="#b87f10" opacity="0.15"/>
+							<rect x="149" y="152" width="56" height="8" rx="1" fill="#b87f10" opacity="0.18"/>
+							<rect x="212" y="152" width="60" height="8" rx="1" fill="#b87f10" opacity="0.15"/>
+							<rect x="279" y="152" width="64" height="8" rx="1" fill="#b87f10" opacity="0.18"/>
+							<rect x="350" y="152" width="56" height="8" rx="1" fill="#b87f10" opacity="0.15"/>
+							<rect x="413" y="152" width="62" height="8" rx="1" fill="#b87f10" opacity="0.18"/>
+							<rect x="482" y="152" width="58" height="8" rx="1" fill="#b87f10" opacity="0.15"/>
+							<rect x="547" y="152" width="60" height="8" rx="1" fill="#b87f10" opacity="0.18"/>
+							<rect x="614" y="152" width="52" height="8" rx="1" fill="#b87f10" opacity="0.15"/>
+
+							<path d="M0,90 C20,76 40,96 65,85 C90,74 110,92 140,83 C165,74 190,90 220,80 C248,70 272,88 300,78 C328,68 352,86 382,76 C410,66 435,84 462,75 C488,66 512,84 542,74 C568,64 594,82 622,72 C645,63 662,80 680,70 L900,0 L0,0 Z" fill="#FBF6EF"/>
+							<path d="M150,85 C148,100 145,130 143,165 C141,200 138,250 136,290 C134,320 133,355 132,375" fill="none" stroke="#000000" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+							<ellipse cx="150" cy="84" rx="4" ry="3" fill="#7A5E40" opacity="0.6"/>
+							<path d="M150,85 C152,70 154,50 155,28 C156,16 157,8 158,2" fill="none" stroke="#000000" stroke-width="1.2" opacity="0.55" stroke-linecap="round"/>
+
+							<path d="M340,82 C338,98 335,128 333,165 C331,202 329,248 327,285 C325,318 324,352 323,375" fill="none" stroke="#000000" stroke-width="1.5" opacity="0.45" stroke-linecap="round"/>
+							<ellipse cx="340" cy="81" rx="4" ry="3" fill="#7A5E40" opacity="0.55"/>
+							<path d="M340,82 C342,67 345,46 347,24 C348,14 349,6 350,0" fill="none" stroke="#000000" stroke-width="1.2" opacity="0.5" stroke-linecap="round" mask="url(#imagine-text-gaps-97rb50)"/>
+
+
+							<path d="M530,87 C528,103 525,133 523,168 C521,204 518,252 516,288 C514,322 513,356 512,375" fill="none" stroke="#000000" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+							<ellipse cx="530" cy="86" rx="4" ry="3" fill="#7A5E40" opacity="0.6"/>
+							<path d="M530,87 C532,72 535,52 537,30 C538,18 539,9 540,2" fill="none" stroke="#000000" stroke-width="1.2" opacity="0.55" stroke-linecap="round"/>
+
+							<ellipse cx="162" cy="175" rx="14" ry="9" fill="#E8C898" opacity="0.4"/>
+							<ellipse cx="170" cy="182" rx="10" ry="7" fill="#E8C898" opacity="0.35"/>
+							<ellipse cx="352" cy="172" rx="13" ry="8" fill="#E8C898" opacity="0.38"/>
+							<ellipse cx="360" cy="180" rx="9" ry="6" fill="#E8C898" opacity="0.32"/>
+							<ellipse cx="542" cy="178" rx="14" ry="9" fill="#E8C898" opacity="0.4"/>
+							<ellipse cx="550" cy="186" rx="10" ry="7" fill="#E8C898" opacity="0.35"/>
+
+							<path d="M240,340 C238,350 242,358 240,365 C238,372 235,373 234,370" fill="#e69f47" stroke="#e69f47" stroke-width="2" opacity="0.35" stroke-linecap="round"/>
+							<path d="M450,338 C448,348 452,356 450,363 C448,370 445,371 444,368" fill="#e69f47" stroke="#e69f47" stroke-width="2" opacity="0.3" stroke-linecap="round"/>
+
+							<line x1="0" y1="165" x2="680" y2="165" stroke="#B89870" stroke-width="1" stroke-dasharray="5 4" opacity="0.5"/>
+							<line x1="0" y1="265" x2="680" y2="265" stroke="#A07850" stroke-width="1" stroke-dasharray="5 4" opacity="0.5"/>
+							<line x1="0" y1="375" x2="680" y2="375" stroke="#886040" stroke-width="1" opacity="0.4"/>
+
+							<rect x="8" y="120" width="125" height="20" fill="#F26A21"/>
+							<text x="12" y="134" font-size="10" fill="#000000" font-family="'Space Mono', monospace" letter-spacing="1.5" opacity="0.7" font-weight="700">STRATUM CORNEUM</text>
+							<rect x="8" y="208" width="75" height="20" fill="#F26A21"></rect>
+							<text x="12" y="222" font-size="10" fill="#000000" font-family="'Space Mono', monospace" letter-spacing="1.5" opacity="0.7" font-weight="700">EPIDERMIS</text>
+							<rect x="8" y="308" width="52" height="20" fill="#F26A21"></rect>
+							<text x="12" y="322" font-size="10" fill="#000000" font-family="'Space Mono', monospace" letter-spacing="1.5" opacity="0.7" font-weight="700">DERMIS</text>
+							<rect x="8" y="380" width="82" height="20" fill="#F26A21"></rect>
+							<text x="12" y="395" font-size="10" fill="#000000" font-family="'Space Mono', monospace" letter-spacing="1.5" opacity="0.6" font-weight="700">HYPODERMIS</text>
+
+							<line x1="660" y1="90" x2="668" y2="90" stroke="#A89070" stroke-width="1" opacity="0.5"/>
+							<line x1="660" y1="165" x2="668" y2="165" stroke="#A89070" stroke-width="1" opacity="0.5"/>
+							<line x1="660" y1="265" x2="668" y2="265" stroke="#A89070" stroke-width="1" opacity="0.5"/>
+							<line x1="660" y1="375" x2="668" y2="375" stroke="#A89070" stroke-width="1" opacity="0.5"/>
+							<line x1="664" y1="90" x2="664" y2="375" stroke="#A89070" stroke-width="0.8" opacity="0.3"/>
+
+							<g id="particleGroup" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:anthropic-sans, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+							<text x="340" y="18" font-size="10" fill="#000000" font-family="'Space Mono', monospace" letter-spacing="1" text-anchor="middle" opacity="0.65">SKIN LAYERS</text>
+							<line x1="220" y1="22" x2="296" y2="22" stroke="#000000" stroke-width="0.8" opacity="0.4" mask="url(#imagine-text-gaps-97rb50)"/>
+							<line x1="384" y1="22" x2="460" y2="22" stroke="#000000" stroke-width="0.8" opacity="0.4" mask="url(#imagine-text-gaps-97rb50)"/>
+						</svg>
+					  </div>
 					</div>
 					<!-- RIGHT — STATS + EXPLANATION -->
 					<div class="comparison-info">
 						<!-- KPI 1 -->
 						<div class="comparison-card">
-							<span
-								class="comparison-value"
-								id="kpiDepth">
-								92%
-							</span>
-							<span
-								class="comparison-label">
-								Delivery Efficiency
-							</span>
+							<span class="comparison-value" id="kpiDepth">92%</span>
+							<span class="comparison-label">Delivery Efficiency</span>
+							<p class="comparison-text" id="kpiNote">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
 						</div>
 						<!-- KPI 2 -->
 						<div class="comparison-card">
-							<span
-								class="comparison-value"
-								id="kpiIntact">
-								89%
-							</span>
-							<span
-								class="comparison-label">
-								Active Stability
-							</span>
+							<span class="comparison-value" id="kpiIntact">89%</span>
+							<span class="comparison-label">Active Stability</span>
+							<p class="comparison-text" id="kpiNote">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
 						</div>
 						<!-- Explanation -->
 						<div class="comparison-card comparison-note">
-							<h4 id="compareTitle">
-							Liposomal Delivery
-							</h4>
+							<h4 id="compareTitle"> Liposomal Delivery</h4>
 							<p id="vizNote">
 								Encapsulated active ingredients remain protected while
 								travelling deeper into the skin, allowing controlled
@@ -915,6 +1160,133 @@
 		</section>
 
 		<!-- =========================================
+		SHOP BY CONCERN
+	========================================= -->
+	<section class="shop-category section" id="categories">
+	  <div class="container">
+
+	    <!-- Header -->
+	    <div class="shop-category-header">
+	      <div>
+	        <span class="section-eyebrow">Explore</span>
+	        <h2>Shop by Concern</h2>
+	      </div>
+	      <div class="category-nav">
+	        <button class="cat-prev" aria-label="Previous category">
+	          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+	            <path d="M15 18L9 12L15 6"/>
+	          </svg>
+	        </button>
+	        <button class="cat-next" aria-label="Next category">
+	          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+	            <path d="M9 18L15 12L9 6"/>
+	          </svg>
+	        </button>
+	      </div>
+	    </div>
+
+	    <!-- Slider -->
+	    <div class="swiper category-slider">
+	      <div class="swiper-wrapper">
+
+	        <!-- ACTIVE: Dark Sopts Pigmentation -->
+	        <div class="swiper-slide">
+	          <a href="/skin-care" class="category-card">
+	            <div class="category-img-wrap">
+	              <img src="assets/images/pigmentation.jpg" alt="Skin Care" loading="lazy">
+	              <div class="category-overlay"></div>
+	            </div>
+	            <div class="category-body">
+	              <span class="category-tag">Liposomal</span>
+	              <h3>Dark Spots &amp; Pigmentation</h3>
+	              <span class="category-cta">
+	                Shop Now
+	                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+	              </span>
+	            </div>
+	          </a>
+	        </div>
+
+	        <!-- ACTIVE: Oily & Acne Skin -->
+	        <div class="swiper-slide">
+	          <a href="/hair-care" class="category-card">
+	            <div class="category-img-wrap">
+	              <img src="assets/images/oily-skin.png" alt="Hair Care" loading="lazy">
+	              <div class="category-overlay"></div>
+	            </div>
+	            <div class="category-body">
+	              <span class="category-tag">Liposomal</span>
+	              <h3>Oily &amp; Acne Skin</h3>
+	              <span class="category-cta">
+	                Shop Now
+	                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+	              </span>
+	            </div>
+	          </a>
+	        </div>
+
+	        <!-- ACTIVE: Dry to Very Dry Skin -->
+	        <div class="swiper-slide">
+	          <a href="/serums" class="category-card">
+	            <div class="category-img-wrap">
+	              <img src="assets/images/dry-skin.png" alt="Serums" loading="lazy">
+	              <div class="category-overlay"></div>
+	            </div>
+	            <div class="category-body">
+	              <span class="category-tag">Advanced</span>
+	              <h3>Dry to Very Dry Skin</h3>
+	              <span class="category-cta">
+	                Shop Now
+	                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+	              </span>
+	            </div>
+	          </a>
+	        </div>
+
+	        <!-- DISABLED: Sensitive Skin -->
+	        <div class="swiper-slide">
+	          <a href="#" class="category-card">
+	            <div class="category-img-wrap">
+	              <img src="assets/images/sensitive-skin.png" alt="Kits & Sets" loading="lazy">
+	              <div class="category-overlay"></div>
+	            </div>
+	            <div class="category-body">
+	              <span class="category-tag">Curated</span>
+	              <h3>Sensitive Skin</h3>
+	              <span class="category-cta">
+	                Shop Now
+	                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+	              </span>
+	            </div>
+	          </a>
+	        </div>
+
+	        <!-- DISABLED: Ageing & Skin Support -->
+	        <div class="swiper-slide">
+	          <a href="#" class="category-card">
+	            <div class="category-img-wrap">
+	              <img src="assets/images/aging-skin.png" alt="Body Care" loading="lazy">
+	              <div class="category-overlay"></div>
+	            </div>
+	            <div class="category-body">
+	              <span class="category-tag">Wellness</span>
+	              <h3>Ageing &amp; Skin Support</h3>
+	              <span class="category-cta">
+	                Shop Now
+	                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+	              </span>
+	            </div>
+	          </a>
+	        </div>
+
+	      </div><!-- /swiper-wrapper -->
+	    </div><!-- /swiper -->
+
+	  </div>
+	</section>
+
+		
+		<!-- =========================================
 				CLINICAL RESULTS
 		========================================= -->
 		<section class="results section" id="results">
@@ -936,13 +1308,13 @@
 				<!-- Tabs -->
 				<div class="results-tabs">
 					<button class="results-tab active" data-day="7">
-						After 7 Days
+						After 1 Month
 					</button>
 					<button class="results-tab" data-day="14">
-						After 14 Days
+						After 3 Months
 					</button>
 					<button class="results-tab" data-day="28">
-						After 28 Days
+						After 6 Months
 					</button>
 				</div>
 				<!-- Comparison -->
@@ -1000,7 +1372,7 @@
 							luxury skincare, protecting active ingredients
 							until the precise moment your skin needs them.
 						</p>
-						<a href="#" class="btn btn-primary">
+						<a href="#" class="btn btn-secondary">
 							Explore Our Science
 						</a>
 					</div>
@@ -1073,7 +1445,7 @@
 								</div>
 								<button
 								type="submit"
-								class="btn btn-primary form-submit"
+								class="btn btn-secondary form-submit"
 								>
 								Send Message
 								<svg
@@ -1124,7 +1496,7 @@
 							to help you make informed skincare choices.
 						</p>
 					</div>
-					<a href="#" class="btn btn-outline">
+					<a href="#" class="btn btn-primary">
 						View All Articles
 					</a>
 				</div>
@@ -1324,6 +1696,121 @@
 				</div>
 			</div>
 		</section>
+		<!-- =========================================
+					LOGO SLIDER
+		========================================= -->
+		<section class="featured-in">
+			<div class="container">
+				<div class="featured-in-inner">
+					<!-- Left label -->
+					<div class="featured-in-label">
+						<p class="featured-in-title">Featured In</p>
+						<p class="featured-in-quote">"Science-backed skincare, beautifully delivered."</p>
+					</div>
+					<!-- Marquee track -->
+					<div class="featured-in-marquee" aria-label="Publications featuring SiNORA">
+						<div class="marquee-track">
+							<!-- Original set -->
+							<span class="marquee-logo">VOGUE</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo marquee-logo--serif">ELLE</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo marquee-logo--light">BAZAAR</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo">NYKAA</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo marquee-logo--light">FEMINA</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo">GRAZIA</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo marquee-logo--serif">GQ</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo marquee-logo--light">COSMOPOLITAN</span>
+							<span class="marquee-sep">·</span>
+							<!-- Duplicate for seamless loop -->
+							<span class="marquee-logo">VOGUE</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo marquee-logo--serif">ELLE</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo marquee-logo--light">BAZAAR</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo">NYKAA</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo marquee-logo--light">FEMINA</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo">GRAZIA</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo marquee-logo--serif">GQ</span>
+							<span class="marquee-sep">·</span>
+							<span class="marquee-logo marquee-logo--light">COSMOPOLITAN</span>
+							<span class="marquee-sep">·</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- =========================================
+		   		KEY INGREDIENTS PILLS
+		========================================= -->
+		<section class="ingredients-strip section">
+			<div class="container">
+				<div class="ingredients-header text-center">
+					<span class="section-eyebrow">What's Inside</span>
+					<h2>Key Ingredients</h2>
+				</div>
+				<div class="ingredients-grid">
+					<a href="#" class="ingredient-pill">
+						<span class="ingredient-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+								<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+							</svg>
+						</span>
+						<span class="ingredient-name">Vitamin C</span>
+					</a>
+					<a href="#" class="ingredient-pill">
+						<span class="ingredient-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+							</svg>
+						</span>
+						<span class="ingredient-name">Niacinamide</span>
+					</a>
+					<a href="#" class="ingredient-pill">
+						<span class="ingredient-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 8v4l3 3"/>
+							</svg>
+						</span>
+						<span class="ingredient-name">Kojic Acid</span>
+					</a>
+					<a href="#" class="ingredient-pill">
+						<span class="ingredient-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+							</svg>
+						</span>
+						<span class="ingredient-name">Hyaluronic Acid</span>
+					</a>
+					<a href="#" class="ingredient-pill">
+						<span class="ingredient-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+								<circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+							</svg>
+						</span>
+						<span class="ingredient-name">Retinol</span>
+					</a>
+					<a href="#" class="ingredient-pill">
+						<span class="ingredient-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M8 12s1 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/>
+							</svg>
+						</span>
+						<span class="ingredient-name">Peptides</span>
+					</a>
+				</div>
+			</div>
+		</section>
 
 		<!-- =========================================
 					FOOTER
@@ -1442,10 +1929,8 @@
 							<input
 							type="email"
 							placeholder="Email Address">
-							<button
-							type="submit"
-							class="btn btn-primary">
-							Subscribe
+							<button type="submit" class="btn btn-outline btn-ft">
+								Subscribe
 							</button>
 						</form>
 					</div>
@@ -1475,5 +1960,127 @@
 	<!-- Main JS -->
 	<script src="assets/js/animation.js"></script>
 	<script src="assets/js/main.js"></script>
+
+	<script>
+		(function () {
+		  const slides = Array.from(document.querySelectorAll('.tb-slide'));
+		  const prevBtn = document.getElementById('tb-prev');
+		  const nextBtn = document.getElementById('tb-next');
+		  let current = 0;
+		  let autoTimer = null;
+		  let isAnimating = false;
+
+		  // Inject exit-down CSS (not in your stylesheet)
+		  const style = document.createElement('style');
+		  style.textContent = `.tb-slide.exit-down{opacity:0;transform:translateY(100%);transition:opacity .45s ease,transform .45s ease;pointer-events:none;}`;
+		  document.head.appendChild(style);
+
+		  // direction: 'up' = next (current exits up, new enters from below)
+		  //            'down' = prev (current exits down, new enters from above)
+		  function goTo(next, direction) {
+		    if (isAnimating || next === current) return;
+		    isAnimating = true;
+
+		    const exitClass  = direction === 'up' ? 'exit-up' : 'exit-down';
+		    const enterClass = direction === 'up' ? 'enter-from-below' : 'enter-from-above';
+
+		    const outSlide = slides[current];
+		    const inSlide  = slides[next];
+
+		    // Position new slide off-screen instantly (no transition)
+		    inSlide.classList.remove('active', 'exit-up', 'exit-down', 'enter-from-below', 'enter-from-above');
+		    inSlide.classList.add(enterClass);
+
+		    // Force reflow so the browser registers the off-screen position
+		    inSlide.offsetHeight;
+
+		    // Animate out current slide
+		    outSlide.classList.remove('active');
+		    outSlide.classList.add(exitClass);
+
+		    // Animate in new slide
+		    inSlide.classList.remove(enterClass);
+		    inSlide.classList.add('active');
+
+		    current = next;
+
+		    // Clean up exited slide after transition completes
+		    setTimeout(() => {
+		      outSlide.classList.remove(exitClass);
+		      isAnimating = false;
+		    }, 480);
+		  }
+
+		  function next() {
+		    goTo((current + 1) % slides.length, 'up');
+		  }
+
+		  function prev() {
+		    goTo((current - 1 + slides.length) % slides.length, 'down');
+		  }
+
+		  nextBtn.addEventListener('click', () => { resetAuto(); next(); });
+		  prevBtn.addEventListener('click', () => { resetAuto(); prev(); });
+
+		  function startAuto() {
+		    autoTimer = setInterval(next, 5000);
+		  }
+
+		  function resetAuto() {
+		    clearInterval(autoTimer);
+		    startAuto();
+		  }
+
+		  // Pause on hover
+		  const bar = document.getElementById('sinora-topbar');
+		  bar.addEventListener('mouseenter', () => clearInterval(autoTimer));
+		  bar.addEventListener('mouseleave', startAuto);
+
+		  startAuto();
+		})();
+
+		 // ── Category Slider ──────────────────────
+		  const categorySlider = new Swiper('.category-slider', {
+		    slidesPerView: 1.18,
+		    spaceBetween: 16,
+		    grabCursor: true,
+		    navigation: {
+		      prevEl: '.cat-prev',
+		      nextEl: '.cat-next',
+		    },
+		    breakpoints: {
+		      560:  { slidesPerView: 2.1,  spaceBetween: 18 },
+		      900:  { slidesPerView: 3.15, spaceBetween: 20 },
+		      1200: { slidesPerView: 4,    spaceBetween: 22 },
+		    },
+		  });
+
+		  // Block navigation on disabled cards
+		  document.querySelectorAll('.category-card[data-disabled="true"]').forEach(card => {
+		    card.addEventListener('click', e => e.preventDefault());
+		    card.addEventListener('pointerdown', e => e.stopPropagation());
+		  });
+
+		  // ── Promo Banner Slider ──────────────────────
+		  new Swiper('.promo-slider', {
+			  loop: true,
+			  autoplay: {
+			    delay: 4000,
+			    disableOnInteraction: false,
+			    pauseOnMouseEnter: true,
+			  },
+			  speed: 700,
+			  grabCursor: true,
+			  navigation: {
+			    prevEl: '.promo-prev',
+			    nextEl: '.promo-next',
+			  },
+			  pagination: {
+			    el: '.promo-pagination',
+			    clickable: true,
+			  },
+			});
+
+</script>
 </body>
 </html>

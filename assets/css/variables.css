@@ -8,6 +8,9 @@
   --ink-soft: #221D17;
 
   /* Backgrounds */
+  --white: #fff;
+  --white-fade: #e6e6e6;
+  --dark: #11100E;
   --cream: #FBF6EF;
   --cream-2: #F3EADD;
   --peach: #FBE1C9;
@@ -25,7 +28,7 @@
   /* Text */
   --text: var(--ink);
   --text-light: #FBF6EF;
-  --muted: #6C645B;
+  --muted: #232323;
   --muted-on-dark: #B7AB9C;
   --faint: #A99F93;
 
@@ -68,7 +71,7 @@
   /* ==========================================================
      LAYOUT
   ========================================================== */
-  --container: 1180px;
+  --container: 1600px;
   --gutter: 22px;
   --section-space: clamp(56px,7vw,92px);
   --space-xs: .5rem;

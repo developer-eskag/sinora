@@ -189,9 +189,9 @@ slider.addEventListener("mouseleave", () => {
    Product Slider
 ========================================= */
 const productSlider = new Swiper(".product-slider",{
-    slidesPerView:3,
+    slidesPerView:2,
     spaceBetween:28,
-    centeredSlides:true,
+    centeredSlides:false,
     watchSlidesProgress:true,
     loop:true,
     speed:700,
@@ -216,12 +216,17 @@ const productSlider = new Swiper(".product-slider",{
         },
 
         768:{
-            slidesPerView:2,
+            slidesPerView:2.1,
             spaceBetween:20,
         },
 
         1200:{
-            slidesPerView:3,
+            slidesPerView:3.2,
+            spaceBetween:28,
+        },
+
+        1900:{
+            slidesPerView:4.2,
             spaceBetween:28,
         }
     }
