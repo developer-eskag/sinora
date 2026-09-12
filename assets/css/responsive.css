@@ -157,18 +157,18 @@ body {
   .hero,
   .hero-slider {
     min-height: 760px;
-    height: 100svh;
+    height: 75svh;
   }
 
   .hero-bg img {
     object-position: 58% center;
   }
 
-  .hero-bg::after {
+  /* .hero-bg::after {
     background:
       linear-gradient(90deg, rgba(21,18,14,.42) 0%, rgba(21,18,14,.30) 48%, rgba(21,18,14,.10) 100%),
       linear-gradient(0deg, rgba(21,18,14,.30), transparent 42%);
-  }
+  } */
 
   .hero-content {
     max-width: 600px;
@@ -386,7 +386,7 @@ body {
   .hero,
   .hero-slider {
     min-height: 680px;
-    height: 100svh;
+    height: 75svh;
   }
 
   .hero .container {
