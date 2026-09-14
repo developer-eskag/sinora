@@ -230,6 +230,17 @@ button {
     background: var(--amber-deep);
 }
 
+.btn-white {
+    background: var(--white);
+    color: var(--ink);
+    border: 1px solid var(--amber);
+}
+
+.btn-white:hover {
+    background: var(--amber);
+    color: var(--cream);
+}
+
 /*=========================================
 BUTTON OUTLINE
 =========================================*/

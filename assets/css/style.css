@@ -474,7 +474,7 @@
     text-transform:uppercase;
     background: rgba(0, 0, 0, .6);
     padding: 8px 12px;
-    border-radius: 4px;
+    border-radius: 999px;
 }
 
 .hero-content h1{
@@ -490,7 +490,7 @@
 .hero-content p{
     max-width:430px;
     margin-bottom:2.5rem;
-    color:var(--amber);
+    color:var(--muted);
     font-size:1.05rem;
     line-height:1.5;
     font-weight: 700;
