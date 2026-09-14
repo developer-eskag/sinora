@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const benefitText2  = section.querySelector("#benefitText2");
   const benefitTitle3 = section.querySelector("#benefitTitle3");
   const benefitText3  = section.querySelector("#benefitText3");
-  const particleGroup = section.querySelector("#particleGroup");
+  const imageWrap     = section.querySelector(".comparison-image-wrap");
 
   /*──────────────────────────────────────
     Content states
@@ -47,163 +47,105 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   /*──────────────────────────────────────
-    Build particles in SVG
-    8 particles — spread across x
+    Particle configuration
+    x    = horizontal position (%)
+    conv = vertical position (%) for Conventional state
+    lipo = vertical position (%) for Liposomal state
+
+    Distribution:
+      Conventional -> 7 surface, 1 mid, 2 deep
+      Liposomal    -> 1 surface (stays), 2 mid, 7 deep
   ──────────────────────────────────────*/
-  const NS = "http://www.w3.org/2000/svg";
-  const PARTICLE_COUNT = 8;
-  const START_Y = 40; // above skin surface
+  const particlesConfig = [
+    { x: 50, conv: 28, lipo: 29 }, // 1 — stays on surface
+    { x: 25, conv: 26, lipo: 36 }, // 2 — surface -> mid
+    { x: 75, conv: 28, lipo: 38 }, // 3 — surface -> mid
+    { x: 12, conv: 29, lipo: 68 }, // 4 — surface -> deep
+    { x: 35, conv: 27, lipo: 72 }, // 5 — surface -> deep
+    { x: 65, conv: 28, lipo: 66 }, // 6 — surface -> deep
+    { x: 88, conv: 29, lipo: 74 }, // 7 — surface -> deep
+    { x: 45, conv: 34, lipo: 70 }, // 8 — mid -> deep
+    { x: 20, conv: 65, lipo: 65 }, // 9 — deep, stays
+    { x: 80, conv: 70, lipo: 70 }  // 10 — deep, stays
+  ];
 
-  // Y positions
-  const Y_SURFACE  = 95;   // Stratum Corneum
-  const Y_EPIDERMIS = 180; // Epidermis
-  const Y_DERMIS   = 270;  // Dermis
+  // indices (0-based) of particles that newly ARRIVE at the deep layer
+  // when switching to Liposomal — these get the burst effect
+  const burstIndices = [3, 4, 5, 6, 7];
 
-  const particles = [];
+  const MOVE_DURATION = 1400; // ms — must match .particle transition time in CSS
 
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    const x = 40 + i * 52;
-
-    // Glow ring
-    const glow = document.createElementNS(NS, "circle");
-    glow.setAttribute("cx", x);
-    glow.setAttribute("cy", START_Y);
-    glow.setAttribute("r", "14");
-    glow.setAttribute("fill", "#F26A21");
-    glow.setAttribute("opacity", "0");
-
-    // Outer shell (liposome membrane)
-    const shell = document.createElementNS(NS, "circle");
-    shell.setAttribute("cx", x);
-    shell.setAttribute("cy", START_Y);
-    shell.setAttribute("r", "8");
-    shell.setAttribute("fill", "rgba(255,255,255,0.9)");
-    shell.setAttribute("stroke", "#F26A21");
-    shell.setAttribute("stroke-width", "2");
-    shell.setAttribute("opacity", "0");
-
-    // Inner core (active ingredient)
-    const core = document.createElementNS(NS, "circle");
-    core.setAttribute("cx", x);
-    core.setAttribute("cy", START_Y);
-    core.setAttribute("r", "3.5");
-    core.setAttribute("fill", "#F26A21");
-    core.setAttribute("opacity", "0");
-
-    particleGroup.appendChild(glow);
-    particleGroup.appendChild(shell);
-    particleGroup.appendChild(core);
-
-    particles.push({ glow, shell, core, x, startY: START_Y });
-  }
+  let particleField = null;
 
   /*──────────────────────────────────────
-    Animate particles
-    
-    CONVENTIONAL:
-    - Most stop at surface / epidermis
-    - 1–2 reach dermis (barely)
-    
-    LIPOSOMAL:
-    - Most reach dermis
-    - 1–2 stay at surface
+    Build particle DOM (once)
   ──────────────────────────────────────*/
-  function animateParticles(mode) {
-    particles.forEach((p, i) => {
-      let targetY;
-      let opacity;
-      let shellR;
-      let coreOpacity;
+  function createParticles(wrapEl) {
+    const field = document.createElement("div");
+    field.className = "comparison-particles";
+    field.id = "particleField";
 
-      if (mode === "liposomal") {
-        // 6 reach dermis, 2 stay at surface/epidermis
-        if (i === 0) {
-          targetY     = Y_SURFACE;
-          opacity     = 0.45;
-          shellR      = 6;
-          coreOpacity = 0.4;
-        } else if (i === 3) {
-          targetY     = Y_EPIDERMIS;
-          opacity     = 0.6;
-          shellR      = 7;
-          coreOpacity = 0.7;
-        } else {
-          targetY     = Y_DERMIS + gsap.utils.random(-18, 18);
-          opacity     = 1;
-          shellR      = 8;
-          coreOpacity = 1;
-        }
-      } else {
-        // CONVENTIONAL: most at surface, 1-2 reach epidermis, none reach dermis
-        if (i === 2 || i === 5) {
-          targetY     = Y_EPIDERMIS + gsap.utils.random(-10, 10);
-          opacity     = 0.55;
-          shellR      = 6;
-          coreOpacity = 0.5;
-        } else {
-          targetY     = Y_SURFACE + gsap.utils.random(-12, 12);
-          opacity     = 0.75;
-          shellR      = 7;
-          coreOpacity = 0.7;
-        }
-      }
+    particlesConfig.forEach((p, i) => {
+      const el = document.createElement("div");
+      el.className = "particle";
+      el.dataset.index = i;
+      el.style.left = p.x + "%";
+      el.style.top  = p.conv + "%";
+      el.style.transitionDelay = (i % 5) * 0.08 + "s";
 
-      const delay = i * 0.07;
+      const floatEl = document.createElement("div");
+      floatEl.className = "particle-float";
+      floatEl.style.animationDelay = (i * 0.3) + "s";
 
-      // Animate shell
-      gsap.to(p.shell, {
-        attr: { cy: targetY, r: shellR },
-        opacity: opacity,
-        duration: 0.9,
-        delay: delay,
-        ease: "power2.inOut"
-      });
+      const core = document.createElement("div");
+      core.className = "particle-core";
+      core.style.animationDelay = (i * 0.25) + "s";
 
-      // Animate core
-      gsap.to(p.core, {
-        attr: { cy: targetY },
-        opacity: coreOpacity,
-        duration: 0.9,
-        delay: delay,
-        ease: "power2.inOut"
-      });
+      floatEl.appendChild(core);
 
-      // Glow — only show for deep particles in liposomal mode
-      const glowOpacity = (mode === "liposomal" && targetY >= Y_DERMIS - 20) ? 0.2 : 0;
-      gsap.to(p.glow, {
-        attr: { cy: targetY },
-        opacity: glowOpacity,
-        duration: 0.9,
-        delay: delay,
-        ease: "power2.inOut"
-      });
+      const burst = document.createElement("div");
+      burst.className = "particle-burst";
 
-      // Arrival pulse — only for particles that reach dermis
-      if (mode === "liposomal" && targetY >= Y_DERMIS - 20) {
-        gsap.to([p.shell, p.core], {
-          scale: 1.2,
-          transformOrigin: `${p.x}px ${targetY}px`,
-          repeat: 1,
-          yoyo: true,
-          duration: 0.3,
-          delay: delay + 0.95,
-          ease: "power1.inOut"
-        });
-      }
+      el.appendChild(floatEl);
+      el.appendChild(burst);
+      field.appendChild(el);
     });
+
+    wrapEl.appendChild(field);
+    return field;
   }
 
   /*──────────────────────────────────────
-    Reset particles to start position
+    Move particles to match current mode
   ──────────────────────────────────────*/
-  function resetParticles() {
-    particles.forEach(p => {
-      gsap.killTweensOf([p.shell, p.core, p.glow]);
-      gsap.set([p.shell, p.core, p.glow], {
-        attr: { cy: p.startY },
-        opacity: 0,
-        scale: 1
-      });
+  function updateParticles(mode) {
+    if (!particleField) return;
+
+    const els = particleField.querySelectorAll(".particle");
+    els.forEach((el, i) => {
+      const cfg = particlesConfig[i];
+      const targetY = mode === "liposomal" ? cfg.lipo : cfg.conv;
+      el.style.top = targetY + "%";
+
+      const burstEl = el.querySelector(".particle-burst");
+
+      // always clear any pending "start looping" timer first
+      clearTimeout(el._burstTimeout);
+
+      if (mode === "liposomal" && burstIndices.includes(i)) {
+        // start the continuous burst loop once the particle has
+        // finished travelling down to the deep layer
+        const delay = MOVE_DURATION + (i % 5) * 80;
+        burstEl.style.animationDelay = ((i % 5) * 0.25) + "s";
+
+        el._burstTimeout = setTimeout(() => {
+          burstEl.classList.add("is-looping");
+        }, delay);
+      } else {
+        // switching back to conventional (or not a deep-layer particle):
+        // stop the loop immediately
+        burstEl.classList.remove("is-looping");
+      }
     });
   }
 
@@ -241,9 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ──────────────────────────────────────*/
   function switchMode(mode) {
     updateContent(mode);
-    resetParticles();
-    // Small delay so reset visually clears before animating in
-    setTimeout(() => animateParticles(mode), 80);
+    updateParticles(mode);
   }
 
   /*──────────────────────────────────────
@@ -253,8 +193,11 @@ document.addEventListener("DOMContentLoaded", function () {
   btnLipo.addEventListener("click", () => switchMode("liposomal"));
 
   /*──────────────────────────────────────
-    Init — start with conventional
+    Init — build particles, start with conventional
   ──────────────────────────────────────*/
+  if (imageWrap) {
+    particleField = createParticles(imageWrap);
+  }
   switchMode("conventional");
 });
 

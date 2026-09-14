@@ -467,11 +467,14 @@
     align-items:center;
     gap:.5rem;
     margin-bottom:1.5rem;
-    color:var(--amber);
+    color:var(--white);
     font-size:var(--fs-xs);
     font-weight:600;
     letter-spacing:.18em;
     text-transform:uppercase;
+    background: rgba(0, 0, 0, .6);
+    padding: 8px 12px;
+    border-radius: 4px;
 }
 
 .hero-content h1{
@@ -487,9 +490,10 @@
 .hero-content p{
     max-width:430px;
     margin-bottom:2.5rem;
-    color:var(--muted);
+    color:var(--amber);
     font-size:1.05rem;
     line-height:1.5;
+    font-weight: 700;
 }
 
 .hero-actions{
@@ -1168,6 +1172,7 @@ SCIENCE
     display:flex;
     align-items:center;
     justify-content:center;
+    transform: scale(1.3);
 }
 
 @keyframes scienceFloat{
@@ -2069,8 +2074,8 @@ Pulse
     180deg,
     rgba(251,246,239,0)    0%,
     rgba(251,246,239,.04)  38%,
-    rgba(251,246,239,0.3)  72%,
-    rgba(251,246,239,.8) 100%
+    rgba(251,246,239,0.2)  72%,
+    rgba(251,246,239,.6) 100%
   );
   inset: 0;
   transition: background .45s var(--ease);
@@ -2367,11 +2372,13 @@ Toggle
     min-width: 0;
     overflow: visible;
     border-radius: var(--r-xl);
-    background: rgba(255,255,255,.35);
+    background: rgba(255,255,255,.65);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.75);
     box-shadow: var(--shadow-md);
 }
 
-.comparison-visual svg{
+/*.comparison-visual svg{
    width:100%;
    height:auto;
 }
@@ -2390,12 +2397,12 @@ Toggle
   width: 100%;
   height: auto;
   display: block;
-}
+}*/
 
 /*----------------------------------
 Image glow
 ----------------------------------*/
-/* .comparison-visual::before {
+ /*.comparison-visual::before {
     content: "";
     position: absolute;
     width: 340px;
@@ -2416,37 +2423,112 @@ Image glow
 /*----------------------------------
 Image Wrapper
 ----------------------------------*/
-/* .comparison-image-wrap {
+ .comparison-image-wrap {
     position: relative;
     z-index: 1;
     width: 100%;
     overflow: hidden;
     border-radius: inherit;
-} */
+} 
 
 /*----------------------------------
 Image
 ----------------------------------*/
 /* Both images occupy exactly the same space */
-/* .comparison-image {
+ .comparison-image {
     display: block;
     width: 100%;
     height: auto;
     transition: opacity .75s cubic-bezier(.4, 0, .2, 1);
-} */
+} 
 
 /* Second image sits on top */
 /* .comparison-image:not(.is-visible) {
     position: absolute;
     inset: 0;
     opacity: 0;
-} */
+}*/ 
 
 /* Visible image */
 /* .comparison-image.is-visible {
     position: relative;
     opacity: 1;
-} */
+} 
+*/
+
+/*====================================================
+    PARTICLES
+====================================================*/
+.comparison-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  transform: translate(-50%, -50%);
+  transition: top 1.4s cubic-bezier(.4,0,.2,1);
+}
+
+.particle-float {
+  width: 100%;
+  height: 100%;
+  animation: particleFloat 3.2s ease-in-out infinite;
+}
+
+.particle-core {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #fff, var(--cream-2) 55%, #d8570f 100%);
+  box-shadow: 0 0 10px rgba(242,106,33,.55), 0 0 3px rgba(255,255,255,.9) inset;
+  animation: particlePulse 2.2s ease-in-out infinite;
+}
+
+.particle-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--cream);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/*.particle-burst.is-active {
+  animation: particleBurst .7s ease-out forwards;
+}
+*/
+.particle-burst.is-looping {
+  animation: particleBurst 1.8s ease-out infinite;
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
+}
+
+@keyframes particlePulse {
+  0%, 100% { transform: scale(1);    opacity: .92; }
+  50%      { transform: scale(1.18); opacity: 1; }
+}
+
+@keyframes particleBurst {
+  0%   { transform: translate(-50%, -50%) scale(.4); opacity: .9; }
+  70%  { opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
+}
+@media (max-width: 600px) {
+  .particle { width: 12px; height: 12px; }
+  .particle-burst { width: 12px; height: 12px; }
+}
 
 /*====================================================
     RIGHT COLUMN
@@ -2574,7 +2656,8 @@ Benefit Card
     gap: 16px;
     padding: 22px;
     border-radius: var(--r-lg);
-    background: var(--cream-2);
+    background: var(--white);
+    border: 1px solid var(--amber);
     box-shadow: var(--shadow-sm);
     transition:
         transform .35s ease,
@@ -2624,7 +2707,7 @@ Benefit Content
     IMAGE TRANSITION
 ====================================================*/
 
-@keyframes comparisonGlow {
+/*@keyframes comparisonGlow {
     0%,
     100% {
         transform:
@@ -2636,7 +2719,7 @@ Benefit Content
             translate(-50%, -50%)
             scale(1.12);
     }
-}
+}*/
 
 /*====================================================
     RESPONSIVE
