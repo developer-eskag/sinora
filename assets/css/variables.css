@@ -60,8 +60,8 @@
   --fs-h3: 1.15rem;
   --fs-h4: 1rem;
   --fs-body: 1rem;
-  --fs-sm: .875rem;
-  --fs-xs: .78rem;
+  --fs-sm: 14px;
+  --fs-xs: 12px;
 
   /* Line Height */
   --lh-display: 1.05;

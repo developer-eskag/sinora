@@ -849,15 +849,16 @@
 					</p>
 				</div>
 				<!-- Toggle -->
-				<div class="comparison-toggle is-conventional" role="tablist" aria-label="Compare delivery methods">
-					<button class="comparison-btn active" id="btnConv" type="button" role="tab" aria-selected="true">
-						Conventional
-					</button>
-					<span class="comparison-pill" aria-hidden="true"></span>
-					<button class="comparison-btn" id="btnLipo" type="button" role="tab" aria-selected="false">
-						SiNORA Liposomal
-					</button>
-					
+				<div class="toggle-wraper">
+					<div class="comparison-toggle is-conventional" role="tablist" aria-label="Compare delivery methods">
+						<button class="comparison-btn active" id="btnConv" type="button" role="tab" aria-selected="true">
+							Conventional
+						</button>
+						<button class="comparison-btn" id="btnLipo" type="button" role="tab" aria-selected="false">
+							SiNORA Liposomal
+						</button>
+						<span class="comparison-pill" aria-hidden="true"></span>
+					</div>
 				</div>
 				<!-- =========================================
 				MAIN COMPARISON
@@ -865,23 +866,25 @@
 				<div class="comparison-grid">
 					<!-- LEFT — GRAPHIC -->
 					<div class="comparison-visual">
-						<div class="comparison-image-wrap">
-						    <img id="comparisonImageA" class="comparison-image" src="assets/images/skin-layers.png" alt="SiNORA liposomal delivery illustration" >
-						</div>
+					    <div class="comparison-image-wrap" id="comparisonImageWrap"></div>
 					</div>
 					<!-- RIGHT — STATS + EXPLANATION -->
 					<div class="comparison-info">
 						<!-- KPI 1 -->
 						<div class="comparison-card">
 							<span class="comparison-value" id="kpiDepth">92%</span>
-							<span class="comparison-label">Delivery Efficiency</span>
-							<p class="comparison-text" id="kpiNote">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+							<div class="comparison-content">
+								<span class="comparison-label">Delivery Efficiency</span>
+								<p class="comparison-text" id="kpiNote">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+							</div>
 						</div>
 						<!-- KPI 2 -->
 						<div class="comparison-card">
 							<span class="comparison-value" id="kpiIntact">89%</span>
-							<span class="comparison-label">Active Stability</span>
-							<p class="comparison-text" id="kpiNote">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+							<div class="comparison-content">
+								<span class="comparison-label">Active Stability</span>
+								<p class="comparison-text" id="kpiNote">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+							</div>
 						</div>
 						<!-- Explanation -->
 						<div class="comparison-card comparison-note">
