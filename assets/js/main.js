@@ -40,58 +40,150 @@ window.addEventListener("resize",()=>{
 });
 
 /* =====================================================
+   PARALLAX HERO
+===================================================== */
+/*if (window.innerWidth > 991) {
+    const hero = document.querySelector(".hero");
+    hero.addEventListener("mousemove", e => {
+        const activeContent = document.querySelector(".hero-slide.active .hero-content");
+        const activeImage = document.querySelector(".hero-slide.active img");
+        if (!activeContent || !activeImage) return;
+        const x = (e.clientX / window.innerWidth - .5);
+        const y = (e.clientY / window.innerHeight - .5);
+        activeContent.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
+        activeImage.style.transform =
+            `scale(1.06) translate(${x * -20}px, ${y * -20}px)`;
+    });
+}*/
+
+/* =====================================================
    HERO SLIDER
 ===================================================== */
+
 const HeroSlider = {
     slides: document.querySelectorAll(".hero-slide"),
-    dots:   document.querySelectorAll(".hero-dot"),
-    prev:   document.querySelector(".prev-slide"),
-    next:   document.querySelector(".next-slide"),
+    dots: document.querySelectorAll(".hero-dot"),
+    prev: document.querySelector(".prev-slide"),
+    next: document.querySelector(".next-slide"),
+    scroll: document.querySelector(".hero-scroll"),
     current: 0,
-    timer:   null,
-    delay:   6000,
-
+    timer: null,
+    delay: 6000,
     init() {
         if (!this.slides.length) return;
         this.show(0);
-        this.bindEvents();
+        this.events();
         this.start();
     },
 
     show(index) {
-        this.slides.forEach(s => s.classList.remove("active"));
-        this.dots.forEach(d => d.classList.remove("active"));
+        this.slides.forEach(slide => slide.classList.remove("active"));
+        this.dots.forEach(dot => dot.classList.remove("active"));
         this.slides[index].classList.add("active");
         this.dots[index].classList.add("active");
         this.current = index;
     },
 
-    advance(dir) {
-        let index = this.current + dir;
-        if (index >= this.slides.length) index = 0;
-        if (index < 0) index = this.slides.length - 1;
+    nextSlide() {
+        let index = this.current + 1;
+        if (index >= this.slides.length) {
+            index = 0;
+        }
+        this.show(index);
+    },
+
+    prevSlide() {
+        let index = this.current - 1;
+        if (index < 0) {
+            index = this.slides.length - 1;
+        }
         this.show(index);
     },
 
     start() {
-        this.timer = setInterval(() => this.advance(1), this.delay);
+        this.timer = setInterval(() => {
+            this.nextSlide();
+        }, this.delay);
     },
-
     reset() {
         clearInterval(this.timer);
         this.start();
     },
 
-    bindEvents() {
-        this.next.addEventListener("click", () => { this.advance(1);  this.reset(); });
-        this.prev.addEventListener("click", () => { this.advance(-1); this.reset(); });
-        this.dots.forEach((dot, i) => {
-            dot.addEventListener("click", () => { this.show(i); this.reset(); });
+    events() {
+        this.next.addEventListener("click", () => {
+            this.nextSlide();
+            this.reset();
+        });
+        this.prev.addEventListener("click", () => {
+            this.prevSlide();
+            this.reset();
+        });
+        this.dots.forEach((dot, index) => {
+            dot.addEventListener("click", () => {
+                this.show(index);
+                this.reset();
+            });
         });
     }
 };
-
 HeroSlider.init();
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
+document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") {
+        HeroSlider.nextSlide();
+        HeroSlider.reset();
+    }
+    if (e.key === "ArrowLeft") {
+        HeroSlider.prevSlide();
+        HeroSlider.reset();
+    }
+});
+
+/* =====================================================
+   TOUCH SWIPE
+===================================================== */
+let startX = 0;
+const hero = document.querySelector(".hero");
+hero.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+});
+hero.addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+    if (startX - endX > 60) {
+        HeroSlider.nextSlide();
+        HeroSlider.reset();
+    }
+    if (endX - startX > 60) {
+        HeroSlider.prevSlide();
+        HeroSlider.reset();
+    }
+});
+
+/* =====================================================
+   SCROLL
+===================================================== */
+document.querySelector(".hero-scroll").addEventListener("click", () => {
+    const next = document.querySelector(".brand-philosophy");
+    if (!next) return;
+    next.scrollIntoView({
+        behavior: "smooth"
+    });
+});
+
+/* =====================================================
+   PAUSE ON HOVER
+===================================================== */
+const slider = document.querySelector(".hero-slider");
+slider.addEventListener("mouseenter", () => {
+    clearInterval(HeroSlider.timer);
+});
+slider.addEventListener("mouseleave", () => {
+    HeroSlider.start();
+});
 
 /* =========================================
    Product Slider
