@@ -59,7 +59,8 @@
   --fs-h2: clamp(1.6rem,2.9vw,2.2rem);
   --fs-h3: 1.15rem;
   --fs-h4: 1rem;
-  --fs-body: 1rem;
+  --fs-body: 14px;
+  --fs-lg: 18px;
   --fs-sm: 14px;
   --fs-xs: 12px;
 

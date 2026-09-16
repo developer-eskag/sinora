@@ -1,206 +1,329 @@
 /*====================================================
-    LIPOSOMAL COMPARISON
+    LIPOSOMAL COMPARISON — Droplet Particles
 ====================================================*/
 document.addEventListener("DOMContentLoaded", function () {
-  const section = document.querySelector("#comparison");
-  if (!section) return;
+    const section = document.querySelector("#comparison");
+    if (!section) return;
 
-  /*──────────────────────────────────────
-    Elements
-  ──────────────────────────────────────*/
-  const toggle        = section.querySelector(".comparison-toggle");
-  const btnConv       = section.querySelector("#btnConv");
-  const btnLipo       = section.querySelector("#btnLipo");
-  const kpiDepth      = section.querySelector("#kpiDepth");
-  const kpiIntact     = section.querySelector("#kpiIntact");
-  const kpiNote       = section.querySelector("#kpiNote");
-  const compareTitle  = section.querySelector("#compareTitle");
-  const vizNote       = section.querySelector("#vizNote");
-  const benefitTitle1 = section.querySelector("#benefitTitle1");
-  const benefitText1  = section.querySelector("#benefitText1");
-  const benefitTitle2 = section.querySelector("#benefitTitle2");
-  const benefitText2  = section.querySelector("#benefitText2");
-  const benefitTitle3 = section.querySelector("#benefitTitle3");
-  const benefitText3  = section.querySelector("#benefitText3");
-  const imageWrap     = section.querySelector(".comparison-image-wrap");
+    /*──────────────────────────────────────
+      Elements
+    ──────────────────────────────────────*/
+    const toggle        = section.querySelector(".comparison-toggle");
+    const btnConv       = section.querySelector("#btnConv");
+    const btnLipo       = section.querySelector("#btnLipo");
+    const kpiDepth      = section.querySelector("#kpiDepth");
+    const kpiIntact     = section.querySelector("#kpiIntact");
+    const kpiNote       = section.querySelector("#kpiNote");
+    const compareTitle  = section.querySelector("#compareTitle");
+    const vizNote       = section.querySelector("#vizNote");
+    const benefitTitle1 = section.querySelector("#benefitTitle1");
+    const benefitText1  = section.querySelector("#benefitText1");
+    const benefitTitle2 = section.querySelector("#benefitTitle2");
+    const benefitText2  = section.querySelector("#benefitText2");
+    const benefitTitle3 = section.querySelector("#benefitTitle3");
+    const benefitText3  = section.querySelector("#benefitText3");
+    const imageWrap     = section.querySelector(".comparison-image-wrap");
 
-  /*──────────────────────────────────────
-    Content states
-  ──────────────────────────────────────*/
-  const states = {
-    conventional: {
-      depth: "18%", stability: "31%", text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-      title: "Conventional Delivery",
-      description: "Most active ingredients remain around the skin's surface, where exposure and rapid release limit how effectively they are delivered.",
-      benefit1: { title: "Stays on the Surface",   text: "Most active ingredients remain around the skin's outer surface." },
-      benefit2: { title: "Limited Absorption",      text: "Less of the active ingredient may reach deeper layers of the skin." },
-      benefit3: { title: "Less Efficient",          text: "Ingredients can be exposed before reaching their intended destination." }
-    },
-    liposomal: {
-      depth: "92%", stability: "89%", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      title: "Liposomal Delivery",
-      description: "Encapsulated active ingredients remain protected while travelling deeper into the skin, allowing controlled release and improved absorption.",
-      benefit1: { title: "Protected",         text: "Active ingredients are surrounded by a protective liposomal structure." },
-      benefit2: { title: "Deeper Delivery",   text: "Liposomes help carry active ingredients beyond the skin's outer barrier." },
-      benefit3: { title: "Controlled Release",text: "The delivery system supports controlled release of active ingredients." }
+    /*──────────────────────────────────────
+      Content states
+    ──────────────────────────────────────*/
+    const states = {
+        conventional: {
+            depth: "18%", stability: "31%",
+            text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+            title: "Conventional Delivery",
+            description: "Most active ingredients remain around the skin's surface, where exposure and rapid release limit how effectively they are delivered.",
+            benefit1: { title: "Stays on the Surface",  text: "Most active ingredients remain around the skin's outer surface." },
+            benefit2: { title: "Limited Absorption",     text: "Less of the active ingredient may reach deeper layers of the skin." },
+            benefit3: { title: "Less Efficient",         text: "Ingredients can be exposed before reaching their intended destination." }
+        },
+        liposomal: {
+            depth: "92%", stability: "89%",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+            title: "Liposomal Delivery",
+            description: "Encapsulated active ingredients remain protected while travelling deeper into the skin, allowing controlled release and improved absorption.",
+            benefit1: { title: "Protected",          text: "Active ingredients are surrounded by a protective liposomal structure." },
+            benefit2: { title: "Deeper Delivery",    text: "Liposomes help carry active ingredients beyond the skin's outer barrier." },
+            benefit3: { title: "Controlled Release", text: "The delivery system supports controlled release of active ingredients." }
+        }
+    };
+
+    /*──────────────────────────────────────
+      Particle positions
+      x    = horizontal %
+      conv = vertical % — conventional
+      lipo = vertical % — liposomal
+    ──────────────────────────────────────*/
+    const particlesConfig = [
+        { x: 50, conv: 46, lipo: 48 },
+        { x: 25, conv: 44, lipo: 46 },
+        { x: 75, conv: 39, lipo: 50 },
+        { x: 12, conv: 45, lipo: 75 },
+        { x: 35, conv: 40, lipo: 78 },
+        { x: 65, conv: 51, lipo: 80 },
+        { x: 88, conv: 50, lipo: 82 },
+        { x: 45, conv: 53, lipo: 85 },
+        { x: 20, conv: 67, lipo: 79 },
+        { x: 80, conv: 75, lipo: 81 }
+    ];
+
+    const burstIndices   = [3, 4, 5, 6, 7];
+    const MOVE_DURATION  = 1400;
+    let   particleField  = null;
+    let   currentMode    = null;
+
+    /*──────────────────────────────────────
+      SVG droplet — two skins, swapped via CSS class
+      Conventional : water (clear blue)
+      Liposomal    : oil/golden (amber, translucent shell)
+    ──────────────────────────────────────*/
+    function dropletSVG() {
+        /*
+          Single SVG, two <g> children:
+            .drop-conv  — visible when .is-conventional
+            .drop-lipo  — visible when .is-liposomal
+          Parent .particle carries the mode class.
+        */
+        return `<svg viewBox="0 0 20 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+
+    <!-- CONVENTIONAL: water droplet — cool blue, semi-transparent -->
+    <radialGradient id="wFill" cx="38%" cy="32%" r="62%">
+      <stop offset="0%"   stop-color="#e8f6ff" stop-opacity="0.95"/>
+      <stop offset="45%"  stop-color="#90c8f0" stop-opacity="0.80"/>
+      <stop offset="100%" stop-color="#3a8bbf" stop-opacity="0.70"/>
+    </radialGradient>
+    <radialGradient id="wShine" cx="35%" cy="28%" r="40%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.90"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- LIPOSOMAL: oil drop — warm amber core, glassy shell -->
+    <!-- Outer shell (semi-transparent grey-silver) -->
+    <radialGradient id="lShell" cx="40%" cy="30%" r="65%">
+      <stop offset="0%"   stop-color="#FBF6EF" stop-opacity="0.60"/>
+      <stop offset="60%"  stop-color="#F3EADD" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#FBE1C9" stop-opacity="0.50"/>
+    </radialGradient>
+    <!-- Inner golden oil core -->
+    <radialGradient id="lCore" cx="38%" cy="35%" r="60%">
+      <stop offset="0%"   stop-color="#FBEADB" stop-opacity="1"/>
+      <stop offset="50%"  stop-color="#F26A21" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#C6510E" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="lShine" cx="32%" cy="26%" r="38%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+  </defs>
+
+  <!-- ── CONVENTIONAL droplet ── -->
+  <g class="drop-conv">
+    <!-- Water body: classic teardrop path -->
+    <path d="M10 1 C10 1, 1 11, 1 15.5 a9 9 0 0 0 18 0 C19 11, 10 1, 10 1 Z"
+          fill="url(#wFill)" stroke="#60aad8" stroke-width="0.6" stroke-opacity="0.55"/>
+    <!-- Shine highlight -->
+    <ellipse cx="7.5" cy="11" rx="3" ry="4.5"
+             fill="url(#wShine)" opacity="0.9"/>
+  </g>
+
+  <!-- ── LIPOSOMAL droplet (oil-in-shell) ── -->
+  <g class="drop-lipo">
+    <!-- Outer glassy shell -->
+    <path d="M10 1 C10 1, 1 11, 1 15.5 a9 9 0 0 0 18 0 C19 11, 10 1, 10 1 Z"
+          fill="url(#lShell)" stroke="#3a8bbf" stroke-width="0.7" stroke-opacity="0.60"/>
+    <!-- Inner amber oil core (slightly inset) -->
+    <path d="M10 5 C10 5, 3.5 12.5, 3.5 15.8 a6.5 6.5 0 0 0 13 0 C16.5 12.5, 10 5, 10 5 Z"
+          fill="url(#lCore)"/>
+    <!-- Shell shine -->
+    <ellipse cx="7.2" cy="10.5" rx="2.5" ry="4"
+             fill="url(#lShine)" opacity="0.85"/>
+  </g>
+</svg>`;
     }
-  };
 
-  /*──────────────────────────────────────
-    Particle configuration
-    x    = horizontal position (%)
-    conv = vertical position (%) for Conventional state
-    lipo = vertical position (%) for Liposomal state
+    /*──────────────────────────────────────
+      Show the right droplet layer via CSS
+      on the .particle element
+    ──────────────────────────────────────*/
+    const style = document.createElement("style");
+    style.textContent = `
+        .particle .drop-conv { display: block; }
+        .particle .drop-lipo { display: none;  }
+        .particle.is-liposomal .drop-conv { display: none;  }
+        .particle.is-liposomal .drop-lipo { display: block; }
+    `;
+    document.head.appendChild(style);
 
-    Distribution:
-      Conventional -> 7 surface, 1 mid, 2 deep
-      Liposomal    -> 1 surface (stays), 2 mid, 7 deep
-  ──────────────────────────────────────*/
-  const particlesConfig = [
-    { x: 50, conv: 28, lipo: 29 }, // 1 — stays on surface
-    { x: 25, conv: 26, lipo: 36 }, // 2 — surface -> mid
-    { x: 75, conv: 28, lipo: 38 }, // 3 — surface -> mid
-    { x: 12, conv: 29, lipo: 68 }, // 4 — surface -> deep
-    { x: 35, conv: 27, lipo: 72 }, // 5 — surface -> deep
-    { x: 65, conv: 28, lipo: 66 }, // 6 — surface -> deep
-    { x: 88, conv: 29, lipo: 74 }, // 7 — surface -> deep
-    { x: 45, conv: 34, lipo: 70 }, // 8 — mid -> deep
-    { x: 20, conv: 65, lipo: 65 }, // 9 — deep, stays
-    { x: 80, conv: 70, lipo: 70 }  // 10 — deep, stays
-  ];
+    /*──────────────────────────────────────
+      Build particle DOM (once)
+    ──────────────────────────────────────*/
+    function createParticles(wrapEl) {
+        const field = document.createElement("div");
+        field.className = "comparison-particles";
+        field.id = "particleField";
 
-  // indices (0-based) of particles that newly ARRIVE at the deep layer
-  // when switching to Liposomal — these get the burst effect
-  const burstIndices = [3, 4, 5, 6, 7];
+        particlesConfig.forEach((p, i) => {
+            const el = document.createElement("div");
+            el.className = "particle is-conventional";
+            el.dataset.index = i;
+            el.style.left = p.x + "%";
+            /* Start particles just above the image for the drop-in */
+            el.style.top = "0%";
+            el.style.transitionDelay = (i % 5) * 0.08 + "s";
 
-  const MOVE_DURATION = 1400; // ms — must match .particle transition time in CSS
+            el.innerHTML = dropletSVG();
 
-  let particleField = null;
+            const burst = document.createElement("div");
+            burst.className = "particle-burst";
+            el.appendChild(burst);
 
-  /*──────────────────────────────────────
-    Build particle DOM (once)
-  ──────────────────────────────────────*/
-  function createParticles(wrapEl) {
-    const field = document.createElement("div");
-    field.className = "comparison-particles";
-    field.id = "particleField";
+            field.appendChild(el);
+        });
 
-    particlesConfig.forEach((p, i) => {
-      const el = document.createElement("div");
-      el.className = "particle";
-      el.dataset.index = i;
-      el.style.left = p.x + "%";
-      el.style.top  = p.conv + "%";
-      el.style.transitionDelay = (i % 5) * 0.08 + "s";
+        wrapEl.appendChild(field);
+        return field;
+    }
 
-      const floatEl = document.createElement("div");
-      floatEl.className = "particle-float";
-      floatEl.style.animationDelay = (i * 0.3) + "s";
+    /*──────────────────────────────────────
+      Drop-in animation on load / toggle
+      Each particle falls into its target Y,
+      staggered by index.
+    ──────────────────────────────────────*/
+    function dropParticlesIn(mode) {
+        if (!particleField) return;
 
-      const core = document.createElement("div");
-      core.className = "particle-core";
-      core.style.animationDelay = (i * 0.25) + "s";
+        const els = particleField.querySelectorAll(".particle");
 
-      floatEl.appendChild(core);
+        els.forEach((el, i) => {
+            const cfg    = particlesConfig[i];
+            const targetY = mode === "liposomal" ? cfg.lipo : cfg.conv;
 
-      const burst = document.createElement("div");
-      burst.className = "particle-burst";
+            // Clear any leftover float animation first
+            el.classList.remove("is-floating", "is-dropping");
+            el.style.top = "0%";
 
-      el.appendChild(floatEl);
-      el.appendChild(burst);
-      field.appendChild(el);
-    });
+            // Stagger the drop
+            const staggerMs = i * 60;
 
-    wrapEl.appendChild(field);
-    return field;
-  }
+            setTimeout(() => {
+                // Set target position
+                el.style.top = targetY + "%";
+                // Play drop keyframe
+                el.classList.add("is-dropping");
 
-  /*──────────────────────────────────────
-    Move particles to match current mode
-  ──────────────────────────────────────*/
-  function updateParticles(mode) {
-    if (!particleField) return;
+                // After landing, switch to gentle float
+                el.addEventListener("animationend", function onEnd() {
+                    el.removeEventListener("animationend", onEnd);
+                    el.classList.remove("is-dropping");
+                    el.classList.add("is-floating");
+                }, { once: true });
 
-    const els = particleField.querySelectorAll(".particle");
-    els.forEach((el, i) => {
-      const cfg = particlesConfig[i];
-      const targetY = mode === "liposomal" ? cfg.lipo : cfg.conv;
-      el.style.top = targetY + "%";
+            }, staggerMs);
+        });
+    }
 
-      const burstEl = el.querySelector(".particle-burst");
+    /*──────────────────────────────────────
+      Move existing particles (mode switch)
+      — no re-drop, just slide to new Y
+        then update burst rings
+    ──────────────────────────────────────*/
+    function updateParticles(mode, firstLoad) {
+        if (!particleField) return;
 
-      // always clear any pending "start looping" timer first
-      clearTimeout(el._burstTimeout);
+        const els = particleField.querySelectorAll(".particle");
 
-      if (mode === "liposomal" && burstIndices.includes(i)) {
-        // start the continuous burst loop once the particle has
-        // finished travelling down to the deep layer
-        const delay = MOVE_DURATION + (i % 5) * 80;
-        burstEl.style.animationDelay = ((i % 5) * 0.25) + "s";
+        if (firstLoad) {
+            dropParticlesIn(mode);
+            return;
+        }
 
-        el._burstTimeout = setTimeout(() => {
-          burstEl.classList.add("is-looping");
-        }, delay);
-      } else {
-        // switching back to conventional (or not a deep-layer particle):
-        // stop the loop immediately
-        burstEl.classList.remove("is-looping");
-      }
-    });
-  }
+        els.forEach((el, i) => {
+            const cfg     = particlesConfig[i];
+            const targetY = mode === "liposomal" ? cfg.lipo : cfg.conv;
 
-  /*──────────────────────────────────────
-    Update UI content
-  ──────────────────────────────────────*/
-  function updateContent(mode) {
-    const data = states[mode];
+            // Pause float during travel
+            el.classList.remove("is-floating");
+            el.style.top = targetY + "%";
 
-    toggle.classList.remove("is-conventional", "is-liposomal");
-    toggle.classList.add(mode === "liposomal" ? "is-liposomal" : "is-conventional");
+            // Resume float after travel
+            clearTimeout(el._floatTimer);
+            el._floatTimer = setTimeout(() => {
+                el.classList.add("is-floating");
+            }, MOVE_DURATION + (i % 5) * 80);
 
-    btnConv.classList.toggle("active", mode === "conventional");
-    btnLipo.classList.toggle("active", mode === "liposomal");
-    btnConv.setAttribute("aria-selected", mode === "conventional" ? "true" : "false");
-    btnLipo.setAttribute("aria-selected", mode === "liposomal"    ? "true" : "false");
+            // Swap droplet skin
+            el.classList.toggle("is-liposomal", mode === "liposomal");
+            el.classList.toggle("is-conventional", mode !== "liposomal");
 
-    kpiDepth.textContent     = data.depth;
-    kpiIntact.textContent    = data.stability;
-    kpiNote.textContent      = data.text;
+            // Burst rings for deep-arriving particles
+            const burstEl = el.querySelector(".particle-burst");
+            clearTimeout(el._burstTimeout);
 
-    compareTitle.textContent = data.title;
-    vizNote.textContent      = data.description;
+            if (mode === "liposomal" && burstIndices.includes(i)) {
+                const delay = MOVE_DURATION + (i % 5) * 80;
+                burstEl.style.animationDelay = ((i % 5) * 0.25) + "s";
+                el._burstTimeout = setTimeout(() => {
+                    burstEl.classList.add("is-looping");
+                }, delay);
+            } else {
+                burstEl.classList.remove("is-looping");
+            }
+        });
+    }
 
-    benefitTitle1.textContent = data.benefit1.title;
-    benefitText1.textContent  = data.benefit1.text;
-    benefitTitle2.textContent = data.benefit2.title;
-    benefitText2.textContent  = data.benefit2.text;
-    benefitTitle3.textContent = data.benefit3.title;
-    benefitText3.textContent  = data.benefit3.text;
-  }
+    /*──────────────────────────────────────
+      Update UI content
+    ──────────────────────────────────────*/
+    function updateContent(mode) {
+        const data = states[mode];
 
-  /*──────────────────────────────────────
-    Main switch
-  ──────────────────────────────────────*/
-  function switchMode(mode) {
-    updateContent(mode);
-    updateParticles(mode);
-  }
+        toggle.classList.remove("is-conventional", "is-liposomal");
+        toggle.classList.add(mode === "liposomal" ? "is-liposomal" : "is-conventional");
 
-  /*──────────────────────────────────────
-    Events
-  ──────────────────────────────────────*/
-  btnConv.addEventListener("click", () => switchMode("conventional"));
-  btnLipo.addEventListener("click", () => switchMode("liposomal"));
+        btnConv.classList.toggle("active", mode === "conventional");
+        btnLipo.classList.toggle("active", mode === "liposomal");
+        btnConv.setAttribute("aria-selected", mode === "conventional" ? "true" : "false");
+        btnLipo.setAttribute("aria-selected", mode === "liposomal"    ? "true" : "false");
 
-  /*──────────────────────────────────────
-    Init — build particles, start with conventional
-  ──────────────────────────────────────*/
-  if (imageWrap) {
-    particleField = createParticles(imageWrap);
-  }
-  switchMode("conventional");
+        kpiDepth.textContent      = data.depth;
+        kpiIntact.textContent     = data.stability;
+        kpiNote.textContent       = data.text;
+        compareTitle.textContent  = data.title;
+        vizNote.textContent       = data.description;
+
+        benefitTitle1.textContent = data.benefit1.title;
+        benefitText1.textContent  = data.benefit1.text;
+        benefitTitle2.textContent = data.benefit2.title;
+        benefitText2.textContent  = data.benefit2.text;
+        benefitTitle3.textContent = data.benefit3.title;
+        benefitText3.textContent  = data.benefit3.text;
+    }
+
+    /*──────────────────────────────────────
+      Main switch
+    ──────────────────────────────────────*/
+    function switchMode(mode, firstLoad = false) {
+        updateContent(mode);
+        updateParticles(mode, firstLoad);
+        currentMode = mode;
+    }
+
+    /*──────────────────────────────────────
+      Events
+    ──────────────────────────────────────*/
+    btnConv.addEventListener("click", () => { if (currentMode !== "conventional") switchMode("conventional"); });
+    btnLipo.addEventListener("click", () => { if (currentMode !== "liposomal")   switchMode("liposomal"); });
+
+    /*──────────────────────────────────────
+      Init
+    ──────────────────────────────────────*/
+    if (imageWrap) {
+        particleField = createParticles(imageWrap);
+    }
+    switchMode("conventional", true);
 });
-
 /* =========================================
    AI SKIN ANALYSIS
 ========================================= */

@@ -407,7 +407,7 @@ body {
   } */
 
   .hero-slider {
-        aspect-ratio: 750 / 440;
+        aspect-ratio: 750 / 900;
     }
 
   .hero-bg img.desktop-image {
