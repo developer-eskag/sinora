@@ -49,12 +49,23 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     /*──────────────────────────────────────
-      Particle positions
-      x    = horizontal %
-      conv = vertical % — conventional
-      lipo = vertical % — liposomal
+      Particle positions — responsive
+      x    = horizontal % (same across breakpoints)
+      conv = vertical % for conventional state
+      lipo = vertical % for liposomal state
+
+      Tune tablet/mobile Y values to match
+      where the skin layer boundaries appear
+      on your actual image at those sizes.
+      Tip: in DevTools at that width, run:
+        document.querySelectorAll('.particle')
+          .forEach(p => p.style.top = '45%')
+      …and adjust until droplets sit on the
+      right layer, then copy the values here.
     ──────────────────────────────────────*/
-    const particlesConfig = [
+
+    /* Desktop — ≥ 1024px (your original tuned values) */
+    const configDesktop = [
         { x: 50, conv: 46, lipo: 48 },
         { x: 25, conv: 44, lipo: 46 },
         { x: 75, conv: 39, lipo: 50 },
@@ -67,6 +78,57 @@ document.addEventListener("DOMContentLoaded", function () {
         { x: 80, conv: 75, lipo: 81 }
     ];
 
+    /* Slim Desktop — 1200px (adjust Y values as needed) */
+    const configSlimDesktop = [
+        { x: 50, conv: 44, lipo: 38 },
+        { x: 25, conv: 42, lipo: 40 },
+        { x: 75, conv: 37, lipo: 42 },
+        { x: 12, conv: 43, lipo: 71 },
+        { x: 35, conv: 38, lipo: 65 },
+        { x: 65, conv: 40, lipo: 66 },
+        { x: 88, conv: 32, lipo: 72 },
+        { x: 45, conv: 37, lipo: 65 },
+        { x: 20, conv: 64, lipo: 68 },
+        { x: 80, conv: 70, lipo: 70 }
+    ];
+
+    /* Tablet — 640px–1023px (adjust Y values as needed) */
+    const configTablet = [
+        { x: 50, conv: 44, lipo: 46 },
+        { x: 25, conv: 42, lipo: 44 },
+        { x: 75, conv: 37, lipo: 48 },
+        { x: 12, conv: 43, lipo: 72 },
+        { x: 35, conv: 38, lipo: 75 },
+        { x: 65, conv: 49, lipo: 77 },
+        { x: 88, conv: 48, lipo: 79 },
+        { x: 45, conv: 51, lipo: 78 },
+        { x: 20, conv: 64, lipo: 76 },
+        { x: 80, conv: 72, lipo: 78 }
+    ];
+
+    /* Mobile — < 640px (adjust Y values as needed) */
+    const configMobile = [
+        { x: 50, conv: 42, lipo: 39 },
+        { x: 25, conv: 40, lipo: 40 },
+        { x: 75, conv: 35, lipo: 38 },
+        { x: 12, conv: 41, lipo: 69 },
+        { x: 35, conv: 36, lipo: 72 },
+        { x: 65, conv: 47, lipo: 71 },
+        { x: 88, conv: 46, lipo: 73 },
+        { x: 45, conv: 49, lipo: 70 },
+        { x: 20, conv: 61, lipo: 73 },
+        { x: 80, conv: 69, lipo: 72 }
+    ];
+
+    /* Returns the right config for the current viewport */
+    function getConfig() {
+        const w = window.innerWidth;
+        if (w < 640)  return configMobile;
+        if (w < 1024) return configTablet;
+        if (w < 1200) return configSlimDesktop;
+        return configDesktop;
+    }
+
     const burstIndices   = [3, 4, 5, 6, 7];
     const MOVE_DURATION  = 1400;
     let   particleField  = null;
@@ -78,12 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
       Liposomal    : oil/golden (amber, translucent shell)
     ──────────────────────────────────────*/
     function dropletSVG() {
-        /*
-          Single SVG, two <g> children:
-            .drop-conv  — visible when .is-conventional
-            .drop-lipo  — visible when .is-liposomal
-          Parent .particle carries the mode class.
-        */
         return `<svg viewBox="0 0 20 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
 
@@ -99,7 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
     </radialGradient>
 
     <!-- LIPOSOMAL: oil drop — warm amber core, glassy shell -->
-    <!-- Outer shell (semi-transparent grey-silver) -->
     <radialGradient id="lShell" cx="40%" cy="30%" r="65%">
       <stop offset="0%"   stop-color="#FBF6EF" stop-opacity="0.60"/>
       <stop offset="60%"  stop-color="#F3EADD" stop-opacity="0.35"/>
@@ -120,23 +175,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   <!-- ── CONVENTIONAL droplet ── -->
   <g class="drop-conv">
-    <!-- Water body: classic teardrop path -->
     <path d="M10 1 C10 1, 1 11, 1 15.5 a9 9 0 0 0 18 0 C19 11, 10 1, 10 1 Z"
           fill="url(#wFill)" stroke="#60aad8" stroke-width="0.6" stroke-opacity="0.55"/>
-    <!-- Shine highlight -->
     <ellipse cx="7.5" cy="11" rx="3" ry="4.5"
              fill="url(#wShine)" opacity="0.9"/>
   </g>
 
   <!-- ── LIPOSOMAL droplet (oil-in-shell) ── -->
   <g class="drop-lipo">
-    <!-- Outer glassy shell -->
     <path d="M10 1 C10 1, 1 11, 1 15.5 a9 9 0 0 0 18 0 C19 11, 10 1, 10 1 Z"
           fill="url(#lShell)" stroke="#3a8bbf" stroke-width="0.7" stroke-opacity="0.60"/>
-    <!-- Inner amber oil core (slightly inset) -->
     <path d="M10 5 C10 5, 3.5 12.5, 3.5 15.8 a6.5 6.5 0 0 0 13 0 C16.5 12.5, 10 5, 10 5 Z"
           fill="url(#lCore)"/>
-    <!-- Shell shine -->
     <ellipse cx="7.2" cy="10.5" rx="2.5" ry="4"
              fill="url(#lShine)" opacity="0.85"/>
   </g>
@@ -145,7 +195,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /*──────────────────────────────────────
       Show the right droplet layer via CSS
-      on the .particle element
     ──────────────────────────────────────*/
     const style = document.createElement("style");
     style.textContent = `
@@ -164,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
         field.className = "comparison-particles";
         field.id = "particleField";
 
-        particlesConfig.forEach((p, i) => {
+        getConfig().forEach((p, i) => {
             const el = document.createElement("div");
             el.className = "particle is-conventional";
             el.dataset.index = i;
@@ -188,32 +237,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /*──────────────────────────────────────
       Drop-in animation on load / toggle
-      Each particle falls into its target Y,
-      staggered by index.
     ──────────────────────────────────────*/
     function dropParticlesIn(mode) {
         if (!particleField) return;
 
+        const cfg = getConfig();
         const els = particleField.querySelectorAll(".particle");
 
         els.forEach((el, i) => {
-            const cfg    = particlesConfig[i];
-            const targetY = mode === "liposomal" ? cfg.lipo : cfg.conv;
+            const targetY = mode === "liposomal" ? cfg[i].lipo : cfg[i].conv;
 
-            // Clear any leftover float animation first
             el.classList.remove("is-floating", "is-dropping");
             el.style.top = "0%";
 
-            // Stagger the drop
             const staggerMs = i * 60;
 
             setTimeout(() => {
-                // Set target position
                 el.style.top = targetY + "%";
-                // Play drop keyframe
                 el.classList.add("is-dropping");
 
-                // After landing, switch to gentle float
                 el.addEventListener("animationend", function onEnd() {
                     el.removeEventListener("animationend", onEnd);
                     el.classList.remove("is-dropping");
@@ -227,11 +269,11 @@ document.addEventListener("DOMContentLoaded", function () {
     /*──────────────────────────────────────
       Move existing particles (mode switch)
       — no re-drop, just slide to new Y
-        then update burst rings
     ──────────────────────────────────────*/
     function updateParticles(mode, firstLoad) {
         if (!particleField) return;
 
+        const cfg = getConfig();
         const els = particleField.querySelectorAll(".particle");
 
         if (firstLoad) {
@@ -240,24 +282,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         els.forEach((el, i) => {
-            const cfg     = particlesConfig[i];
-            const targetY = mode === "liposomal" ? cfg.lipo : cfg.conv;
+            const targetY = mode === "liposomal" ? cfg[i].lipo : cfg[i].conv;
 
-            // Pause float during travel
             el.classList.remove("is-floating");
             el.style.top = targetY + "%";
 
-            // Resume float after travel
             clearTimeout(el._floatTimer);
             el._floatTimer = setTimeout(() => {
                 el.classList.add("is-floating");
             }, MOVE_DURATION + (i % 5) * 80);
 
-            // Swap droplet skin
-            el.classList.toggle("is-liposomal", mode === "liposomal");
+            el.classList.toggle("is-liposomal",    mode === "liposomal");
             el.classList.toggle("is-conventional", mode !== "liposomal");
 
-            // Burst rings for deep-arriving particles
             const burstEl = el.querySelector(".particle-burst");
             clearTimeout(el._burstTimeout);
 
@@ -315,6 +352,23 @@ document.addEventListener("DOMContentLoaded", function () {
     ──────────────────────────────────────*/
     btnConv.addEventListener("click", () => { if (currentMode !== "conventional") switchMode("conventional"); });
     btnLipo.addEventListener("click", () => { if (currentMode !== "liposomal")   switchMode("liposomal"); });
+
+    /*──────────────────────────────────────
+      ResizeObserver — re-apply positions
+      when the container changes size
+      (breakpoint crossing, orientation flip)
+    ──────────────────────────────────────*/
+    if (imageWrap) {
+        let resizeTimer;
+        const ro = new ResizeObserver(() => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                /* Slide particles to their new breakpoint Y positions */
+                if (currentMode) updateParticles(currentMode, false);
+            }, 150);
+        });
+        ro.observe(imageWrap);
+    }
 
     /*──────────────────────────────────────
       Init

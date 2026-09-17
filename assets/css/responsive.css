@@ -34,6 +34,10 @@ body {
     gap: 44px;
   }
 
+  .toggle-wraper {
+    margin: 0 auto -85px;
+  }
+
   .footer-grid {
     grid-template-columns: 1.35fr repeat(3, .8fr);
     gap: 44px 34px;
@@ -268,6 +272,10 @@ body {
 
   .process-glow {
     display: none;
+  }
+
+  .toggle-wraper {
+    grid-template-columns: 1fr;
   }
 
   .divider-glow,
@@ -858,9 +866,9 @@ body {
     gap: .8rem;
   }
 
-  .point-number {
+  /* .point-number {
     width: 34px;
-  }
+  } */
 
   .product-slider-footer {
     justify-content: center;
