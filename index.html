@@ -221,7 +221,7 @@
 				<div class="brand-points">
 					<article class="brand-point">
 						<span class="point-number">01</span>
-						<div>
+						<div class="brand-point-content">
 							<h3>Advanced Liposomal Delivery</h3>
 							<p>
 								Encapsulated active ingredients are engineered
@@ -231,7 +231,7 @@
 					</article>
 					<article class="brand-point">
 						<span class="point-number">02</span>
-						<div>
+						<div class="brand-point-content">
 							<h3>Pharmaceutical Precision</h3>
 							<p>
 								Developed with scientific formulation expertise
@@ -241,7 +241,7 @@
 					</article>
 					<article class="brand-point">
 						<span class="point-number">03</span>
-						<div>
+						<div class="brand-point-content">
 							<h3>Targeted Performance</h3>
 							<p>
 								Every formulation is designed to help active
@@ -251,7 +251,7 @@
 					</article>
 					<article class="brand-point">
 						<span class="point-number">04</span>
-						<div>
+						<div class="brand-point-content">
 							<h3>Luxury Skincare Experience</h3>
 							<p>
 								Clinical innovation combined with refined textures,
@@ -830,126 +830,257 @@
 	</section>
 
 		<!-- =========================================
-				LIPOSOMAL COMPARISON
+		    LIPOSOMAL COMPARISON
 		========================================= -->
 		<section class="comparison section" id="comparison">
-			<div class="container">
-				<!-- Heading -->
-				<div class="comparison-header">
-					<span class="section-eyebrow">Liposomal Advantage</span>
-					<h2>
-						Same Active Ingredient.
-						<br>
-						Completely Different Delivery.
-					</h2>
-					<p>
-						The effectiveness of skincare isn't only determined by the ingredients
-						you use—it's determined by how much of those ingredients actually reach
-						their destination.
-					</p>
-				</div>
-				<!-- Toggle -->
-				<div class="toggle-wraper">
-					<div class="comparison-toggle is-conventional" role="tablist" aria-label="Compare delivery methods">
-						<button class="comparison-btn active" id="btnConv" type="button" role="tab" aria-selected="true">
-							Conventional
-						</button>
-						<button class="comparison-btn" id="btnLipo" type="button" role="tab" aria-selected="false">
-							SiNORA Liposomal
-						</button>
-						<span class="comparison-pill" aria-hidden="true"></span>
-					</div>
-				</div>
-				<!-- =========================================
-				MAIN COMPARISON
-				========================================= -->
-				<div class="comparison-grid">
-					<!-- LEFT — GRAPHIC -->
-					<div class="comparison-visual">
-					    <div class="comparison-image-wrap" id="comparisonImageWrap"></div>
-					</div>
-					<!-- RIGHT — STATS + EXPLANATION -->
-					<div class="comparison-info">
-						<!-- KPI 1 -->
-						<div class="comparison-card">
-							<span class="comparison-value" id="kpiDepth">92%</span>
-							<div class="comparison-content">
-								<span class="comparison-label">Delivery Efficiency</span>
-								<p class="comparison-text" id="kpiNote">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-							</div>
-						</div>
-						<!-- KPI 2 -->
-						<div class="comparison-card">
-							<span class="comparison-value" id="kpiIntact">89%</span>
-							<div class="comparison-content">
-								<span class="comparison-label">Active Stability</span>
-								<p class="comparison-text" id="kpiNote">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-							</div>
-						</div>
-						<!-- Explanation -->
-						<div class="comparison-card comparison-note">
-							<h4 id="compareTitle"> Liposomal Delivery</h4>
-							<p id="vizNote">
-								Encapsulated active ingredients remain protected while
-								travelling deeper into the skin, allowing controlled
-								release and improved absorption.
-							</p>
-						</div>
-					</div>
-				</div>
-				<!-- =========================================
-				SIMPLE BENEFITS
-				========================================= -->
-				<div class="comparison-benefits">
-					<div class="comparison-benefits-grid">
-						<!-- Benefit 01 -->
-						<div class="comparison-benefit">
-							<div class="benefit-icon">
-								01
-							</div>
-							<div class="benefit-content">
-								<h4 id="benefitTitle1">
-								Protected
-								</h4>
-								<p id="benefitText1">
-									Active ingredients are surrounded by a
-									protective liposomal structure.
-								</p>
-							</div>
-						</div>
-						<!-- Benefit 02 -->
-						<div class="comparison-benefit">
-							<div class="benefit-icon">
-								02
-							</div>
-							<div class="benefit-content">
-								<h4 id="benefitTitle2">
-								Delivered
-								</h4>
-								<p id="benefitText2">
-									Liposomes help carry active ingredients
-									beyond the skin's outer barrier.
-								</p>
-							</div>
-						</div>
-						<!-- Benefit 03 -->
-						<div class="comparison-benefit">
-							<div class="benefit-icon">
-								03
-							</div>
-							<div class="benefit-content">
-								<h4 id="benefitTitle3">
-								Released
-								</h4>
-								<p id="benefitText3">
-									The delivery system supports controlled
-									release of the active ingredients.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+		    <div class="container">
+
+		        <!-- ── HEADING (static — editable in Shopify theme editor) ── -->
+		        <div class="comparison-header">
+		            <span class="section-eyebrow">Liposomal Advantage</span>
+		            <h2>
+		                Same Active Ingredient.
+		                <br>
+		                Completely Different Delivery.
+		            </h2>
+		            <p>
+		                The effectiveness of skincare isn't only determined by the ingredients
+		                you use—it's determined by how much of those ingredients actually reach
+		                their destination.
+		            </p>
+		        </div>
+
+		        <!-- =========================================
+		        MAIN GRID
+		        ========================================= -->
+		        <div class="comparison-grid">
+
+		            <!-- ── LEFT — GRAPHIC + TOGGLE ── -->
+		            <div class="comparison-visual">
+
+		                <!-- Toggle lives INSIDE the visual -->
+		                <div class="comparison-toggle is-conventional"
+		                     role="tablist"
+		                     aria-label="Compare delivery methods">
+		                    <button class="comparison-btn active"
+		                            id="btnConv"
+		                            type="button"
+		                            role="tab"
+		                            aria-selected="true">
+		                        Conventional
+		                    </button>
+		                    <button class="comparison-btn"
+		                            id="btnLipo"
+		                            type="button"
+		                            role="tab"
+		                            aria-selected="false">
+		                        SiNORA Liposomal
+		                    </button>
+		                    <span class="comparison-pill" aria-hidden="true"></span>
+		                </div>
+
+		                <!-- Skin-layer image (CSS background) + particle overlay -->
+		                <div class="comparison-image-wrap" id="comparisonImageWrap">
+
+		                    <!-- Static particles — positions controlled by CSS, not JS -->
+		                    <div class="comparison-particles is-conventional">
+		                        <div class="particle" data-index="0"><img src="assets/images/droplet-conv.png" alt=""><div class="particle-burst"></div></div>
+		                        <div class="particle" data-index="1"><img src="assets/images/droplet-conv.png" alt=""><div class="particle-burst"></div></div>
+		                        <div class="particle" data-index="2"><img src="assets/images/droplet-conv.png" alt=""><div class="particle-burst"></div></div>
+		                        <div class="particle" data-index="3"><img src="assets/images/droplet-conv.png" alt=""><div class="particle-burst"></div></div>
+		                        <div class="particle" data-index="4"><img src="assets/images/droplet-conv.png" alt=""><div class="particle-burst"></div></div>
+		                        <div class="particle" data-index="5"><img src="assets/images/droplet-conv.png" alt=""><div class="particle-burst"></div></div>
+		                        <div class="particle" data-index="6"><img src="assets/images/droplet-conv.png" alt=""><div class="particle-burst"></div></div>
+		                        <div class="particle" data-index="7"><img src="assets/images/droplet-conv.png" alt=""><div class="particle-burst"></div></div>
+		                        <div class="particle" data-index="8"><img src="assets/images/droplet-conv.png" alt=""><div class="particle-burst"></div></div>
+		                        <div class="particle" data-index="9"><img src="assets/images/droplet-conv.png" alt=""><div class="particle-burst"></div></div>
+		                    </div>
+
+		                </div>
+
+		            </div><!-- /.comparison-visual -->
+
+		            <!-- ── RIGHT — STATS + EXPLANATION ── -->
+		            <div class="comparison-info">
+
+		                <!--
+		                ═══════════════════════════════════════════
+		                  CONVENTIONAL STATE
+		                  Shopify: edit everything inside this div
+		                ═══════════════════════════════════════════ -->
+		                <div class="comparison-state is-active" data-state="conventional">
+
+		                    <!-- KPI 1 -->
+		                    <div class="comparison-card">
+		                        <span class="comparison-value">18%</span>
+		                        <div class="comparison-content">
+		                            <span class="comparison-label">Delivery Efficiency</span>
+		                            <p class="comparison-text">
+		                                Most active ingredients stay near the skin's outer
+		                                surface, limiting how much reaches deeper layers.
+		                            </p>
+		                        </div>
+		                    </div>
+
+		                    <!-- KPI 2 -->
+		                    <div class="comparison-card">
+		                        <span class="comparison-value">31%</span>
+		                        <div class="comparison-content">
+		                            <span class="comparison-label">Active Stability</span>
+		                            <p class="comparison-text">
+		                                Conventional formulas expose ingredients to the environment
+		                                before they can be absorbed, reducing their effectiveness.
+		                            </p>
+		                        </div>
+		                    </div>
+
+		                    <!-- KPI 3 -->
+		                    <div class="comparison-card">
+		                        <span class="comparison-value">5%</span>
+		                        <div class="comparison-content">
+		                            <span class="comparison-label">Conventional Delivery</span>
+		                            <p class="comparison-text">
+		                                Most active ingredients remain around the skin's surface,
+		                            	where exposure and rapid release limit how effectively
+		                            	they are delivered.
+		                            </p>
+		                        </div>
+		                    </div>
+
+		                    <!-- Explanation -->
+		                    <!-- <div class="comparison-card comparison-note">
+		                        <h4>Conventional Delivery</h4>
+		                        <p>
+		                            Most active ingredients remain around the skin's surface,
+		                            where exposure and rapid release limit how effectively
+		                            they are delivered.
+		                        </p>
+		                    </div> -->
+
+		                </div><!-- /[data-state="conventional"] -->
+
+		                <!--
+		                ═══════════════════════════════════════════
+		                  LIPOSOMAL STATE
+		                  Shopify: edit everything inside this div
+		                ═══════════════════════════════════════════ -->
+		                <div class="comparison-state" data-state="liposomal">
+
+		                    <!-- KPI 1 -->
+		                    <div class="comparison-card">
+		                        <span class="comparison-value">92%</span>
+		                        <div class="comparison-content">
+		                            <span class="comparison-label">Delivery Efficiency</span>
+		                            <p class="comparison-text">
+		                                Liposomal encapsulation protects active ingredients and
+		                                carries them deep into the skin where they're needed most.
+		                            </p>
+		                        </div>
+		                    </div>
+
+		                    <!-- KPI 2 -->
+		                    <div class="comparison-card">
+		                        <span class="comparison-value">89%</span>
+		                        <div class="comparison-content">
+		                            <span class="comparison-label">Active Stability</span>
+		                            <p class="comparison-text">
+		                                The liposomal structure keeps active ingredients stable
+		                                and intact until they reach their target skin layer.
+		                            </p>
+		                        </div>
+		                    </div>
+
+		                    <!-- KPI 3-->
+		                    <div class="comparison-card">
+		                        <span class="comparison-value">50%</span>
+		                        <div class="comparison-content">
+		                            <span class="comparison-label">Liposomal Delivery</span>
+		                            <p class="comparison-text">
+		                                Encapsulated active ingredients remain protected while
+		                            	travelling deeper into the skin, allowing controlled
+		                            	release and improved absorption.
+		                            </p>
+		                        </div>
+		                    </div>
+
+		                    <!-- Explanation -->
+		                    <!-- <div class="comparison-card comparison-note">
+		                        <h4>Liposomal Delivery</h4>
+		                        <p>
+		                            Encapsulated active ingredients remain protected while
+		                            travelling deeper into the skin, allowing controlled
+		                            release and improved absorption.
+		                        </p>
+		                    </div> -->
+
+		                </div><!-- /[data-state="liposomal"] -->
+
+		            </div><!-- /.comparison-info -->
+
+		        </div><!-- /.comparison-grid -->
+
+		        <!-- =========================================
+		        BENEFITS (static grid — editable per state in Shopify)
+		        ========================================= -->
+		        <div class="comparison-benefits">
+
+		            <!-- CONVENTIONAL benefits -->
+		            <div class="comparison-state is-active" data-state="conventional">
+		                <div class="comparison-benefits-grid">
+		                    <div class="comparison-benefit">
+		                        <div class="benefit-icon">01</div>
+		                        <div class="benefit-content">
+		                            <h4>Stays on the Surface</h4>
+		                            <p>Most active ingredients remain around the skin's outer surface.</p>
+		                        </div>
+		                    </div>
+		                    <div class="comparison-benefit">
+		                        <div class="benefit-icon">02</div>
+		                        <div class="benefit-content">
+		                            <h4>Limited Absorption</h4>
+		                            <p>Less of the active ingredient may reach deeper layers of the skin.</p>
+		                        </div>
+		                    </div>
+		                    <div class="comparison-benefit">
+		                        <div class="benefit-icon">03</div>
+		                        <div class="benefit-content">
+		                            <h4>Less Efficient</h4>
+		                            <p>Ingredients can be exposed before reaching their intended destination.</p>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+
+		            <!-- LIPOSOMAL benefits -->
+		            <div class="comparison-state" data-state="liposomal">
+		                <div class="comparison-benefits-grid">
+		                    <div class="comparison-benefit">
+		                        <div class="benefit-icon">01</div>
+		                        <div class="benefit-content">
+		                            <h4>Protected</h4>
+		                            <p>Active ingredients are surrounded by a protective liposomal structure.</p>
+		                        </div>
+		                    </div>
+		                    <div class="comparison-benefit">
+		                        <div class="benefit-icon">02</div>
+		                        <div class="benefit-content">
+		                            <h4>Deeper Delivery</h4>
+		                            <p>Liposomes help carry active ingredients beyond the skin's outer barrier.</p>
+		                        </div>
+		                    </div>
+		                    <div class="comparison-benefit">
+		                        <div class="benefit-icon">03</div>
+		                        <div class="benefit-content">
+		                            <h4>Controlled Release</h4>
+		                            <p>The delivery system supports controlled release of active ingredients.</p>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+
+		        </div><!-- /.comparison-benefits -->
+
+		    </div><!-- /.container -->
 		</section>
 
 		<!-- =========================================
@@ -1106,15 +1237,7 @@
                     <!-- Card 1 — Liposomal Technology -->
                     <div class="why-card">
                         <div class="why-card-icon">
-                            <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <circle cx="14" cy="14" r="12" stroke="var(--amber)" stroke-width="1.6" fill="none" stroke-dasharray="3 2"/>
-                                <circle cx="14" cy="14" r="6.5" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="1.4"/>
-                                <circle cx="14" cy="14" r="2.2" fill="var(--amber)"/>
-                                <circle cx="14" cy="3.5"  r="1.4" fill="var(--amber)" opacity=".55"/>
-                                <circle cx="24.5" cy="14" r="1.4" fill="var(--amber)" opacity=".55"/>
-                                <circle cx="14" cy="24.5" r="1.4" fill="var(--amber)" opacity=".55"/>
-                                <circle cx="3.5"  cy="14" r="1.4" fill="var(--amber)" opacity=".55"/>
-                            </svg>
+                            <img src="assets/images/lipsome.png" alt="liposome">
                         </div>
                         <div class="why-card-body">
                             <h4 class="why-card-title">Liposomal Technology</h4>
@@ -1127,10 +1250,7 @@
                     <!-- Card 2 — Toxin Free -->
                     <div class="why-card">
                         <div class="why-card-icon">
-                            <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M14 2.5L4 7v7c0 5.8 4.3 11.2 10 12.5 5.7-1.3 10-6.7 10-12.5V7L14 2.5Z" stroke="var(--amber)" stroke-width="1.6" fill="var(--amber-soft)" stroke-linejoin="round"/>
-                                <path d="M9.5 14.2l3 3 6-6.4" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <img src="assets/images/toxin-free.png" alt="Toxin Free">
                         </div>
                         <div class="why-card-body">
                             <h4 class="why-card-title">Toxin Free Formula</h4>
@@ -1143,14 +1263,7 @@
                     <!-- Card 3 — Clinically Validated -->
                     <div class="why-card">
                         <div class="why-card-icon">
-                            <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <rect x="5" y="5" width="18" height="21" rx="3" stroke="var(--amber)" stroke-width="1.6" fill="var(--amber-soft)"/>
-                                <rect x="10" y="3" width="8" height="4" rx="2" stroke="var(--amber)" stroke-width="1.4" fill="var(--white)"/>
-                                <line x1="9" y1="13" x2="19" y2="13" stroke="var(--amber)" stroke-width="1.4" stroke-linecap="round"/>
-                                <rect x="9"    y="17"   width="3" height="5"   rx="1" fill="var(--amber)" opacity=".4"/>
-                                <rect x="13.5" y="15"   width="3" height="7"   rx="1" fill="var(--amber)" opacity=".7"/>
-                                <rect x="18"   y="16.5" width="3" height="5.5" rx="1" fill="var(--amber)"/>
-                            </svg>
+                            <img src="assets/images/clip.png" alt="Clinically Validated">
                         </div>
                         <div class="why-card-body">
                             <h4 class="why-card-title">Clinically Validated</h4>
@@ -1163,10 +1276,7 @@
                     <!-- Card 4 — Long-Lasting Hydration -->
                     <div class="why-card">
                         <div class="why-card-icon">
-                            <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M14 3C14 3 5 13 5 18a9 9 0 0 0 18 0C23 13 14 3 14 3Z" stroke="var(--amber)" stroke-width="1.6" fill="var(--amber-soft)" stroke-linejoin="round"/>
-                                <path d="M10 16 Q10.5 12.5 13 11" stroke="var(--amber)" stroke-width="1.3" stroke-linecap="round" fill="none" opacity=".7"/>
-                            </svg>
+                            <img src="assets/images/hydration.png" alt="Hydration">
                         </div>
                         <div class="why-card-body">
                             <h4 class="why-card-title">Long-Lasting Hydration</h4>

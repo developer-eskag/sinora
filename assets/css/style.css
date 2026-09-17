@@ -644,7 +644,6 @@
 
 .brand-values span{
     position:relative;
-    font-family:var(--mono);
     font-size:var(--fs-xs);
     letter-spacing:.18em;
     text-transform:uppercase;
@@ -681,7 +680,6 @@
 .point-number{
     /* width:40px; */
     flex-shrink:0;
-    font-family:var(--mono);
     color:var(--amber);
     letter-spacing:.12em;
     background: var(--amber-soft);
@@ -701,16 +699,16 @@
     line-height:1.5;
 }
 
-.brand-point:hover{
-    padding-left:.75rem;
+.brand-point .brand-point-content {
+    transition: all .35s var(--ease);
 }
 
-.brand-point:hover h3{
-    color:var(--amber);
+.brand-point:hover .brand-point-content {
+    transform: scale(1.01);
 }
 
-.brand-point:hover .point-number{
-    transform:translateX(6px);
+.brand-point:hover .point-number {
+    transform: scale(1.2);
 }
 
 .point-number{
@@ -2185,21 +2183,35 @@ Header
     margin: auto;
 }
 
-/*----------------------------------
-Toggle
-----------------------------------*/
-.toggle-wraper {
+/*====================================================
+    MAIN GRID
+====================================================*/
+.comparison-grid {
     display: grid;
-    align-items: center;
-    flex-wrap: wrap;
     grid-template-columns: 1.2fr .8fr;
-    margin: 0 auto -75px;
-    justify-content: center;
-    justify-items: center;
-    position: relative;
-    z-index: 5;
+    gap: 70px;
+    align-items: center;
 }
 
+/*====================================================
+    VISUAL (LEFT COLUMN)
+====================================================*/
+.comparison-visual {
+    position: relative;
+    min-width: 0;
+    overflow: visible;
+    border-radius: var(--r-xl);
+    background: rgba(255,255,255,.65);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,.75);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+}
+
+/*----------------------------------
+Toggle — sits at top of visual
+----------------------------------*/
 .comparison-toggle {
     position: relative;
     display: grid;
@@ -2207,11 +2219,13 @@ Toggle
     align-items: center;
     width: max-content;
     padding: 6px;
+    margin: 16px auto 0;
     border-radius: 999px;
     background: rgba(255,255,255,0.06);
     backdrop-filter: blur(4px);
-    border: 1px solid var(--line);
+    border: 1px solid var(--amber);
     box-shadow: var(--shadow-sm);
+    z-index: 5;
 }
 
 .comparison-btn {
@@ -2245,86 +2259,18 @@ Toggle
     transition: transform .45s cubic-bezier(.22,.61,.36,1);
 }
 
-.comparison-toggle.is-liposomal
-.comparison-pill {
+.comparison-toggle.is-liposomal .comparison-pill {
     transform: translateX(100%);
 }
 
-.comparison-toggle.is-conventional
-.comparison-pill {
+.comparison-toggle.is-conventional .comparison-pill {
     transform: translateX(0);
 }
-
-/*====================================================
-    MAIN GRID
-====================================================*/
-.comparison-grid {
-    display: grid;
-    grid-template-columns: 1.2fr .8fr;
-    gap: 70px;
-    align-items: center;
-}
-
-/*====================================================
-    VISUAL
-====================================================*/
-.comparison-visual {
-    position: relative;
-    min-width: 0;
-    overflow: visible;
-    border-radius: var(--r-xl);
-    background: rgba(255,255,255,.65);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.75);
-    box-shadow: var(--shadow-md);
-}
-
-/*.comparison-visual svg{
-   width:100%;
-   height:auto;
-}
-
-.skin-diagram {
-  position: relative;
-  width: 100%;
-  border-radius: var(--r-xl);
-  overflow: hidden;
-  background: #FED2B0;
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-md);
-}
-
-.skin-diagram svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}*/
-
-/*----------------------------------
-Image glow
-----------------------------------*/
- /*.comparison-visual::before {
-    content: "";
-    position: absolute;
-    width: 340px;
-    height: 340px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(
-            circle,
-            rgba(242,106,33,.12),
-            transparent 70%
-        );
-    filter: blur(70px);
-    pointer-events: none;
-    animation: comparisonGlow 7s ease-in-out infinite;
-} */
 
 /*----------------------------------
 Image Wrapper
 ----------------------------------*/
- .comparison-image-wrap {
+.comparison-image-wrap {
     position: relative;
     z-index: 1;
     width: 100%;
@@ -2335,51 +2281,221 @@ Image Wrapper
     background-size: cover;
     background-position: center top;
     height: 480px;
-} 
+    /* Clip top corners to match toggle margin */
+    border-radius: 0 0 var(--r-xl) var(--r-xl);
+}
 
-/*----------------------------------
-Image
-----------------------------------*/
-/* Both images occupy exactly the same space */
- /* .comparison-image {
-    display: block;
-    width: 100%;
-    height: auto;
-    transition: opacity .75s cubic-bezier(.4, 0, .2, 1);
-}  */
+.comparison-image-wrap::before {
+    content:"";
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    position:absolute;
+    background: rgba(255,255,255,0.25)
 
-/* Second image sits on top */
-/* .comparison-image:not(.is-visible) {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-}*/ 
-
-/* Visible image */
-/* .comparison-image.is-visible {
-    position: relative;
-    opacity: 1;
-} 
-*/
+}
 
 /*====================================================
     PARTICLES
 ====================================================*/
 .comparison-particles {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
 }
 
+/*----------------------------------
+Individual particle
+----------------------------------*/
 .particle {
-  position: absolute;
-  width: 20px;
-  height: 24px;
-  transform: translate(-50%, -50%);
-  transition: top 1.4s cubic-bezier(.4,0,.2,1);
+    position: absolute;
+    width: 22px;
+    height: 26px;
+    transform: translate(-50%, -50%);
+    transition:
+        top  1.4s cubic-bezier(.4, 0, .2, 1),
+        left 1.4s cubic-bezier(.4, 0, .2, 1);
+    animation-fill-mode: both;
 }
 
+.particle img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.18));
+    transition: src 0s; /* src swap is instant — no filter trick */
+}
+
+/*----------------------------------
+PNG swap: JS sets img.src
+Conventional = droplet-conv.png (blue)
+Liposomal    = droplet-lipo.png (amber)
+No CSS filter needed.
+----------------------------------*/
+
+/*----------------------------------
+PARTICLE POSITIONS — DESKTOP ≥ 1024px
+Two sets of coordinates per particle:
+  [data-index="N"] inside .is-conventional → conv position
+  [data-index="N"] inside .is-liposomal    → lipo position
+
+Tune these values:
+  In DevTools, select a .particle and
+  change its top/left in the Styles panel.
+  Copy the working values here.
+----------------------------------*/
+
+/* ── Horizontal positions (same for both modes) ── */
+.particle[data-index="0"] { left: 10%; }
+.particle[data-index="1"] { left: 20%; }
+.particle[data-index="2"] { left: 32%; }
+.particle[data-index="3"] { left: 44%; }
+.particle[data-index="4"] { left: 56%; }
+.particle[data-index="5"] { left: 68%; }
+.particle[data-index="6"] { left: 78%; }
+.particle[data-index="7"] { left: 88%; }
+.particle[data-index="8"] { left: 25%; }
+.particle[data-index="9"] { left: 60%; }
+
+/* ── CONVENTIONAL vertical positions ── */
+.comparison-particles.is-conventional .particle[data-index="0"] { top: 35%; }
+.comparison-particles.is-conventional .particle[data-index="1"] { top: 45%; }
+.comparison-particles.is-conventional .particle[data-index="2"] { top: 50%; }
+.comparison-particles.is-conventional .particle[data-index="3"] { top: 42%; }
+.comparison-particles.is-conventional .particle[data-index="4"] { top: 46%; }
+.comparison-particles.is-conventional .particle[data-index="5"] { top: 50%; }
+.comparison-particles.is-conventional .particle[data-index="6"] { top: 52%; }
+.comparison-particles.is-conventional .particle[data-index="7"] { top: 41%; }
+.comparison-particles.is-conventional .particle[data-index="8"] { top: 43%; }
+.comparison-particles.is-conventional .particle[data-index="9"] { top: 39%; }
+
+/* ── LIPOSOMAL vertical positions ── */
+.comparison-particles.is-liposomal .particle[data-index="0"] { top: 53%; }
+.comparison-particles.is-liposomal .particle[data-index="1"] { top: 85%; }
+.comparison-particles.is-liposomal .particle[data-index="2"] { top: 80%; }
+.comparison-particles.is-liposomal .particle[data-index="3"] { top: 78%; }
+.comparison-particles.is-liposomal .particle[data-index="4"] { top: 52%; }
+.comparison-particles.is-liposomal .particle[data-index="5"] { top: 84%; }
+.comparison-particles.is-liposomal .particle[data-index="6"] { top: 88%; }
+.comparison-particles.is-liposomal .particle[data-index="7"] { top: 87%; }
+.comparison-particles.is-liposomal .particle[data-index="8"] { top: 77%; }
+.comparison-particles.is-liposomal .particle[data-index="9"] { top: 79%; }
+
+/* ── Stagger transitions ── */
+.particle[data-index="0"] { transition-delay: 0.00s; }
+.particle[data-index="1"] { transition-delay: 0.06s; }
+.particle[data-index="2"] { transition-delay: 0.12s; }
+.particle[data-index="3"] { transition-delay: 0.18s; }
+.particle[data-index="4"] { transition-delay: 0.24s; }
+.particle[data-index="5"] { transition-delay: 0.00s; }
+.particle[data-index="6"] { transition-delay: 0.06s; }
+.particle[data-index="7"] { transition-delay: 0.12s; }
+.particle[data-index="8"] { transition-delay: 0.18s; }
+.particle[data-index="9"] { transition-delay: 0.24s; }
+
+/*----------------------------------
+Slim Desktop — 1200px to 1500px
+Adjust top values to match your skin
+layer boundaries at this width.
+----------------------------------*/
+@media (max-width: 1500px) and (min-width: 1200px) {
+    /* ── LIPOSOMAL vertical positions ── */
+    .comparison-particles.is-liposomal .particle[data-index="0"] { top: 49%; }
+    .comparison-particles.is-liposomal .particle[data-index="1"] { top: 74%; }
+    .comparison-particles.is-liposomal .particle[data-index="2"] { top: 76%; }
+    .comparison-particles.is-liposomal .particle[data-index="3"] { top: 72%; }
+    .comparison-particles.is-liposomal .particle[data-index="4"] { top: 48%; }
+    .comparison-particles.is-liposomal .particle[data-index="5"] { top: 68%; }
+    .comparison-particles.is-liposomal .particle[data-index="6"] { top: 65%; }
+    .comparison-particles.is-liposomal .particle[data-index="7"] { top: 70%; }
+    .comparison-particles.is-liposomal .particle[data-index="8"] { top: 72%; }
+    .comparison-particles.is-liposomal .particle[data-index="9"] { top: 74%; }
+}
+
+@media (max-width: 1199px) and (min-width: 1025px) {
+    /* ── LIPOSOMAL vertical positions ── */
+    .comparison-particles.is-liposomal .particle[data-index="0"] { top: 49%; }
+    .comparison-particles.is-liposomal .particle[data-index="1"] { top: 74%; }
+    .comparison-particles.is-liposomal .particle[data-index="2"] { top: 76%; }
+    .comparison-particles.is-liposomal .particle[data-index="3"] { top: 72%; }
+    .comparison-particles.is-liposomal .particle[data-index="4"] { top: 48%; }
+    .comparison-particles.is-liposomal .particle[data-index="5"] { top: 68%; }
+    .comparison-particles.is-liposomal .particle[data-index="6"] { top: 65%; }
+    .comparison-particles.is-liposomal .particle[data-index="7"] { top: 70%; }
+    .comparison-particles.is-liposomal .particle[data-index="8"] { top: 72%; }
+    .comparison-particles.is-liposomal .particle[data-index="9"] { top: 74%; }
+}
+
+/*----------------------------------
+TABLET — 640px to 1023px
+Adjust top values to match your skin
+layer boundaries at this width.
+----------------------------------*/
+@media (max-width: 1024px) and (min-width: 640px) {
+    /* CONVENTIONAL */
+    .comparison-particles.is-conventional .particle[data-index="0"] { top: 33%; }
+    .comparison-particles.is-conventional .particle[data-index="1"] { top: 38%; }
+    .comparison-particles.is-conventional .particle[data-index="2"] { top: 35%; }
+    .comparison-particles.is-conventional .particle[data-index="3"] { top: 40%; }
+    .comparison-particles.is-conventional .particle[data-index="4"] { top: 36%; }
+    .comparison-particles.is-conventional .particle[data-index="5"] { top: 42%; }
+    .comparison-particles.is-conventional .particle[data-index="6"] { top: 34%; }
+    .comparison-particles.is-conventional .particle[data-index="7"] { top: 39%; }
+    .comparison-particles.is-conventional .particle[data-index="8"] { top: 41%; }
+    .comparison-particles.is-conventional .particle[data-index="9"] { top: 37%; }
+
+    /* LIPOSOMAL */
+    .comparison-particles.is-liposomal .particle[data-index="0"] { top: 53%; }
+    .comparison-particles.is-liposomal .particle[data-index="1"] { top: 63%; }
+    .comparison-particles.is-liposomal .particle[data-index="2"] { top: 68%; }
+    .comparison-particles.is-liposomal .particle[data-index="3"] { top: 73%; }
+    .comparison-particles.is-liposomal .particle[data-index="4"] { top: 58%; }
+    .comparison-particles.is-liposomal .particle[data-index="5"] { top: 76%; }
+    .comparison-particles.is-liposomal .particle[data-index="6"] { top: 66%; }
+    .comparison-particles.is-liposomal .particle[data-index="7"] { top: 70%; }
+    .comparison-particles.is-liposomal .particle[data-index="8"] { top: 56%; }
+    .comparison-particles.is-liposomal .particle[data-index="9"] { top: 61%; }
+}
+
+/*----------------------------------
+MOBILE — < 640px
+----------------------------------*/
+@media (max-width: 639px) {
+    .particle {
+        width: 16px;
+        height: 19px;
+    }
+
+    /* CONVENTIONAL */
+    .comparison-particles.is-conventional .particle[data-index="0"] { top: 30%; }
+    .comparison-particles.is-conventional .particle[data-index="1"] { top: 35%; }
+    .comparison-particles.is-conventional .particle[data-index="2"] { top: 32%; }
+    .comparison-particles.is-conventional .particle[data-index="3"] { top: 37%; }
+    .comparison-particles.is-conventional .particle[data-index="4"] { top: 33%; }
+    .comparison-particles.is-conventional .particle[data-index="5"] { top: 39%; }
+    .comparison-particles.is-conventional .particle[data-index="6"] { top: 31%; }
+    .comparison-particles.is-conventional .particle[data-index="7"] { top: 36%; }
+    .comparison-particles.is-conventional .particle[data-index="8"] { top: 38%; }
+    .comparison-particles.is-conventional .particle[data-index="9"] { top: 34%; }
+
+    /* LIPOSOMAL */
+    .comparison-particles.is-liposomal .particle[data-index="0"] { top: 50%; }
+    .comparison-particles.is-liposomal .particle[data-index="1"] { top: 60%; }
+    .comparison-particles.is-liposomal .particle[data-index="2"] { top: 65%; }
+    .comparison-particles.is-liposomal .particle[data-index="3"] { top: 70%; }
+    .comparison-particles.is-liposomal .particle[data-index="4"] { top: 55%; }
+    .comparison-particles.is-liposomal .particle[data-index="5"] { top: 73%; }
+    .comparison-particles.is-liposomal .particle[data-index="6"] { top: 63%; }
+    .comparison-particles.is-liposomal .particle[data-index="7"] { top: 67%; }
+    .comparison-particles.is-liposomal .particle[data-index="8"] { top: 53%; }
+    .comparison-particles.is-liposomal .particle[data-index="9"] { top: 58%; }
+}
+
+/*----------------------------------
+Drop-in animation (page load)
+----------------------------------*/
 @keyframes particleDrop {
     0%   { transform: translate(-50%, -50%) translateY(-120px); opacity: 0; }
     60%  { transform: translate(-50%, -50%) translateY(6px);    opacity: 1; }
@@ -2389,10 +2505,12 @@ Image
 }
 
 .particle.is-dropping {
-    animation: particleDrop 0.75s cubic-bezier(.4, 0, .2, 1) forwards;
+    animation: particleDrop .75s cubic-bezier(.4, 0, .2, 1) forwards;
 }
 
-/* ── Float: gentle hover once settled ── */
+/*----------------------------------
+Float: gentle hover once settled
+----------------------------------*/
 @keyframes particleFloat {
     0%, 100% { transform: translate(-50%, -50%) translateY(0); }
     50%       { transform: translate(-50%, -50%) translateY(-6px); }
@@ -2402,55 +2520,24 @@ Image
     animation: particleFloat 3.2s ease-in-out infinite;
 }
 
-/* ── The SVG droplet itself ── */
-.particle svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .18));
-    transition: filter 0.5s ease;
-}
-
-.particle-core {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 32% 30%, #fff, var(--cream-2) 55%, #d8570f 100%);
-  box-shadow: 0 0 10px rgba(242,106,33,.55), 0 0 3px rgba(255,255,255,.9) inset;
-  animation: particlePulse 2.2s ease-in-out infinite;
-}
-
+/*----------------------------------
+Burst ring (deep-layer liposomal only)
+----------------------------------*/
 .particle-burst {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid currentColor;
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
-  pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
 }
 
-/*.particle-burst.is-active {
-  animation: particleBurst .7s ease-out forwards;
-}
-*/
-.particle-burst.is-looping {
-  animation: particleBurst 1.8s ease-out infinite;
-}
-
-/* Conventional burst = blue tint */
-.particle.is-conventional .particle-burst { color: rgba(120, 180, 240, .7); }
-
-/* Liposomal burst = amber */
-.particle.is-liposomal   .particle-burst { color: rgba(242, 106, 33, .7); }
-
-@keyframes particlePulse {
-  0%, 100% { transform: scale(1);    opacity: .92; }
-  50%      { transform: scale(1.18); opacity: 1; }
-}
+.comparison-particles.is-conventional .particle-burst { color: rgba(120, 180, 240, .7); }
+.comparison-particles.is-liposomal   .particle-burst { color: rgba(242, 106,  33, .7); }
 
 @keyframes particleBurst {
     0%   { transform: translate(-50%, -50%) scale(.4); opacity: .9; }
@@ -2458,9 +2545,30 @@ Image
     100% { transform: translate(-50%, -50%) scale(2.8); opacity: 0; }
 }
 
-@media (max-width: 600px) {
-    .particle { width: 15px; height: 18px; }
-    .particle-burst { width: 15px; height: 18px; }
+.particle-burst.is-looping {
+    animation: particleBurst 1.8s ease-out infinite;
+}
+
+/*====================================================
+    CONTENT STATE SWITCHING
+    JS adds / removes .is-active on [data-state]
+====================================================*/
+.comparison-state {
+    display: none;
+}
+
+.comparison-state.is-active {
+    display: contents; /* slots children as if the div didn't exist */
+}
+
+/* For benefits block the children are a grid wrapper,
+   so use block instead of contents there */
+.comparison-benefits .comparison-state {
+    display: none;
+}
+
+.comparison-benefits .comparison-state.is-active {
+    display: block;
 }
 
 /*====================================================
@@ -2494,7 +2602,7 @@ Image
 .comparison-card:hover {
     transform: translateY(-4px);
     border-color: rgba(242,106,33,.18);
-    box-shadow:var(--shadow-md);
+    box-shadow: var(--shadow-md);
 }
 
 /* Orange top line */
@@ -2506,29 +2614,24 @@ Image
     width: 100%;
     height: 4px;
     border-radius: 4px 4px 0 0;
-    background: linear-gradient(
-            90deg,
-            var(--amber),
-            #FFB46B
-        );
+    background: linear-gradient(90deg, var(--amber), #FFB46B);
     opacity: .85;
 }
 
-/*====================================================
-    KPI VALUE
-====================================================*/
 .comparison-value {
-    display: block;
-    font-family: var(--display);
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    display: flex;
+    flex: 0 0 96px;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.8rem, 4vw, 2rem);
     line-height: 1;
-    color: var(--amber);
+    color: var(--white);
     font-weight: 700;
     white-space: nowrap;
-    background: rgba(251, 234, 219,0.25);
-    padding: 25px 10px;
-    border-radius: 24px;
-    box-shadow: 2px 0 4px rgba(0,0,0,0.4);
+    background: var(--amber);
+    padding: 10px;
+    border-radius: 12px;
+    aspect-ratio: 1/1;
     transition: all .3s ease;
 }
 
@@ -2536,13 +2639,9 @@ Image
     transform: scale(1.05);
 }
 
-/*====================================================
-    KPI LABEL
-====================================================*/
 .comparison-content {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
 }
 
 .comparison-label {
@@ -2557,9 +2656,6 @@ Image
     line-height: 1.5;
 }
 
-/*====================================================
-    EXPLANATION
-====================================================*/
 .comparison-note {
     padding: 30px 24px 24px;
     flex-direction: column;
@@ -2569,7 +2665,6 @@ Image
 
 .comparison-note h4 {
     margin: 0 0 12px;
-    font-size: var(--fs-lg);
     color: var(--amber);
 }
 
@@ -2593,9 +2688,6 @@ Image
     gap: 18px;
 }
 
-/*----------------------------------
-Benefit Card
-----------------------------------*/
 .comparison-benefit {
     display: flex;
     align-items: center;
@@ -2614,12 +2706,9 @@ Benefit Card
 .comparison-benefit:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
-    border: 1px solid rgba(242,106,33,.65);
+    border-color: rgba(242,106,33,.65);
 }
 
-/*----------------------------------
-Benefit Number
-----------------------------------*/
 .benefit-icon {
     width: 50px;
     height: 50px;
@@ -2630,16 +2719,17 @@ Benefit Number
     border-radius: 50%;
     background: rgba(242,106,33,.10);
     color: var(--amber);
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
+    transition: all .35s var(--ease);
 }
 
-/*----------------------------------
-Benefit Content
-----------------------------------*/
+.comparison-benefit:hover .benefit-icon {
+    transform: scale(1.1);
+}
+
 .benefit-content h4 {
     margin: 0 0 7px;
-    font-size: var(--fs-lg);
     color: var(--amber);
 }
 
@@ -2651,32 +2741,14 @@ Benefit Content
 }
 
 /*====================================================
-    IMAGE TRANSITION
-====================================================*/
-
-/*@keyframes comparisonGlow {
-    0%,
-    100% {
-        transform:
-            translate(-50%, -50%)
-            scale(1);
-    }
-    50% {
-        transform:
-            translate(-50%, -50%)
-            scale(1.12);
-    }
-}*/
-
-/*====================================================
     RESPONSIVE
 ====================================================*/
-
 @media (max-width: 900px) {
     .comparison-grid {
         grid-template-columns: 1fr;
         gap: 28px;
     }
+
     .comparison-info {
         max-width: 700px;
         width: 100%;
@@ -2694,7 +2766,7 @@ Benefit Content
     }
 
     .comparison-toggle {
-        margin-bottom: 15px;
+        margin: 12px auto 0;
     }
 
     .comparison-btn {
@@ -2715,18 +2787,18 @@ Benefit Content
         font-size: 1.9rem;
     }
 
-    .comparison-label {
-        padding: 9px 12px;
-        font-size: 10px;
-        letter-spacing: .1em;
-    }
-
     .comparison-note {
         padding: 26px 20px 22px;
     }
 
     .comparison-benefit {
         padding: 20px;
+    }
+
+    /* Particle size at mobile — positions are in the particle CSS block above */
+    .particle-burst {
+        width: 16px;
+        height: 16px;
     }
 }
 
@@ -2807,20 +2879,21 @@ Benefit Content
 
 /* Icon wrapper */
 .why-card-icon {
-    flex: 0 0 46px;
-    width: 46px;
-    height: 46px;
+    flex: 0 0 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: var(--r);
     background: var(--amber-soft);
     border: 1px solid rgba(242, 106, 33, .18);
-    transition: background .35s var(--ease);
+    transition: all .35s var(--ease);
+    padding: 10px;
+    aspect-ratio: 1/1;
 }
 
 .why-card:hover .why-card-icon {
     background: rgba(242, 106, 33, .18);
+    transform: scale(1.08);
 }
 
 .why-card-body {
