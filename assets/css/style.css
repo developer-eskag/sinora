@@ -2292,7 +2292,7 @@ Image Wrapper
     right:0;
     bottom:0;
     position:absolute;
-    background: rgba(255,255,255,0.25)
+    background: rgba(255,255,255,0.3)
 
 }
 
@@ -2731,6 +2731,7 @@ Burst ring (deep-layer liposomal only)
 .benefit-content h4 {
     margin: 0 0 7px;
     color: var(--amber);
+    font-family: var(--body);
 }
 
 .benefit-content p {
@@ -2902,7 +2903,7 @@ Burst ring (deep-layer liposomal only)
 }
 
 .why-card-title {
-    font-family: var(--display);
+    font-family: var(--body);
     font-size: var(--fs-lg);
     font-weight: var(--fw-semibold);
     color: var(--amber);
@@ -3624,37 +3625,35 @@ Pagination
 }
 
 .featured-label-wrap {
-    filter: drop-shadow(-1px 8px 3px rgba(0, 0, 0, 0.5));
+    width: 22%;
 }
 
 /* ── Left label ── */
 .featured-in-label {
   flex-shrink: 0;
-  padding: 20px 20px 20px calc(20px + 27px);
+  padding: 20px 20px 20px 155px;
   /* border-right: 1px solid var(--line); */
-  min-width: 220px;
-  max-width: 260px;
-  background: var(--cream-2);
+  background: var(--amber);
   position: relative;
   z-index: 2;
-  clip-path: polygon(0 0, calc(100% - 27px) 0, 100% 50%, calc(100% - 27px) 100%, 0 100%);
+  clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
 }
 
 .featured-in-title {
-  font-family: var(--mono);
   font-size: 20px;
   font-weight: 800;
-  color: var(--amber);
+  color: var(--white);
   margin-bottom: 4px;
   white-space: nowrap;
+  max-width: 200px;
 }
 
 .featured-in-quote {
   font-size: .72rem;
   font-style: italic;
-  color: var(--muted);
+  color: var(--white);
   line-height: 1.5;
-  max-width: 210px;
+  max-width: 200px;
 }
 
 /* ── Marquee viewport ── */
@@ -3740,8 +3739,35 @@ Pagination
 }
 
 /* ── Responsive ── */
+@media (max-width: 1200px) {
+    .featured-label-wrap {
+        width: 24%;
+    }
+    .featured-in-label {
+        padding: 20px 20px 20px 25px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .featured-label-wrap {
+        width: 28%;
+    }
+    .featured-in-label {
+        padding: 20px 20px 20px 65px;
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-label-wrap{
+        width: 32%;
+    }
+    .featured-in-label {
+        padding: 20px 20px 20px 35px;
+    }
+}
+
 @media (max-width: 640px) {
-  .featured-in-label {
+  .featured-label-wrap {
     display: none;
   }
   .featured-in-marquee {
