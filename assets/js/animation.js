@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const MOVE_DURATION = 1400;
 
     // Indices that get burst rings in liposomal mode (the deeper ones)
-    const BURST_INDICES = [3, 4, 5, 6, 7];
+    const BURST_INDICES = [1, 2, 3, 5, 6, 7, 8, 9];
 
     /*──────────────────────────────────────
       Drop-in on load
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     el.classList.remove("is-dropping");
                     el.classList.add("is-floating");
                 }, { once: true });
-            }, i * 70);
+            }, i * 60);
         });
     }
 
@@ -66,21 +66,32 @@ document.addEventListener("DOMContentLoaded", function () {
         particleField.classList.add(mode === "liposomal" ? "is-liposomal" : "is-conventional");
 
         particleField.querySelectorAll(".particle").forEach((el, i) => {
-            el.querySelector("img").src = imgSrc;
             el.classList.remove("is-floating");
 
+            // Swap PNG halfway through the move so it lands with the right image
+            clearTimeout(el._srcTimer);
+            el._srcTimer = setTimeout(() => {
+                el.querySelector("img").src = imgSrc;
+            }, MOVE_DURATION / 2 + (i % 5) * 40);
+
             // Burst rings for deep liposomal particles
-            const burstEl = el.querySelector(".particle-burst");
+            const burstEls = el.querySelectorAll(".particle-burst");
             clearTimeout(el._burstTimer);
             clearTimeout(el._floatTimer);
 
             if (mode === "liposomal" && BURST_INDICES.includes(i)) {
-                burstEl.style.animationDelay = (i % 5 * 0.25) + "s";
+                // Set stagger delay only on ring 1 — ring 2 keeps its CSS 0.9s offset
+                burstEls[0].style.animationDelay = (i % 5 * 0.2) + "s";
+                // Clear any inline delay on ring 2 so CSS takes over
+                if (burstEls[1]) burstEls[1].style.animationDelay = "";
                 el._burstTimer = setTimeout(() => {
-                    burstEl.classList.add("is-looping");
+                    burstEls.forEach(b => b.classList.add("is-looping"));
                 }, MOVE_DURATION + (i % 5) * 80);
             } else {
-                burstEl.classList.remove("is-looping");
+                burstEls.forEach(b => {
+                    b.classList.remove("is-looping");
+                    b.style.animationDelay = "";
+                });
             }
 
             el._floatTimer = setTimeout(() => {

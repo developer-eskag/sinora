@@ -2285,17 +2285,6 @@ Image Wrapper
     border-radius: 0 0 var(--r-xl) var(--r-xl);
 }
 
-.comparison-image-wrap::before {
-    content:"";
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    position:absolute;
-    background: rgba(255,255,255,0.3)
-
-}
-
 /*====================================================
     PARTICLES
 ====================================================*/
@@ -2359,7 +2348,7 @@ Tune these values:
 .particle[data-index="8"] { left: 25%; }
 .particle[data-index="9"] { left: 60%; }
 
-/* ── CONVENTIONAL vertical positions ── */
+/* ── CONVENTIONAL vertical positions — DESKTOP ≥ 1500px ── */
 .comparison-particles.is-conventional .particle[data-index="0"] { top: 35%; }
 .comparison-particles.is-conventional .particle[data-index="1"] { top: 45%; }
 .comparison-particles.is-conventional .particle[data-index="2"] { top: 50%; }
@@ -2371,7 +2360,7 @@ Tune these values:
 .comparison-particles.is-conventional .particle[data-index="8"] { top: 43%; }
 .comparison-particles.is-conventional .particle[data-index="9"] { top: 39%; }
 
-/* ── LIPOSOMAL vertical positions ── */
+/* ── LIPOSOMAL vertical positions — DESKTOP ≥ 1500px ── */
 .comparison-particles.is-liposomal .particle[data-index="0"] { top: 53%; }
 .comparison-particles.is-liposomal .particle[data-index="1"] { top: 85%; }
 .comparison-particles.is-liposomal .particle[data-index="2"] { top: 80%; }
@@ -2396,26 +2385,10 @@ Tune these values:
 .particle[data-index="9"] { transition-delay: 0.24s; }
 
 /*----------------------------------
-Slim Desktop — 1200px to 1500px
-Adjust top values to match your skin
-layer boundaries at this width.
+SLIM DESKTOP — 1200px to 1499px
 ----------------------------------*/
-@media (max-width: 1500px) and (min-width: 1200px) {
-    /* ── LIPOSOMAL vertical positions ── */
-    .comparison-particles.is-liposomal .particle[data-index="0"] { top: 49%; }
-    .comparison-particles.is-liposomal .particle[data-index="1"] { top: 74%; }
-    .comparison-particles.is-liposomal .particle[data-index="2"] { top: 76%; }
-    .comparison-particles.is-liposomal .particle[data-index="3"] { top: 72%; }
-    .comparison-particles.is-liposomal .particle[data-index="4"] { top: 48%; }
-    .comparison-particles.is-liposomal .particle[data-index="5"] { top: 68%; }
-    .comparison-particles.is-liposomal .particle[data-index="6"] { top: 65%; }
-    .comparison-particles.is-liposomal .particle[data-index="7"] { top: 70%; }
-    .comparison-particles.is-liposomal .particle[data-index="8"] { top: 72%; }
-    .comparison-particles.is-liposomal .particle[data-index="9"] { top: 74%; }
-}
-
-@media (max-width: 1199px) and (min-width: 1025px) {
-    /* ── LIPOSOMAL vertical positions ── */
+@media (max-width: 1499px) and (min-width: 1200px) {
+    /* LIPOSOMAL */
     .comparison-particles.is-liposomal .particle[data-index="0"] { top: 49%; }
     .comparison-particles.is-liposomal .particle[data-index="1"] { top: 74%; }
     .comparison-particles.is-liposomal .particle[data-index="2"] { top: 76%; }
@@ -2429,9 +2402,24 @@ layer boundaries at this width.
 }
 
 /*----------------------------------
-TABLET — 640px to 1023px
-Adjust top values to match your skin
-layer boundaries at this width.
+MEDIUM DESKTOP — 1025px to 1199px
+----------------------------------*/
+@media (max-width: 1199px) and (min-width: 1025px) {
+    /* LIPOSOMAL */
+    .comparison-particles.is-liposomal .particle[data-index="0"] { top: 49%; }
+    .comparison-particles.is-liposomal .particle[data-index="1"] { top: 74%; }
+    .comparison-particles.is-liposomal .particle[data-index="2"] { top: 76%; }
+    .comparison-particles.is-liposomal .particle[data-index="3"] { top: 72%; }
+    .comparison-particles.is-liposomal .particle[data-index="4"] { top: 48%; }
+    .comparison-particles.is-liposomal .particle[data-index="5"] { top: 68%; }
+    .comparison-particles.is-liposomal .particle[data-index="6"] { top: 65%; }
+    .comparison-particles.is-liposomal .particle[data-index="7"] { top: 70%; }
+    .comparison-particles.is-liposomal .particle[data-index="8"] { top: 72%; }
+    .comparison-particles.is-liposomal .particle[data-index="9"] { top: 74%; }
+}
+
+/*----------------------------------
+TABLET — 640px to 1024px
 ----------------------------------*/
 @media (max-width: 1024px) and (min-width: 640px) {
     /* CONVENTIONAL */
@@ -2521,8 +2509,19 @@ Float: gentle hover once settled
 }
 
 /*----------------------------------
-Burst ring (deep-layer liposomal only)
+Burst rings (deep-layer liposomal only)
+Rings sit BEHIND the PNG via z-index.
+Two rings fire offset in time for depth.
 ----------------------------------*/
+.particle {
+    isolation: isolate; /* new stacking context so z-index works */
+}
+
+.particle img {
+    position: relative;
+    z-index: 2; /* PNG on top of both rings */
+}
+
 .particle-burst {
     position: absolute;
     top: 50%;
@@ -2530,23 +2529,33 @@ Burst ring (deep-layer liposomal only)
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    border: 2px solid currentColor;
+    border: 1px solid currentColor;
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
     pointer-events: none;
+    z-index: 1; /* behind PNG (z-index: 2) */
 }
 
-.comparison-particles.is-conventional .particle-burst { color: rgba(120, 180, 240, .7); }
-.comparison-particles.is-liposomal   .particle-burst { color: rgba(242, 106,  33, .7); }
+.particle-burst--2 {
+    z-index: 1;
+}
+
+/* Both modes use the same blue ring color */
+.particle-burst { color: rgba(120, 180, 240, 1); }
 
 @keyframes particleBurst {
-    0%   { transform: translate(-50%, -50%) scale(.4); opacity: .9; }
-    70%  { opacity: 0; }
-    100% { transform: translate(-50%, -50%) scale(2.8); opacity: 0; }
+    0%   { transform: translate(-50%, -50%) scale(.3); opacity: 1; }
+    50%  { opacity: .5; }
+    100% { transform: translate(-50%, -50%) scale(3.2); opacity: 0; }
 }
 
 .particle-burst.is-looping {
     animation: particleBurst 1.8s ease-out infinite;
+}
+
+/* Second ring: always fires 0.9s after first — CSS delay, NOT overridden by JS */
+.particle-burst--2.is-looping {
+    animation: particleBurst 1.8s ease-out 0.9s infinite;
 }
 
 /*====================================================
@@ -2620,9 +2629,7 @@ Burst ring (deep-layer liposomal only)
 
 .comparison-value {
     display: flex;
-    flex: 0 0 96px;
     align-items: center;
-    justify-content: center;
     font-size: clamp(1.8rem, 4vw, 2rem);
     line-height: 1;
     color: var(--white);
@@ -2656,24 +2663,7 @@ Burst ring (deep-layer liposomal only)
     line-height: 1.5;
 }
 
-.comparison-note {
-    padding: 30px 24px 24px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-}
-
-.comparison-note h4 {
-    margin: 0 0 12px;
-    color: var(--amber);
-}
-
-.comparison-note p {
-    margin: 0;
-    color: var(--muted);
-    font-size: var(--fs-sm);
-    line-height: 1.5;
-}
+/* .comparison-note removed — replaced by KPI 3 card */
 
 /*====================================================
     BENEFITS
@@ -2721,17 +2711,11 @@ Burst ring (deep-layer liposomal only)
     color: var(--amber);
     font-size: 18px;
     font-weight: 700;
-    transition: all .35s var(--ease);
-}
-
-.comparison-benefit:hover .benefit-icon {
-    transform: scale(1.1);
 }
 
 .benefit-content h4 {
     margin: 0 0 7px;
     color: var(--amber);
-    font-family: var(--body);
 }
 
 .benefit-content p {
@@ -2788,9 +2772,6 @@ Burst ring (deep-layer liposomal only)
         font-size: 1.9rem;
     }
 
-    .comparison-note {
-        padding: 26px 20px 22px;
-    }
 
     .comparison-benefit {
         padding: 20px;
@@ -3625,13 +3606,13 @@ Pagination
 }
 
 .featured-label-wrap {
-    width: 22%;
+    width: 18%;
 }
 
 /* ── Left label ── */
 .featured-in-label {
   flex-shrink: 0;
-  padding: 20px 20px 20px 155px;
+  padding: 20px;
   /* border-right: 1px solid var(--line); */
   background: var(--amber);
   position: relative;
@@ -3741,28 +3722,19 @@ Pagination
 /* ── Responsive ── */
 @media (max-width: 1200px) {
     .featured-label-wrap {
-        width: 24%;
-    }
-    .featured-in-label {
-        padding: 20px 20px 20px 25px;
+        width: 22%;
     }
 }
 
 @media (max-width: 1024px) {
     .featured-label-wrap {
-        width: 28%;
-    }
-    .featured-in-label {
-        padding: 20px 20px 20px 65px;
+        width: 25%;
     }
 }
 
 @media (max-width: 768px) {
     .featured-label-wrap{
-        width: 32%;
-    }
-    .featured-in-label {
-        padding: 20px 20px 20px 35px;
+        width: 28%;
     }
 }
 
