@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const MOVE_DURATION = 1400;
 
     // Indices that get burst rings in liposomal mode (the deeper ones)
-    const BURST_INDICES = [1, 2, 3, 5, 6, 7, 8, 9];
+    const BURST_INDICES = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     /*──────────────────────────────────────
       Drop-in on load
