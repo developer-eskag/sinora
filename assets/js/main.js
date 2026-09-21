@@ -398,13 +398,13 @@ if (comparison) {
     
     const resultsData = {
         7: {
-            image: "assets/images/after-7.png"
+            image: "assets/images/after-1.jpg"
         },
         14: {
-            image: "assets/images/after-14.png"
+            image: "assets/images/after-3.jpg"
         },
         28: {
-            image: "assets/images/after-28.png"
+            image: "assets/images/after-6.jpg"
         }
     };
 
