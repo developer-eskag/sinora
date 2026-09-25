@@ -3283,7 +3283,7 @@ Two rings fire offset in time for depth.
     writing-mode: horizontal-tb;
     transform: none;
     font-family: var(--body);
-    font-size: 35px;
+    font-size: clamp(16px, 2vw, 35px);
     font-weight: var(--fw-bold);
     letter-spacing: .01em;
     white-space: nowrap;
@@ -3636,16 +3636,28 @@ Two rings fire offset in time for depth.
     .accordion {
         height: 560px;
     }
+
+    .panel-label {
+        justify-content: center;
+        padding-bottom: 0;
+        background: radial-gradient(rgba(255, 255, 255, .8) 35%,
+                  rgba(255, 255, 255, .8) 100%,
+                  rgba(255, 255, 255, 0) 80%);
+    }
  
     /* Title: switch to vertical-rl, scale font down */
     .panel-title-v {
-        font-size: clamp(1rem, 2.2vw, 1.5rem);
+        font-size: clamp(16px, 3vw, 35px);
         writing-mode: vertical-rl;
         transform: rotate(180deg);
         white-space: nowrap;
     }
  
     /* Hide the description below the title */
+    .panel-icon {
+        display: none;
+    }
+
     .panel-desc {
         display: none;
     }
@@ -3696,7 +3708,10 @@ Two rings fire offset in time for depth.
         justify-content: flex-start;
         padding: 0 20px;
         gap: 14px;
-        background: linear-gradient(to right, rgba(255,255,255,0) 60%, rgba(255,255,255,1) 100%);
+    }
+
+    .panel-icon {
+        display: block;
     }
  
     /* Title: back to horizontal now panels are full width */

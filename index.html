@@ -2258,16 +2258,28 @@
      On touch devices we toggle .is-open on tap.
      ============================================================ */
 		  (function () {
-    const isTouchDevice = () =>
-        window.matchMedia('(max-width: 700px)').matches ||
-        ('ontouchstart' in window);
+    const MOBILE_BP = 768;
+
+    function isMobile() {
+        return window.matchMedia('(max-width: ' + MOBILE_BP + 'px)').matches;
+    }
 
     document.querySelectorAll('.accordion .panel').forEach(function (panel) {
-        panel.addEventListener('click', function () {
-            if (!isTouchDevice()) return;          // desktop: CSS handles it
-            const isOpen = panel.classList.contains('is-open');
 
-            // Close all panels first
+        // Use 'touchend' on touch devices so it fires immediately on lift,
+        // not after the 300ms click delay — eliminates the "press and hold" feel.
+        // Fall back to 'click' on desktop.
+        var evt = ('ontouchstart' in window) ? 'touchend' : 'click';
+
+        panel.addEventListener(evt, function (e) {
+            if (!isMobile()) return; // desktop: pure CSS hover handles it
+
+            // Prevent ghost click firing after touchend
+            e.preventDefault();
+
+            var isOpen = panel.classList.contains('is-open');
+
+            // Close all first
             document.querySelectorAll('.accordion .panel').forEach(function (p) {
                 p.classList.remove('is-open');
             });
