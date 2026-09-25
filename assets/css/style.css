@@ -3782,6 +3782,30 @@ Two rings fire offset in time for depth.
         flex: 1;
         min-height: 0;
     }
+
+    .before-overlay {
+        background: linear-gradient(
+            to top,
+            var(--dark) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
+    }
+
+    .before-desc {
+        max-width: 250px;
+    }
+
+    .after-overlay {
+        background: linear-gradient(
+            to top,
+            var(--white) 0%,
+            rgba(255, 255, 255, 0) 100%
+        );
+    }
+
+    .after-desc {
+        max-width: 250px;
+    }
  
     .content-divider {
         width: 100%;
