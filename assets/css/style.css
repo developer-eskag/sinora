@@ -3226,21 +3226,6 @@ Two rings fire offset in time for depth.
     pointer-events: none;
 }
 
-/* Dark overlay so closed title is always legible */
-/* .panel::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.75);
-    z-index: 1;
-    transition: opacity var(--speed) var(--ease);
-    pointer-events: none;
-} */
-
-/* .panel:hover::before {
-    opacity: 0;
-} */
-
 /* ── Closed panel label — CENTERED both axes ── */
 .panel-label {
     position: absolute;
@@ -3254,7 +3239,7 @@ Two rings fire offset in time for depth.
     transition: opacity var(--speed) var(--ease);
     padding-bottom: 20px;
     transition: opacity var(--speed) var(--ease);
-    background: linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 85%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 45%, rgba(255,255,255,1) 75%);
 }
 
 .panel:hover .panel-label {
@@ -3272,6 +3257,8 @@ Two rings fire offset in time for depth.
     aspect-ratio: 1/1;
     padding: 10px;
     border-radius: 50%;
+    transition: opacity var(--speed) var(--ease),
+                transform var(--speed) var(--ease);
 }
 
 .panel-icon-irritation {
@@ -3293,30 +3280,46 @@ Two rings fire offset in time for depth.
 
 /* Vertical title — reads bottom → top */
 .panel-title-v {
-    text-orientation: mixed;
-    font-family: var(--display);
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-family: var(--body);
     font-size: 35px;
     font-weight: var(--fw-bold);
+    letter-spacing: .01em;
     white-space: nowrap;
     line-height: 1;
     text-align: center;
     text-transform: uppercase;
+    transition: color var(--speed) var(--ease),
+                transform var(--speed) var(--ease),
+                font-size var(--speed) var(--ease);
+}
+
+.panel-desc {
+    font-size: 16px;
+    max-width: 190px;
+    text-align: center;
+    line-height: 1.3;
+    font-weight: 600;
+    transition: opacity var(--speed) var(--ease),
+                transform var(--speed) var(--ease);
+}
+
+/* Per-panel title colours + gradient underline */
+.panel-desc::after {
+    content: "";
+    border-bottom: 2px solid transparent;
+    display: block;
+    margin: 12px auto 0;
+    width: 55px;
+    transition: opacity var(--speed) var(--ease);
 }
 
 .panel-title-v-irritation {
     color: #850707;
 }
 
-.panel-title-v::after {
-    content: "";
-    border-bottom: 2px solid transparent;
-    display: block;
-    position: relative;
-    margin: 12px auto 0;
-}
-
-.panel-title-v-irritation::after {
-    width: 55px;
+.panel-desc-irritation::after {
     border-image: linear-gradient(to right, #850707, #f8d1ca) 1;
 }
 
@@ -3324,8 +3327,7 @@ Two rings fire offset in time for depth.
     color: #9f5725;
 }
 
-.panel-title-v-transparent::after {
-    width: 55px;
+.panel-desc-transparent::after {
     border-image: linear-gradient(to right, #9f5725, #f6dbc8) 1;
 }
 
@@ -3333,8 +3335,7 @@ Two rings fire offset in time for depth.
     color: #5d0e49;
 }
 
-.panel-title-v-odor::after {
-    width: 30px;
+.panel-desc-odor::after {
     border-image: linear-gradient(to right, #5d0e49, #e3d5db) 1;
 }
 
@@ -3342,9 +3343,40 @@ Two rings fire offset in time for depth.
     color: #094320;
 }
 
-.panel-title-v-bio::after {
-    width: 55px;
+.panel-desc-bio::after {
     border-image: linear-gradient(to right, #094320, #dde3d3) 1;
+}
+
+/* Label: re-center, remove white gradient fade */
+.accordion:has(.panel:hover) .panel:not(:hover) .panel-label {
+    justify-content: center;
+    padding-bottom: 0;
+    background: radial-gradient(rgba(255, 255, 255, .8) 35%,
+  rgba(255, 255, 255, .8) 100%,
+  rgba(255, 255, 255, 0) 80%);
+}
+
+/* Icon: hide */
+.accordion:has(.panel:hover) .panel:not(:hover) .panel-icon {
+    opacity: 0;
+    transform: scale(0.6);
+}
+
+/* Description Hide */
+.accordion:has(.panel:hover) .panel:not(:hover) .panel-desc {
+    display: none;
+}
+
+/* Title: go vertical, white color over the dark overlay */
+.accordion:has(.panel:hover) .panel:not(:hover) .panel-title-v {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 45px;
+}
+
+/* Hide gradient underline on squeezed siblings */
+.accordion:has(.panel:hover) .panel:not(:hover) .panel-title-v::after {
+    display: none;
 }
 
 /* Amber accent line — sweeps in on hover */
@@ -3593,78 +3625,154 @@ Two rings fire offset in time for depth.
    Hover doesn't work reliably on touch — JS adds .is-open
    on tap (see script below).
    ============================================================ */
-@media (max-width: 700px) {
+/* ── 991px: horizontal accordion, vertical titles ── */
+@media (max-width: 991px) {
+ 
+    /* Scale the whole section down a touch */
+    .skin-concerns {
+        padding-block: 72px;
+    }
+ 
+    .accordion {
+        height: 560px;
+    }
+ 
+    /* Title: switch to vertical-rl, scale font down */
+    .panel-title-v {
+        font-size: clamp(1rem, 2.2vw, 1.5rem);
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        white-space: nowrap;
+    }
+ 
+    /* Hide the description below the title */
+    .panel-desc {
+        display: none;
+    }
+ 
+    /* Keep icon visible — it's still readable at this width */
+    .panel-icon {
+        width: 44px;
+        height: 44px;
+    }
+ 
+    /* Squeezed siblings: lock vertical, no ::after underline */
+    .accordion:has(.panel:hover) .panel:not(:hover) .panel-title-v {
+        font-size: clamp(.75rem, 1.6vw, 1.1rem);
+    }
+}
+ 
+/* ── 768px: vertical accordion, tap-to-open ── */
+@media (max-width: 768px) {
+ 
     .skin-concerns {
         padding-block: 56px;
     }
-
+ 
+    /* Stack panels vertically */
     .accordion {
         flex-direction: column;
         height: auto;
         gap: 4px;
         border-radius: var(--r-lg);
     }
-
+ 
+    /* Closed panel row height */
     .panel {
-        height: 76px;
+        height: 72px;
         flex: none;
+        /* animate height instead of flex */
         transition: height 0.55s var(--ease);
     }
-
-    /* Tapped/active panel on mobile */
+ 
+    /* Open panel (JS adds .is-open on tap) */
     .panel.is-open {
-        height: 460px;
+        height: 480px;
     }
-
+ 
+    /* Label: row layout — icon left, title right */
     .panel-label {
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start;
+        padding: 0 20px;
+        gap: 14px;
+        background: linear-gradient(to right, rgba(255,255,255,0) 60%, rgba(255,255,255,1) 100%);
     }
-
+ 
+    /* Title: back to horizontal now panels are full width */
     .panel-title-v {
-        writing-mode: horizontal-tb;
-        transform: none;
-        font-size: .95rem;
+        writing-mode: horizontal-tb !important;
+        transform: none !important;
+        font-size: 1.1rem !important;
+        white-space: nowrap;
     }
-
+ 
+    /* Per-panel colours stay — override the white set by squeezed state */
+    .panel-title-v-irritation  { color: #850707 !important; }
+    .panel-title-v-transparent { color: #9f5725 !important; }
+    .panel-title-v-odor        { color: #5d0e49 !important; }
+    .panel-title-v-bio         { color: #094320 !important; }
+ 
+    /* Icon: always visible, normal size */
+    .panel-icon {
+        width: 42px;
+        height: 42px;
+        opacity: 1 !important;
+        transform: none !important;
+        flex-shrink: 0;
+    }
+ 
+    /* Gradient underline — hide on mobile (no room) */
+    .panel-title-v::after {
+        display: none !important;
+    }
+ 
+    /* desc: still hidden (no room in a 72px row) */
+    .panel-desc {
+        display: none !important;
+    }
+ 
+    /* ── Disable the :has() squeezed-state on mobile ──
+       (hover never fires on touch, but guard it anyway) */
+    .accordion:has(.panel:hover) .panel:not(:hover)::before { opacity: 0; }
+    .accordion:has(.panel:hover) .panel:not(:hover) .panel-label {
+        justify-content: flex-start;
+        padding: 0 20px;
+        background: linear-gradient(to right, rgba(255,255,255,0) 60%, rgba(255,255,255,1) 100%);
+    }
+    .accordion:has(.panel:hover) .panel:not(:hover) .panel-icon {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    .accordion:has(.panel:hover) .panel:not(:hover) .panel-title-v {
+        writing-mode: horizontal-tb !important;
+        transform: none !important;
+        font-size: 1.1rem !important;
+    }
+ 
     /* Show expanded content when .is-open */
-    .panel.is-open .panel-concern-img {
-        opacity: 0;
-    }
-
-    .panel.is-open::before {
-        opacity: 0;
-    }
-
-    .panel.is-open .panel-label {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    .panel.is-open .panel-content {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .panel.is-open .panel-accent {
-        transform: scaleX(1);
-    }
-
+    .panel.is-open .panel-concern-img { opacity: 0; }
+    .panel.is-open::before            { opacity: 0 !important; }
+    .panel.is-open .panel-label       { opacity: 0; pointer-events: none; }
+    .panel.is-open .panel-content     { opacity: 1; pointer-events: auto; }
+    .panel.is-open .panel-accent      { transform: scaleX(1); }
+ 
+    /* Expanded content: stack before/after vertically */
     .panel-content {
         flex-direction: column;
     }
-
+ 
     .content-before,
     .content-after {
         flex: 1;
         min-height: 0;
     }
-
+ 
     .content-divider {
         width: 100%;
         height: 1px;
     }
-
+ 
     .vs-badge { display: none; }
 }
 

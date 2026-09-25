@@ -1307,7 +1307,7 @@
 		        <!-- Header -->
 		        <header class="concerns-header">
 		            <span class="section-tag">Why It Matters</span>
-		            <h2>Liposomal Serums<br>solve <em>hidden problems</em></h2>
+		            <h2>Conventional serums come<br>with <em>hidden costs</em></h2>
 		            <p>Most skincare products fail where it matters most. SiNORA's liposomal technology directly addresses every limitation of conventional formulas.</p>
 		        </header>
 
@@ -1323,6 +1323,7 @@
 		                <div class="panel-label" aria-hidden="true">
 		                    <img class="panel-icon panel-icon-irritation" src="assets/images/irritation_icon.png" alt="">
 		                    <span class="panel-title-v panel-title-v-irritation">Irritation</span>
+		                    <p class="panel-desc panel-desc-irritation">A common formulation challenge</p>
 		                </div>
 
 		                <div class="panel-accent" aria-hidden="true"></div>
@@ -1373,6 +1374,7 @@
 		                <div class="panel-label" aria-hidden="true">
 		                    <img class="panel-icon panel-icon-transparent" src="assets/images/transparency_icon.png" alt="">
 		                    <span class="panel-title-v panel-title-v-transparent">Transparency</span>
+		                    <p class="panel-desc panel-desc-transparent">Clear, elegant formulation</p>
 		                </div>
 
 		                <div class="panel-accent" aria-hidden="true"></div>
@@ -1421,6 +1423,7 @@
 		                <div class="panel-label" aria-hidden="true">
 		                    <img class="panel-icon panel-icon-odor" src="assets/images/odour_icon.png" alt="">
 		                    <span class="panel-title-v panel-title-v-odor">Odor</span>
+		                    <p class="panel-desc panel-desc-odor">An often-overlooked sensory challenge</p>
 		                </div>
 
 		                <div class="panel-accent" aria-hidden="true"></div>
@@ -1469,6 +1472,7 @@
 		                <div class="panel-label" aria-hidden="true">
 		                    <img class="panel-icon panel-icon-bio" src="assets/images/bioavailability_icon.png" alt="">
 		                    <span class="panel-title-v panel-title-v-bio">Bioavailability</span>
+		                    <p class="panel-desc panel-desc-bio">Designed for enhanced delivery</p>
 		                </div>
 
 		                <div class="panel-accent" aria-hidden="true"></div>
@@ -2254,27 +2258,27 @@
      On touch devices we toggle .is-open on tap.
      ============================================================ */
 		  (function () {
-		    const isTouchDevice = () =>
-		        window.matchMedia('(max-width: 700px)').matches ||
-		        ('ontouchstart' in window);
+    const isTouchDevice = () =>
+        window.matchMedia('(max-width: 700px)').matches ||
+        ('ontouchstart' in window);
 
-		    document.querySelectorAll('.accordion .panel').forEach(function (panel) {
-		        panel.addEventListener('click', function () {
-		            if (!isTouchDevice()) return;          // desktop: CSS handles it
-		            const isOpen = panel.classList.contains('is-open');
+    document.querySelectorAll('.accordion .panel').forEach(function (panel) {
+        panel.addEventListener('click', function () {
+            if (!isTouchDevice()) return;          // desktop: CSS handles it
+            const isOpen = panel.classList.contains('is-open');
 
-		            // Close all panels first
-		            document.querySelectorAll('.accordion .panel').forEach(function (p) {
-		                p.classList.remove('is-open');
-		            });
+            // Close all panels first
+            document.querySelectorAll('.accordion .panel').forEach(function (p) {
+                p.classList.remove('is-open');
+            });
 
-		            // Toggle clicked panel
-		            if (!isOpen) {
-		                panel.classList.add('is-open');
-		            }
-		        });
-		    });
-		}());
+            // Toggle clicked panel
+            if (!isOpen) {
+                panel.classList.add('is-open');
+            }
+        });
+    });
+}());
 
 </script>
 </body>
